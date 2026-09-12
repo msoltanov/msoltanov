@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="786" viewBox="0 0 420 786" role="img" aria-labelledby="title desc">
+<title id="title">ALABAY CODE / profile.ts</title>
+<desc id="desc">ALABAY CODE. Mekan, @msoltanov. Interests: Software Engineering, Cybersecurity, AI &amp; Experimentation, Infrastructure, Open Source, Growth Engineering. 16 public repositories, 0 stars earned by owned public repositories, 21 followers. Public projects: pdf-shrinker: Compress PDF files with Ghostscript via cli. Unstar: Unstar github stars. Proxmox-Technical-Writing-Style-Skill: Unofficial Proxmox Technical Writing Style Skill</desc>
+<g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace" letter-spacing="0">
+<rect x="0.5" y="0.5" width="419" height="785" rx="7" fill="#fafcfa" stroke="#bdccc2"/>
+<rect x="20" y="22" width="36" height="36" rx="4" fill="#e3ece6"/>
+<text x="26" y="47" fill="#21634d" font-size="25" font-weight="700">A</text>
+<rect x="48" y="46" width="4" height="8" rx="0" fill="#905023"/>
+<text x="70" y="40" fill="#20342b" font-size="24" font-weight="700">ALABAY CODE</text>
+<text x="71" y="60" fill="#526b5d" font-size="12" >developer workstation</text>
+<path d="M0 78H420V78" fill="none" stroke="#bdccc2"/>
+<rect x="1" y="79" width="418" height="43" rx="0" fill="#f0f4f1"/>
+<rect x="1" y="79" width="173" height="2" rx="0" fill="#21634d"/>
+<text x="20" y="105" fill="#205f8e" font-size="13" >TS</text>
+<text x="51" y="105" fill="#20342b" font-size="14" >profile.ts</text>
+<text x="400" y="105" fill="#526b5d" font-size="11" text-anchor="end">READ ONLY</text>
+<path d="M0 122H420V122" fill="none" stroke="#bdccc2"/>
+<rect x="60" y="151" width="1" height="315" rx="0" fill="#e3ece6"/>
+<text x="28" y="161" fill="#526b5d" font-size="12" text-anchor="end">01</text>
+<text x="43" y="161" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b"></tspan><tspan fill="#704d8f">export</tspan><tspan fill="#20342b"> </tspan><tspan fill="#704d8f">const</tspan><tspan fill="#20342b"> developer = {</tspan></text>
+<text x="28" y="186" fill="#526b5d" font-size="12" text-anchor="end">02</text>
+<text x="43" y="186" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b">  name: </tspan><tspan fill="#49701e">&quot;Mekan&quot;</tspan><tspan fill="#20342b">,</tspan></text>
+<text x="28" y="211" fill="#526b5d" font-size="12" text-anchor="end">03</text>
+<text x="43" y="211" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b">  handle: </tspan><tspan fill="#49701e">&quot;msoltanov&quot;</tspan><tspan fill="#20342b">,</tspan></text>
+<text x="28" y="236" fill="#526b5d" font-size="12" text-anchor="end">04</text>
+<text x="43" y="236" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b"></tspan></text>
+<text x="28" y="261" fill="#526b5d" font-size="12" text-anchor="end">05</text>
+<text x="43" y="261" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b">  interests: [</tspan></text>
+<text x="28" y="286" fill="#526b5d" font-size="12" text-anchor="end">06</text>
+<text x="43" y="286" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b">    </tspan><tspan fill="#49701e">&quot;Software Engineering&quot;</tspan><tspan fill="#20342b">,</tspan></text>
+<text x="28" y="311" fill="#526b5d" font-size="12" text-anchor="end">07</text>
+<text x="43" y="311" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b">    </tspan><tspan fill="#49701e">&quot;Cybersecurity&quot;</tspan><tspan fill="#20342b">,</tspan></text>
+<text x="28" y="336" fill="#526b5d" font-size="12" text-anchor="end">08</text>
+<text x="43" y="336" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b">    </tspan><tspan fill="#49701e">&quot;AI &amp; Experimentation&quot;</tspan><tspan fill="#20342b">,</tspan></text>
+<text x="28" y="361" fill="#526b5d" font-size="12" text-anchor="end">09</text>
+<text x="43" y="361" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b">    </tspan><tspan fill="#49701e">&quot;Infrastructure&quot;</tspan><tspan fill="#20342b">,</tspan></text>
+<text x="28" y="386" fill="#526b5d" font-size="12" text-anchor="end">10</text>
+<text x="43" y="386" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b">    </tspan><tspan fill="#49701e">&quot;Open Source&quot;</tspan><tspan fill="#20342b">,</tspan></text>
+<text x="28" y="411" fill="#526b5d" font-size="12" text-anchor="end">11</text>
+<text x="43" y="411" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b">    </tspan><tspan fill="#49701e">&quot;Growth Engineering&quot;</tspan><tspan fill="#20342b"></tspan></text>
+<text x="28" y="436" fill="#526b5d" font-size="12" text-anchor="end">12</text>
+<text x="43" y="436" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b">  ]</tspan></text>
+<text x="28" y="461" fill="#526b5d" font-size="12" text-anchor="end">13</text>
+<text x="43" y="461" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b">};</tspan></text>
+<path d="M0 487H420V487" fill="none" stroke="#bdccc2"/>
+<text x="22" y="512" fill="#526b5d" font-size="11" >TERMINAL</text>
+<text x="22" y="541" fill="#21634d" font-size="14" >$ github stats --public</text>
+<text x="22" y="579" fill="#20342b" font-size="26" font-weight="600">16</text>
+<text x="22" y="603" fill="#526b5d" font-size="12" >public repos</text>
+<text x="147.33333333333331" y="579" fill="#20342b" font-size="26" font-weight="600">0</text>
+<text x="147.33333333333331" y="603" fill="#526b5d" font-size="12" >stars earned</text>
+<text x="272.66666666666663" y="579" fill="#20342b" font-size="26" font-weight="600">21</text>
+<text x="272.66666666666663" y="603" fill="#526b5d" font-size="12" >followers</text>
+<path d="M0 629H420V629" fill="none" stroke="#bdccc2"/>
+<text x="22" y="656" fill="#526b5d" font-size="11" >PUBLIC PROJECTS</text>
+<text x="22" y="682" fill="#20342b" font-size="14" >pdf-shrinker</text>
+<text x="22" y="704" fill="#20342b" font-size="14" >Unstar</text>
+<text x="22" y="726" fill="#20342b" font-size="14" >Proxmox-Technical-Writing-Style-Skill</text>
+<rect x="1" y="752" width="418" height="33" rx="0" fill="#e3ece6"/>
+<text x="20" y="774" fill="#21634d" font-size="12" >@msoltanov</text>
+<text x="400" y="774" fill="#526b5d" font-size="12" text-anchor="end">TypeScript   UTF-8</text>
+</g>
+</svg>

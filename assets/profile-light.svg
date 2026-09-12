@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="648" viewBox="0 0 860 648" role="img" aria-labelledby="title desc">
+<title id="title">ALABAY CODE / profile.ts</title>
+<desc id="desc">ALABAY CODE. Mekan, @msoltanov. Interests: Software Engineering, Cybersecurity, AI &amp; Experimentation, Infrastructure, Open Source, Growth Engineering. 16 public repositories, 0 stars earned by owned public repositories, 21 followers. Public projects: pdf-shrinker: Compress PDF files with Ghostscript via cli. Unstar: Unstar github stars. Proxmox-Technical-Writing-Style-Skill: Unofficial Proxmox Technical Writing Style Skill</desc>
+<g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace" letter-spacing="0">
+<rect x="0.5" y="0.5" width="859" height="647" rx="7" fill="#fafcfa" stroke="#bdccc2"/>
+<rect x="20" y="22" width="36" height="36" rx="4" fill="#e3ece6"/>
+<text x="26" y="47" fill="#21634d" font-size="25" font-weight="700">A</text>
+<rect x="48" y="46" width="4" height="8" rx="0" fill="#905023"/>
+<text x="70" y="40" fill="#20342b" font-size="24" font-weight="700">ALABAY CODE</text>
+<text x="71" y="60" fill="#526b5d" font-size="12" >developer workstation</text>
+<text x="838" y="45" fill="#526b5d" font-size="14" text-anchor="end">github:msoltanov</text>
+<path d="M0 78H860V78" fill="none" stroke="#bdccc2"/>
+<rect x="231" y="79" width="628" height="43" rx="0" fill="#f0f4f1"/>
+<rect x="231" y="79" width="173" height="2" rx="0" fill="#21634d"/>
+<text x="250" y="105" fill="#205f8e" font-size="13" >TS</text>
+<text x="281" y="105" fill="#20342b" font-size="14" >profile.ts</text>
+<text x="840" y="105" fill="#526b5d" font-size="11" text-anchor="end">READ ONLY</text>
+<path d="M230 122H860V122" fill="none" stroke="#bdccc2"/>
+<rect x="1" y="79" width="228" height="408" rx="0" fill="#f0f4f1"/>
+<path d="M230 78H230V487" fill="none" stroke="#bdccc2"/>
+<text x="22" y="107" fill="#526b5d" font-size="12" >EXPLORER</text>
+<text x="22" y="153" fill="#20342b" font-size="15" >~/msoltanov</text>
+<rect x="10" y="169" width="209" height="30" rx="3" fill="#e3ece6"/>
+<rect x="10" y="169" width="3" height="30" rx="0" fill="#21634d"/>
+<text x="26" y="189" fill="#205f8e" font-size="12" >TS</text>
+<text x="54" y="189" fill="#20342b" font-size="14" >profile.ts</text>
+<text x="26" y="222" fill="#905023" font-size="13" >{}</text>
+<text x="54" y="222" fill="#526b5d" font-size="14" >interests.json</text>
+<text x="26" y="255" fill="#905023" font-size="13" >{}</text>
+<text x="54" y="255" fill="#526b5d" font-size="14" >languages.json</text>
+<text x="22" y="305" fill="#526b5d" font-size="12" >PUBLIC PROJECTS</text>
+<text x="22" y="337" fill="#21634d" font-size="14" >/</text>
+<text x="42" y="337" fill="#20342b" font-size="13" >pdf-shrinker</text>
+<text x="22" y="371" fill="#21634d" font-size="14" >/</text>
+<text x="42" y="371" fill="#20342b" font-size="13" >Unstar</text>
+<text x="22" y="405" fill="#21634d" font-size="14" >/</text>
+<text x="42" y="405" fill="#20342b" font-size="13" >Proxmox-Technical-</text>
+<text x="42" y="426" fill="#20342b" font-size="13" >Writing-Style-Skill</text>
+<rect x="307" y="151" width="1" height="315" rx="0" fill="#e3ece6"/>
+<text x="270" y="161" fill="#526b5d" font-size="12" text-anchor="end">01</text>
+<text x="290" y="161" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b"></tspan><tspan fill="#704d8f">export</tspan><tspan fill="#20342b"> </tspan><tspan fill="#704d8f">const</tspan><tspan fill="#20342b"> developer = {</tspan></text>
+<text x="270" y="186" fill="#526b5d" font-size="12" text-anchor="end">02</text>
+<text x="290" y="186" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b">  name: </tspan><tspan fill="#49701e">&quot;Mekan&quot;</tspan><tspan fill="#20342b">,</tspan></text>
+<text x="270" y="211" fill="#526b5d" font-size="12" text-anchor="end">03</text>
+<text x="290" y="211" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b">  handle: </tspan><tspan fill="#49701e">&quot;msoltanov&quot;</tspan><tspan fill="#20342b">,</tspan></text>
+<text x="270" y="236" fill="#526b5d" font-size="12" text-anchor="end">04</text>
+<text x="290" y="236" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b"></tspan></text>
+<text x="270" y="261" fill="#526b5d" font-size="12" text-anchor="end">05</text>
+<text x="290" y="261" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b">  interests: [</tspan></text>
+<text x="270" y="286" fill="#526b5d" font-size="12" text-anchor="end">06</text>
+<text x="290" y="286" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b">    </tspan><tspan fill="#49701e">&quot;Software Engineering&quot;</tspan><tspan fill="#20342b">,</tspan></text>
+<text x="270" y="311" fill="#526b5d" font-size="12" text-anchor="end">07</text>
+<text x="290" y="311" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b">    </tspan><tspan fill="#49701e">&quot;Cybersecurity&quot;</tspan><tspan fill="#20342b">,</tspan></text>
+<text x="270" y="336" fill="#526b5d" font-size="12" text-anchor="end">08</text>
+<text x="290" y="336" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b">    </tspan><tspan fill="#49701e">&quot;AI &amp; Experimentation&quot;</tspan><tspan fill="#20342b">,</tspan></text>
+<text x="270" y="361" fill="#526b5d" font-size="12" text-anchor="end">09</text>
+<text x="290" y="361" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b">    </tspan><tspan fill="#49701e">&quot;Infrastructure&quot;</tspan><tspan fill="#20342b">,</tspan></text>
+<text x="270" y="386" fill="#526b5d" font-size="12" text-anchor="end">10</text>
+<text x="290" y="386" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b">    </tspan><tspan fill="#49701e">&quot;Open Source&quot;</tspan><tspan fill="#20342b">,</tspan></text>
+<text x="270" y="411" fill="#526b5d" font-size="12" text-anchor="end">11</text>
+<text x="290" y="411" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b">    </tspan><tspan fill="#49701e">&quot;Growth Engineering&quot;</tspan><tspan fill="#20342b"></tspan></text>
+<text x="270" y="436" fill="#526b5d" font-size="12" text-anchor="end">12</text>
+<text x="290" y="436" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b">  ]</tspan></text>
+<text x="270" y="461" fill="#526b5d" font-size="12" text-anchor="end">13</text>
+<text x="290" y="461" fill="#20342b" font-size="16" xml:space="preserve"><tspan fill="#20342b">};</tspan></text>
+<path d="M0 487H860V487" fill="none" stroke="#bdccc2"/>
+<text x="22" y="512" fill="#526b5d" font-size="11" >TERMINAL</text>
+<text x="130" y="513" fill="#21634d" font-size="14" >$ github stats --public</text>
+<text x="22" y="557" fill="#20342b" font-size="26" font-weight="600">16</text>
+<text x="22" y="581" fill="#526b5d" font-size="13" >public repos</text>
+<text x="294" y="557" fill="#20342b" font-size="26" font-weight="600">0</text>
+<text x="294" y="581" fill="#526b5d" font-size="13" >stars earned</text>
+<text x="566" y="557" fill="#20342b" font-size="26" font-weight="600">21</text>
+<text x="566" y="581" fill="#526b5d" font-size="13" >followers</text>
+<rect x="1" y="614" width="858" height="33" rx="0" fill="#e3ece6"/>
+<text x="20" y="636" fill="#21634d" font-size="12" >@msoltanov</text>
+<text x="840" y="636" fill="#526b5d" font-size="12" text-anchor="end">profile.ts     TypeScript     UTF-8   LF</text>
+</g>
+</svg>

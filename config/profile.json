@@ -1,0 +1,32 @@
+{
+  "name": "Mekan",
+  "username": "msoltanov",
+  "editorName": "ALABAY CODE",
+  "focus": [
+    "Software Engineering",
+    "Cybersecurity",
+    "AI & Experimentation",
+    "Infrastructure",
+    "Open Source",
+    "Growth Engineering"
+  ],
+  "featuredRepositories": [
+    "pdf-shrinker",
+    "Unstar",
+    "Proxmox-Technical-Writing-Style-Skill"
+  ],
+  "languageLimit": 6,
+  "filters": {
+    "includeForks": false,
+    "includeArchived": false,
+    "includeMirrors": false,
+    "excludeRepositories": [
+      "msoltanov/msoltanov",
+      "msoltanov/edgelessdb",
+      "msoltanov/portarius",
+      "msoltanov/ulakbus",
+      "msoltanov/Best-websites-a-programmer-should-visit",
+      "msoltanov/free-python-books"
+    ]
+  }
+}
