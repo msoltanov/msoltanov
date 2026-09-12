@@ -1,0 +1,51 @@
+name: Update ALABAY CODE
+
+on:
+  schedule:
+    - cron: '17 */12 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-profile
+  cancel-in-progress: false
+
+jobs:
+  update:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - run: npm ci --ignore-scripts
+      - run: npm test
+      - name: Collect safe statistics and render assets
+        run: npm run generate
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PROFILE_STATS_TOKEN: ${{ secrets.PROFILE_STATS_TOKEN }}
+          PROFILE_EXCLUDE_REPOSITORIES: ${{ secrets.PROFILE_EXCLUDE_REPOSITORIES }}
+      - run: npm run check
+      - name: Commit changed assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git add -- assets/*.svg
+          if git diff --cached --quiet; then
+            echo 'Profile assets unchanged.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore: refresh profile statistics'
+          gh auth setup-git
+          git push origin HEAD:main
