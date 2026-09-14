@@ -65,6 +65,12 @@ test('missing private token produces a complete public-only profile', async () =
   assert.equal(fixture.calls.some(({ options }) => options.headers.Authorization), false);
 });
 
+test('exports the public account creation date for uptime', async () => {
+  const fixture = api({ user: { public_repos: 1, followers: 7, created_at: '2015-08-31T14:30:00Z' } });
+  const result = await collectProfile(config, { env: {}, fetchImpl: fixture.fetchImpl });
+  assert.equal(result.createdAt, '2015-08-31T14:30:00Z');
+});
+
 test('aggregates authorized private languages without exporting private metadata', async () => {
   const fixture = api({
     privateRepos: [repository(PRIVATE_NAME, { private: true, description: 'PRIVATE_DESCRIPTION_SENTINEL', owner: { login: USERNAME, secret: 'PRIVATE_OWNER_SENTINEL' }, default_branch: 'PRIVATE_BRANCH_SENTINEL' })],
@@ -95,6 +101,22 @@ test('keeps public totals complete and rejects collaborator, public, and ambiguo
   assert.deepEqual(result.languages.rows, [{ name: 'Python', percentage: 100 }]);
   assert.equal(result.publicRepos, 1);
   assert.equal(fixture.calls.filter(({ url }) => url.pathname.endsWith('/languages')).length, 1);
+});
+
+test('applies language exclusions to public and authorized private aggregates', async () => {
+  const localConfig = { ...config, filters: { ...config.filters, excludeLanguages: ['HTML', 'CSS'] } };
+  for (const env of [{}, { PROFILE_STATS_TOKEN: PRIVATE_TOKEN }]) {
+    const fixture = api({
+      privateRepos: [repository(PRIVATE_NAME, { private: true })],
+      languages: { source: { HTML: 900, CSS: 500, Python: 100 }, [PRIVATE_NAME]: { HTML: 5000, CSS: 1000, Go: 300 } },
+    });
+    const result = await collectProfile(localConfig, { env, fetchImpl: fixture.fetchImpl });
+    assert.deepEqual(result.languages, env.PROFILE_STATS_TOKEN ? {
+      rows: [{ name: 'Go', percentage: 75 }, { name: 'Python', percentage: 25 }], alsoUsed: [], scope: 'authorized',
+    } : {
+      rows: [{ name: 'Python', percentage: 100 }], alsoUsed: [], scope: 'public',
+    });
+  }
 });
 
 test('paginates public and private repository lists past 100 without following API Link URLs', async () => {

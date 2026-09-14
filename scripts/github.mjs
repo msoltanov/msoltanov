@@ -201,7 +201,7 @@ export async function collectProfile(config, { env = process.env, fetchImpl = fe
   }), username, false);
   const starsEarned = publicCount(publicRepositories.reduce((total, repository) => total + publicCount(repository.stargazers_count), 0));
   const publicLanguages = await collectLanguages(publicRepositories, publicRequest, username, filters, excluded);
-  let languages = { ...summarizeLanguages(publicLanguages, config.languageLimit), scope: 'public' };
+  let languages = { ...summarizeLanguages(publicLanguages, config.languageLimit, filters.excludeLanguages), scope: 'public' };
   const notices = [];
 
   if (typeof env.PROFILE_STATS_TOKEN === 'string' && env.PROFILE_STATS_TOKEN.trim()) {
@@ -211,7 +211,7 @@ export async function collectProfile(config, { env = process.env, fetchImpl = fe
         affiliation: 'owner', visibility: 'private', sort: 'full_name', direction: 'asc',
       }), username, true);
       const privateLanguages = await collectLanguages(privateRepositories, privateRequest, username, filters, excluded);
-      languages = { ...summarizeLanguages([...publicLanguages, ...privateLanguages], config.languageLimit), scope: 'authorized' };
+      languages = { ...summarizeLanguages([...publicLanguages, ...privateLanguages], config.languageLimit, filters.excludeLanguages), scope: 'authorized' };
     } catch {
       notices.push(PRIVATE_FALLBACK_NOTICE);
     }
@@ -232,5 +232,6 @@ export async function collectProfile(config, { env = process.env, fetchImpl = fe
     }];
   });
 
-  return { publicRepos, followers, starsEarned, projects, languages, notices };
+  const createdAt = typeof user.created_at === 'string' && Number.isFinite(Date.parse(user.created_at)) ? user.created_at : null;
+  return { publicRepos, followers, starsEarned, projects, languages, notices, ...(createdAt ? { createdAt } : {}) };
 }
