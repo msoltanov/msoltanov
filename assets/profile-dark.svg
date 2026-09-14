@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="860" height="1026" viewBox="0 0 860 1026" role="img" aria-labelledby="title desc">
 <title id="title">ALABAY CODE / profile.ts</title>
-<desc id="desc">ALABAY CODE. Mekan, @msoltanov. Interests: Software Engineering, Cybersecurity, AI &amp; Experimentation, Infrastructure, Open Source, Growth Engineering. Public projects: pdf-shrinker: Compress PDF files with Ghostscript via cli. Unstar: Unstar github stars. Proxmox-Technical-Writing-Style-Skill: Unofficial Proxmox Technical Writing Style Skill. OS: Windows 11 / Android 13-14 / Linux. GitHub uptime: 11y 11m 6d. IDE: VS Code / JetBrains IDEs. Terminals: Tabby / Termius. Email: mknsltnw@gmail.com / me@msoltanov.com. Socials: X / LinkedIn / HN. Programming: Python / TypeScript / Go / Rust / Elixir. Mobile stack: Kotlin / Flutter / Dart. Daily languages: JSON / YAML / TOML / Lisp / Lua / Perl. Previous languages: JavaScript / PHP / C / Java. Human languages: Turkmen / Turkish / Russian / English. Commits: Unavailable. Lines added: Unavailable. Lines deleted: Unavailable. Scope: accessible public + private / all branches.</desc>
+<desc id="desc">ALABAY CODE. Mekan, @msoltanov. Interests: Software Engineering, Cybersecurity, AI &amp; Experimentation, Infrastructure, Open Source, Growth Engineering. Public projects: pdf-shrinker: Compress PDF files with Ghostscript via cli. Unstar: Unstar github stars. Proxmox-Technical-Writing-Style-Skill: Unofficial Proxmox Technical Writing Style Skill. OS: Windows 11 / Android 13-14 / Linux. GitHub uptime: 11y 11m 6d. IDE: VS Code / JetBrains IDEs. Terminals: Tabby / Termius. Email: mknsltnw@gmail.com / me@msoltanov.com. Socials: X / LinkedIn / HN. Programming: Python / TypeScript / Go / Rust / Elixir. Mobile stack: Kotlin / Flutter / Dart. Daily languages: JSON / YAML / TOML / Lisp / Lua / Perl. Previous languages: JavaScript / PHP / C / Java. Human languages: Turkmen / Turkish / Russian / English. Commits: 36,927. Lines added: 5,012,496. Lines deleted: 4,179,379. Scope: accessible public + private / all branches.</desc>
 <style>
 @keyframes cursor-blink { 0%, 49%, 100% { opacity: 1; } 50%, 99% { opacity: 0; } }
 @keyframes command-type { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
@@ -100,11 +100,11 @@
 <text x="446" y="765" fill="#e8eeed" font-size="14" >Turkmen / Turkish / Russian / English</text>
 <path d="M22 839H838V839" fill="none" stroke="#3c4945"/>
 <text x="22" y="866" fill="#a4b5ac" font-size="11" >GITHUB / LIFETIME</text>
-<text x="22" y="900" fill="#e8eeed" font-size="24" >Unavailable</text>
+<text x="22" y="900" fill="#e8eeed" font-size="24" >36,927</text>
 <text x="22" y="924" fill="#a4b5ac" font-size="12" >Commits</text>
-<text x="294" y="900" fill="#e8eeed" font-size="24" >Unavailable</text>
+<text x="294" y="900" fill="#e8eeed" font-size="24" >5,012,496</text>
 <text x="294" y="924" fill="#a4b5ac" font-size="12" >Lines added</text>
-<text x="566" y="900" fill="#e8eeed" font-size="24" >Unavailable</text>
+<text x="566" y="900" fill="#e8eeed" font-size="24" >4,179,379</text>
 <text x="566" y="924" fill="#a4b5ac" font-size="12" >Lines deleted</text>
 <text x="22" y="952" fill="#a4b5ac" font-size="12" >accessible public + private / all branches</text>
 <rect x="1" y="992" width="858" height="33" rx="0" fill="#242c2f"/>
