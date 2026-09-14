@@ -33,6 +33,37 @@ test('empty and zero-byte repositories have no language rows', () => {
   assert.deepEqual(summarizeLanguages([{}, { Python: 0 }]), { rows: [], alsoUsed: [] });
 });
 
+test('excludes configured languages before ranking, percentages, and Other', () => {
+  const result = summarizeLanguages([
+    { HTML: 9000, CSS: 1000, Python: 40, Go: 30 },
+    { HTML: 2000, CSS: 500, Python: 10, Ruby: 10, C: 10 },
+  ], 2, ['HTML', 'CSS']);
+  assert.deepEqual(result, {
+    rows: [
+      { name: 'Python', percentage: 50 },
+      { name: 'Go', percentage: 30 },
+      { name: 'Other', percentage: 20 },
+    ],
+    alsoUsed: ['C', 'Ruby'],
+  });
+});
+
+test('has no language rows when every language is excluded', () => {
+  assert.deepEqual(summarizeLanguages([{ HTML: 100, CSS: 200 }], 6, ['HTML', 'CSS']), {
+    rows: [], alsoUsed: [],
+  });
+});
+
+test('still validates byte counts for excluded languages', () => {
+  assert.throws(() => summarizeLanguages([{ HTML: -1 }], 6, ['HTML']), /Invalid language data/);
+});
+
+test('rejects malformed language exclusions', () => {
+  for (const excluded of ['HTML', null, {}, [42], [''], ['bad\u0000key']]) {
+    assert.throws(() => summarizeLanguages([], 6, excluded), /Invalid language exclusions/);
+  }
+});
+
 test('language output is independent of repository and object-key order', () => {
   const first = summarizeLanguages([{ Python: 17, Go: 23 }, { C: 23, Go: 4 }], 2);
   const second = summarizeLanguages([{ Go: 4, C: 23 }, { Go: 23, Python: 17 }], 2);

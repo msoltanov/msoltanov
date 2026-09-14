@@ -16,9 +16,9 @@ async function workspace(t) {
   return directory;
 }
 
-test('generation writes eight assets once and skips identical output', async (t) => {
+test('generation writes sixteen assets once and skips identical output', async (t) => {
   const root = await workspace(t);
-  assert.deepEqual(await generateProfile({ root, collect: async () => data }), { changed: 8, notices: [] });
+  assert.deepEqual(await generateProfile({ root, collect: async () => data }), { changed: 16, notices: [] });
   assert.deepEqual(await generateProfile({ root, collect: async () => data }), { changed: 0, notices: [] });
   assert.match(await readFile(join(root, 'assets/profile-light.svg'), 'utf8'), /ALABAY CODE/);
 });
@@ -56,9 +56,39 @@ test('generates nine named languages and a tenth Other row using all language by
     assert.deepEqual(languages.alsoUsed, ['Dart', 'Lua']);
     return { ...data, languages: { ...languages, scope: 'public' } };
   };
-  assert.equal((await generateProfile({ root, collect })).changed, 8);
+  assert.equal((await generateProfile({ root, collect })).changed, 16);
   const svg = await readFile(join(root, 'assets/languages-dark.svg'), 'utf8');
   assert.match(svg, />Ruby<\/text>/);
   assert.match(svg, />Other<\/text>/);
   assert.match(svg, />6\.0%<\/text>/);
+});
+
+test('generation combines uptime, anonymous activity, and the latest public release', async (t) => {
+  const root = await workspace(t);
+  const configPath = join(root, 'config/profile.json');
+  const config = JSON.parse(await readFile(configPath, 'utf8'));
+  Object.assign(config, { system: { os: ['Linux'] }, uptime: { source: 'github' }, activity: { enabled: true }, latestRelease: true });
+  await writeFile(configPath, JSON.stringify(config));
+  await generateProfile({
+    root, env: {}, now: new Date('2026-09-14T00:00:00Z'),
+    collect: async () => ({ ...data, createdAt: '2015-08-31T14:30:00Z' }),
+    activityCollect: async () => ({ status: 'ready', scope: 'authorized-branches', commits: 1234, additions: 45678, deletions: 912 }),
+    releaseCollect: async () => ({ repository: 'public-project', tag: 'v2.1', publishedAt: '2026-09-12T00:00:00Z' }),
+  });
+  const svg = await readFile(join(root, 'assets/profile-dark.svg'), 'utf8');
+  assert.match(svg, /GitHub uptime/);
+  assert.match(svg, /11y 0m 14d/);
+  assert.match(svg, /1,234/);
+  assert.match(svg, /public-project \/ v2.1 \/ 2026-09-12/);
+});
+
+test('invalid system details fail before data collection', async (t) => {
+  const root = await workspace(t);
+  const configPath = join(root, 'config/profile.json');
+  const config = JSON.parse(await readFile(configPath, 'utf8'));
+  config.system = { os: ['x'.repeat(200)] };
+  await writeFile(configPath, JSON.stringify(config));
+  let fetched = false;
+  await assert.rejects(generateProfile({ root, collect: async () => { fetched = true; return data; } }), /configuration/);
+  assert.equal(fetched, false);
 });

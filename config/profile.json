@@ -10,6 +10,27 @@
     "Open Source",
     "Growth Engineering"
   ],
+  "system": {
+    "os": ["Windows 11", "Android 13-14", "Linux"],
+    "ides": ["VS Code", "JetBrains IDEs"],
+    "terminals": ["Tabby", "Termius"],
+    "programming": ["Python", "TypeScript", "Go", "Rust", "Elixir"],
+    "mobile": ["Kotlin", "Flutter", "Dart"],
+    "daily": ["JSON", "YAML", "TOML", "Lisp", "Lua", "Perl"],
+    "previous": ["JavaScript", "PHP", "C", "Java"],
+    "human": ["Turkmen", "Turkish", "Russian", "English"]
+  },
+  "uptime": { "source": "github" },
+  "contact": {
+    "emails": ["mknsltnw@gmail.com", "me@msoltanov.com"],
+    "socials": [
+      { "label": "X", "url": "https://x.com/0xsolt" },
+      { "label": "LinkedIn", "url": "https://tr.linkedin.com/in/mekan-soltanov-31986097" },
+      { "label": "HN", "url": "https://news.ycombinator.com/user?id=soltanov" }
+    ]
+  },
+  "activity": { "enabled": true },
+  "latestRelease": true,
   "featuredRepositories": [
     "pdf-shrinker",
     "Unstar",
@@ -20,6 +41,7 @@
     "includeForks": false,
     "includeArchived": false,
     "includeMirrors": false,
+    "excludeLanguages": ["HTML", "CSS"],
     "excludeRepositories": [
       "msoltanov/msoltanov",
       "msoltanov/edgelessdb",

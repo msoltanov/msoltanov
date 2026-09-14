@@ -11,7 +11,12 @@ function compareNames(first, second) {
   return first < second ? -1 : 1;
 }
 
-export function summarizeLanguages(repositoryLanguages, limit = 6) {
+function isLanguageName(name) {
+  return typeof name === 'string' && name.length > 0 && name.length <= MAX_LANGUAGE_NAME_LENGTH
+    && !/[\u0000-\u001f\u007f]/.test(name) && !RESERVED_KEYS.has(name);
+}
+
+export function summarizeLanguages(repositoryLanguages, limit = 6, excludedLanguages = []) {
   if (!Number.isSafeInteger(limit) || limit < 1) {
     throw new Error('Invalid language limit.');
   }
@@ -20,6 +25,11 @@ export function summarizeLanguages(repositoryLanguages, limit = 6) {
     throw new Error('Invalid language data.');
   }
 
+  if (!Array.isArray(excludedLanguages) || !excludedLanguages.every(isLanguageName)) {
+    throw new Error('Invalid language exclusions.');
+  }
+
+  const excluded = new Set(excludedLanguages);
   const totals = new Map();
 
   for (const languages of repositoryLanguages) {
@@ -28,12 +38,11 @@ export function summarizeLanguages(repositoryLanguages, limit = 6) {
     }
 
     for (const [name, bytes] of Object.entries(languages)) {
-      if (!name || name.length > MAX_LANGUAGE_NAME_LENGTH || /[\u0000-\u001f\u007f]/.test(name)
-        || RESERVED_KEYS.has(name) || !Number.isSafeInteger(bytes) || bytes < 0) {
+      if (!isLanguageName(name) || !Number.isSafeInteger(bytes) || bytes < 0) {
         throw new Error('Invalid language data.');
       }
 
-      if (bytes > 0) {
+      if (bytes > 0 && !excluded.has(name)) {
         totals.set(name, (totals.get(name) ?? 0n) + BigInt(bytes));
       }
     }
