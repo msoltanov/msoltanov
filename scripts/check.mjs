@@ -19,7 +19,7 @@ for (const directory of directories) {
 }
 
 const assets = (await readdir('assets')).filter((name) => name.endsWith('.svg'));
-assert.equal(assets.length, 8, 'Generate all eight profile assets before this check.');
+assert.equal(assets.length, 16, 'Generate all sixteen profile assets before this check.');
 for (const name of assets) {
   const svg = await readFile(join('assets', name), 'utf8');
   const document = new DOMParser({ onError: () => { throw new Error(`Invalid SVG XML: ${name}`); } }).parseFromString(svg, 'image/svg+xml');
@@ -28,5 +28,11 @@ for (const name of assets) {
   assert.ok(document.getElementsByTagName('desc').length);
   assert.doesNotMatch(svg, /<script\b|<foreignObject\b|<image\b|<animate\b|\son[a-z]+\s*=|<!DOCTYPE|<!ENTITY|\bhref\s*=/i);
   assert.doesNotMatch(svg, /(?:github_pat_|gh[pousr]_)[A-Za-z0-9_]{20,}/);
+  for (const style of Array.from(document.getElementsByTagName('style'))) {
+    assert.doesNotMatch(style.textContent, /@import|url\s*\(|expression\s*\(|javascript:|infinite/i);
+  }
+  if (name.endsWith('-still.svg')) {
+    assert.doesNotMatch(svg, /<style>|animation/);
+  }
 }
-process.stdout.write(`JavaScript syntax and source policy passed. ${assets.length} SVG files passed XML and static-content checks.\n`);
+process.stdout.write(`JavaScript syntax and source policy passed. ${assets.length} SVG files passed XML, content, and motion checks.\n`);
