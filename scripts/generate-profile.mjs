@@ -6,6 +6,7 @@ import { renderAssets } from './svg.mjs';
 
 const PROJECT_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const MAX_FOCUS_ITEMS = 8;
+const MAX_NAMED_LANGUAGES = 9;
 
 function validateConfig(config) {
   const shortText = (value, maximum) => typeof value === 'string' && value.length > 0 && value.length <= maximum && !/[\u0000-\u001f]/.test(value);
@@ -13,7 +14,7 @@ function validateConfig(config) {
     || !Array.isArray(config.focus) || config.focus.length > MAX_FOCUS_ITEMS
     || config.focus.some((focus) => !shortText(focus, 29))
     || !Array.isArray(config.featuredRepositories) || config.featuredRepositories.length > 3
-    || !Number.isInteger(config.languageLimit) || config.languageLimit < 1 || config.languageLimit > 8) {
+    || !Number.isInteger(config.languageLimit) || config.languageLimit < 1 || config.languageLimit > MAX_NAMED_LANGUAGES) {
     throw new Error('Invalid profile configuration. Check the documented content limits.');
   }
 }

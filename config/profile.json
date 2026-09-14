@@ -15,7 +15,7 @@
     "Unstar",
     "Proxmox-Technical-Writing-Style-Skill"
   ],
-  "languageLimit": 6,
+  "languageLimit": 9,
   "filters": {
     "includeForks": false,
     "includeArchived": false,
