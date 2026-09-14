@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="860" height="344" viewBox="0 0 860 344" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="754" viewBox="0 0 860 754" role="img" aria-labelledby="title desc">
 <title id="title">ALABAY CODE / languages</title>
-<desc id="desc">Language byte share across eligible owned public repositories. JavaScript: 79.9%, Python: 20.1%.</desc>
+<desc id="desc">Language byte share across eligible owned public + authorized private. HTML: 36.3%, TypeScript: 26.5%, Python: 13.1%, JavaScript: 11.6%, CSS: 3.0%, Astro: 2.2%, Dart: 2.2%, C++: 2.0%, QML: 1.1%, Other: 2.0%. Other includes: MDX, SCSS, Shell, Go, Rust, Dockerfile, PHP, QMake, Lua, Ruby, CMake, Perl, PowerShell, Just, Common Lisp, C, Racket, Swift, Tcl, Kotlin, Objective-C.</desc>
 <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace" letter-spacing="0">
-<rect x="0.5" y="0.5" width="859" height="343" rx="7" fill="#fafcfa" stroke="#bdccc2"/>
+<rect x="0.5" y="0.5" width="859" height="753" rx="7" fill="#fafcfa" stroke="#bdccc2"/>
 <rect x="20" y="22" width="36" height="36" rx="4" fill="#e3ece6"/>
 <text x="26" y="47" fill="#21634d" font-size="25" font-weight="700">A</text>
 <rect x="48" y="46" width="4" height="8" rx="0" fill="#905023"/>
@@ -13,20 +13,64 @@
 <text x="22" y="111" fill="#526b5d" font-size="11" >TERMINAL</text>
 <text x="838" y="111" fill="#526b5d" font-size="12" text-anchor="end">languages.json</text>
 <text x="22" y="147" fill="#21634d" font-size="17" >$ language --stats</text>
-<text x="22" y="174" fill="#526b5d" font-size="13" >public repositories</text>
+<text x="22" y="174" fill="#526b5d" font-size="13" >public + authorized private</text>
 <text x="838" y="147" fill="#526b5d" font-size="11" text-anchor="end">BYTE SHARE</text>
-<rect x="22" y="208" width="7" height="7" rx="1" fill="#f1e05a"/>
-<text x="39" y="219" fill="#20342b" font-size="15" >JavaScript</text>
-<text x="838" y="219" fill="#20342b" font-size="15" text-anchor="end">79.9%</text>
+<rect x="22" y="208" width="7" height="7" rx="1" fill="#e34c26"/>
+<text x="39" y="219" fill="#20342b" font-size="15" >HTML</text>
+<text x="838" y="219" fill="#20342b" font-size="15" text-anchor="end">36.3%</text>
 <rect x="310" y="210" width="435" height="6" rx="2" fill="#e3ece6"/>
-<rect x="310" y="210" width="347.565" height="6" rx="2" fill="#21634d"/>
-<rect x="22" y="247" width="7" height="7" rx="1" fill="#3572A5"/>
-<text x="39" y="258" fill="#20342b" font-size="15" >Python</text>
-<text x="838" y="258" fill="#20342b" font-size="15" text-anchor="end">20.1%</text>
+<rect x="310" y="210" width="157.905" height="6" rx="2" fill="#21634d"/>
+<rect x="22" y="247" width="7" height="7" rx="1" fill="#3178c6"/>
+<text x="39" y="258" fill="#20342b" font-size="15" >TypeScript</text>
+<text x="838" y="258" fill="#20342b" font-size="15" text-anchor="end">26.5%</text>
 <rect x="310" y="249" width="435" height="6" rx="2" fill="#e3ece6"/>
-<rect x="310" y="249" width="87.435" height="6" rx="2" fill="#21634d"/>
-<path d="M0 301H860V301" fill="none" stroke="#bdccc2"/>
-<text x="22" y="327" fill="#526b5d" font-size="12" >owned source / language bytes</text>
-<text x="838" y="327" fill="#21634d" font-size="12" text-anchor="end">ALABAY CODE</text>
+<rect x="310" y="249" width="115.275" height="6" rx="2" fill="#21634d"/>
+<rect x="22" y="286" width="7" height="7" rx="1" fill="#3572A5"/>
+<text x="39" y="297" fill="#20342b" font-size="15" >Python</text>
+<text x="838" y="297" fill="#20342b" font-size="15" text-anchor="end">13.1%</text>
+<rect x="310" y="288" width="435" height="6" rx="2" fill="#e3ece6"/>
+<rect x="310" y="288" width="56.985" height="6" rx="2" fill="#21634d"/>
+<rect x="22" y="325" width="7" height="7" rx="1" fill="#f1e05a"/>
+<text x="39" y="336" fill="#20342b" font-size="15" >JavaScript</text>
+<text x="838" y="336" fill="#20342b" font-size="15" text-anchor="end">11.6%</text>
+<rect x="310" y="327" width="435" height="6" rx="2" fill="#e3ece6"/>
+<rect x="310" y="327" width="50.46" height="6" rx="2" fill="#21634d"/>
+<rect x="22" y="364" width="7" height="7" rx="1" fill="#663399"/>
+<text x="39" y="375" fill="#20342b" font-size="15" >CSS</text>
+<text x="838" y="375" fill="#20342b" font-size="15" text-anchor="end">3.0%</text>
+<rect x="310" y="366" width="435" height="6" rx="2" fill="#e3ece6"/>
+<rect x="310" y="366" width="13.05" height="6" rx="2" fill="#21634d"/>
+<rect x="22" y="403" width="7" height="7" rx="1" fill="#21634d"/>
+<text x="39" y="414" fill="#20342b" font-size="15" >Astro</text>
+<text x="838" y="414" fill="#20342b" font-size="15" text-anchor="end">2.2%</text>
+<rect x="310" y="405" width="435" height="6" rx="2" fill="#e3ece6"/>
+<rect x="310" y="405" width="9.57" height="6" rx="2" fill="#21634d"/>
+<rect x="22" y="442" width="7" height="7" rx="1" fill="#00B4AB"/>
+<text x="39" y="453" fill="#20342b" font-size="15" >Dart</text>
+<text x="838" y="453" fill="#20342b" font-size="15" text-anchor="end">2.2%</text>
+<rect x="310" y="444" width="435" height="6" rx="2" fill="#e3ece6"/>
+<rect x="310" y="444" width="9.57" height="6" rx="2" fill="#21634d"/>
+<rect x="22" y="481" width="7" height="7" rx="1" fill="#f34b7d"/>
+<text x="39" y="492" fill="#20342b" font-size="15" >C++</text>
+<text x="838" y="492" fill="#20342b" font-size="15" text-anchor="end">2.0%</text>
+<rect x="310" y="483" width="435" height="6" rx="2" fill="#e3ece6"/>
+<rect x="310" y="483" width="8.7" height="6" rx="2" fill="#21634d"/>
+<rect x="22" y="520" width="7" height="7" rx="1" fill="#21634d"/>
+<text x="39" y="531" fill="#20342b" font-size="15" >QML</text>
+<text x="838" y="531" fill="#20342b" font-size="15" text-anchor="end">1.1%</text>
+<rect x="310" y="522" width="435" height="6" rx="2" fill="#e3ece6"/>
+<rect x="310" y="522" width="4.785" height="6" rx="2" fill="#21634d"/>
+<rect x="22" y="559" width="7" height="7" rx="1" fill="#21634d"/>
+<text x="39" y="570" fill="#20342b" font-size="15" >Other</text>
+<text x="838" y="570" fill="#20342b" font-size="15" text-anchor="end">2.0%</text>
+<rect x="310" y="561" width="435" height="6" rx="2" fill="#e3ece6"/>
+<rect x="310" y="561" width="8.7" height="6" rx="2" fill="#21634d"/>
+<text x="22" y="617" fill="#526b5d" font-size="11" >ALSO USED / included in Other</text>
+<text x="22" y="643" fill="#20342b" font-size="14" >MDX / SCSS / Shell / Go / Rust / Dockerfile / PHP / QMake / Lua / Ruby / CMake /</text>
+<text x="22" y="665" fill="#20342b" font-size="14" >Perl / PowerShell / Just / Common Lisp / C / Racket / Swift / Tcl / Kotlin /</text>
+<text x="22" y="687" fill="#20342b" font-size="14" >Objective-C</text>
+<path d="M0 711H860V711" fill="none" stroke="#bdccc2"/>
+<text x="22" y="737" fill="#526b5d" font-size="12" >owned source / language bytes</text>
+<text x="838" y="737" fill="#21634d" font-size="12" text-anchor="end">ALABAY CODE</text>
 </g>
 </svg>

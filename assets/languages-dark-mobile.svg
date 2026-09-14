@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="420" height="412" viewBox="0 0 420 412" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="1050" viewBox="0 0 420 1050" role="img" aria-labelledby="title desc">
 <title id="title">ALABAY CODE / languages</title>
-<desc id="desc">Language byte share across eligible owned public repositories. JavaScript: 79.9%, Python: 20.1%.</desc>
+<desc id="desc">Language byte share across eligible owned public + authorized private. HTML: 36.3%, TypeScript: 26.5%, Python: 13.1%, JavaScript: 11.6%, CSS: 3.0%, Astro: 2.2%, Dart: 2.2%, C++: 2.0%, QML: 1.1%, Other: 2.0%. Other includes: MDX, SCSS, Shell, Go, Rust, Dockerfile, PHP, QMake, Lua, Ruby, CMake, Perl, PowerShell, Just, Common Lisp, C, Racket, Swift, Tcl, Kotlin, Objective-C.</desc>
 <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace" letter-spacing="0">
-<rect x="0.5" y="0.5" width="419" height="411" rx="7" fill="#141719" stroke="#3c4945"/>
+<rect x="0.5" y="0.5" width="419" height="1049" rx="7" fill="#141719" stroke="#3c4945"/>
 <rect x="20" y="22" width="36" height="36" rx="4" fill="#242c2f"/>
 <text x="26" y="47" fill="#91d7bd" font-size="25" font-weight="700">A</text>
 <rect x="48" y="46" width="4" height="8" rx="0" fill="#eebd95"/>
@@ -12,18 +12,64 @@
 <text x="22" y="111" fill="#a4b5ac" font-size="11" >TERMINAL</text>
 <text x="398" y="111" fill="#a4b5ac" font-size="12" text-anchor="end">languages.json</text>
 <text x="22" y="147" fill="#91d7bd" font-size="17" >$ language --stats</text>
-<text x="22" y="174" fill="#a4b5ac" font-size="13" >public repositories</text>
-<rect x="22" y="230" width="7" height="7" rx="1" fill="#f1e05a"/>
-<text x="39" y="241" fill="#e8eeed" font-size="15" >JavaScript</text>
-<text x="398" y="241" fill="#e8eeed" font-size="15" text-anchor="end">79.9%</text>
+<text x="22" y="174" fill="#a4b5ac" font-size="13" >public + authorized private</text>
+<rect x="22" y="230" width="7" height="7" rx="1" fill="#e34c26"/>
+<text x="39" y="241" fill="#e8eeed" font-size="15" >HTML</text>
+<text x="398" y="241" fill="#e8eeed" font-size="15" text-anchor="end">36.3%</text>
 <rect x="22" y="256" width="376" height="6" rx="2" fill="#242c2f"/>
-<rect x="22" y="256" width="300.424" height="6" rx="2" fill="#91d7bd"/>
-<rect x="22" y="292" width="7" height="7" rx="1" fill="#3572A5"/>
-<text x="39" y="303" fill="#e8eeed" font-size="15" >Python</text>
-<text x="398" y="303" fill="#e8eeed" font-size="15" text-anchor="end">20.1%</text>
+<rect x="22" y="256" width="136.488" height="6" rx="2" fill="#91d7bd"/>
+<rect x="22" y="292" width="7" height="7" rx="1" fill="#3178c6"/>
+<text x="39" y="303" fill="#e8eeed" font-size="15" >TypeScript</text>
+<text x="398" y="303" fill="#e8eeed" font-size="15" text-anchor="end">26.5%</text>
 <rect x="22" y="318" width="376" height="6" rx="2" fill="#242c2f"/>
-<rect x="22" y="318" width="75.576" height="6" rx="2" fill="#91d7bd"/>
-<path d="M0 369H420V369" fill="none" stroke="#3c4945"/>
-<text x="22" y="395" fill="#a4b5ac" font-size="12" >owned source / language bytes</text>
+<rect x="22" y="318" width="99.64" height="6" rx="2" fill="#91d7bd"/>
+<rect x="22" y="354" width="7" height="7" rx="1" fill="#3572A5"/>
+<text x="39" y="365" fill="#e8eeed" font-size="15" >Python</text>
+<text x="398" y="365" fill="#e8eeed" font-size="15" text-anchor="end">13.1%</text>
+<rect x="22" y="380" width="376" height="6" rx="2" fill="#242c2f"/>
+<rect x="22" y="380" width="49.256" height="6" rx="2" fill="#91d7bd"/>
+<rect x="22" y="416" width="7" height="7" rx="1" fill="#f1e05a"/>
+<text x="39" y="427" fill="#e8eeed" font-size="15" >JavaScript</text>
+<text x="398" y="427" fill="#e8eeed" font-size="15" text-anchor="end">11.6%</text>
+<rect x="22" y="442" width="376" height="6" rx="2" fill="#242c2f"/>
+<rect x="22" y="442" width="43.616" height="6" rx="2" fill="#91d7bd"/>
+<rect x="22" y="478" width="7" height="7" rx="1" fill="#663399"/>
+<text x="39" y="489" fill="#e8eeed" font-size="15" >CSS</text>
+<text x="398" y="489" fill="#e8eeed" font-size="15" text-anchor="end">3.0%</text>
+<rect x="22" y="504" width="376" height="6" rx="2" fill="#242c2f"/>
+<rect x="22" y="504" width="11.28" height="6" rx="2" fill="#91d7bd"/>
+<rect x="22" y="540" width="7" height="7" rx="1" fill="#91d7bd"/>
+<text x="39" y="551" fill="#e8eeed" font-size="15" >Astro</text>
+<text x="398" y="551" fill="#e8eeed" font-size="15" text-anchor="end">2.2%</text>
+<rect x="22" y="566" width="376" height="6" rx="2" fill="#242c2f"/>
+<rect x="22" y="566" width="8.272" height="6" rx="2" fill="#91d7bd"/>
+<rect x="22" y="602" width="7" height="7" rx="1" fill="#00B4AB"/>
+<text x="39" y="613" fill="#e8eeed" font-size="15" >Dart</text>
+<text x="398" y="613" fill="#e8eeed" font-size="15" text-anchor="end">2.2%</text>
+<rect x="22" y="628" width="376" height="6" rx="2" fill="#242c2f"/>
+<rect x="22" y="628" width="8.272" height="6" rx="2" fill="#91d7bd"/>
+<rect x="22" y="664" width="7" height="7" rx="1" fill="#f34b7d"/>
+<text x="39" y="675" fill="#e8eeed" font-size="15" >C++</text>
+<text x="398" y="675" fill="#e8eeed" font-size="15" text-anchor="end">2.0%</text>
+<rect x="22" y="690" width="376" height="6" rx="2" fill="#242c2f"/>
+<rect x="22" y="690" width="7.52" height="6" rx="2" fill="#91d7bd"/>
+<rect x="22" y="726" width="7" height="7" rx="1" fill="#91d7bd"/>
+<text x="39" y="737" fill="#e8eeed" font-size="15" >QML</text>
+<text x="398" y="737" fill="#e8eeed" font-size="15" text-anchor="end">1.1%</text>
+<rect x="22" y="752" width="376" height="6" rx="2" fill="#242c2f"/>
+<rect x="22" y="752" width="4.136" height="6" rx="2" fill="#91d7bd"/>
+<rect x="22" y="788" width="7" height="7" rx="1" fill="#91d7bd"/>
+<text x="39" y="799" fill="#e8eeed" font-size="15" >Other</text>
+<text x="398" y="799" fill="#e8eeed" font-size="15" text-anchor="end">2.0%</text>
+<rect x="22" y="814" width="376" height="6" rx="2" fill="#242c2f"/>
+<rect x="22" y="814" width="7.52" height="6" rx="2" fill="#91d7bd"/>
+<text x="22" y="869" fill="#a4b5ac" font-size="11" >ALSO USED / included in Other</text>
+<text x="22" y="895" fill="#e8eeed" font-size="14" >MDX / SCSS / Shell / Go / Rust /</text>
+<text x="22" y="917" fill="#e8eeed" font-size="14" >Dockerfile / PHP / QMake / Lua / Ruby</text>
+<text x="22" y="939" fill="#e8eeed" font-size="14" >/ CMake / Perl / PowerShell / Just /</text>
+<text x="22" y="961" fill="#e8eeed" font-size="14" >Common Lisp / C / Racket / Swift / Tcl</text>
+<text x="22" y="983" fill="#e8eeed" font-size="14" >/ Kotlin / Objective-C</text>
+<path d="M0 1007H420V1007" fill="none" stroke="#3c4945"/>
+<text x="22" y="1033" fill="#a4b5ac" font-size="12" >owned source / language bytes</text>
 </g>
 </svg>
