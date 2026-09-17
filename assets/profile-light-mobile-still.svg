@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="420" height="1440" viewBox="0 0 420 1440" role="img" aria-labelledby="title desc">
 <title id="title">ALABAY CODE / profile.ts</title>
-<desc id="desc">ALABAY CODE. Mekan, @msoltanov. Interests: Software Engineering, Cybersecurity, AI &amp; Experimentation, Infrastructure, Open Source, Growth Engineering. Public projects: pdf-shrinker: Compress PDF files with Ghostscript via cli. Unstar: Unstar github stars. Proxmox-Technical-Writing-Style-Skill: Unofficial Proxmox Technical Writing Style Skill. OS: Windows 11 / Android 13-14 / Linux. GitHub uptime: 11y 11m 8d. IDE: VS Code / JetBrains IDEs. Terminals: Tabby / Termius. Email: mknsltnw@gmail.com / me@msoltanov.com. Socials: X / LinkedIn / HN. Programming: Python / TypeScript / Go / Rust / Elixir. Mobile stack: Kotlin / Flutter / Dart. Daily languages: JSON / YAML / TOML / Lisp / Lua / Perl. Previous languages: JavaScript / PHP / C / Java. Human languages: Turkmen / Turkish / Russian / English. Commits: 36,927. Lines added: 5,012,496. Lines deleted: 4,179,379. Scope: accessible public + private / all branches.</desc>
+<desc id="desc">ALABAY CODE. Mekan, @msoltanov. Interests: Software Engineering, Cybersecurity, AI &amp; Experimentation, Infrastructure, Open Source, Growth Engineering. Public projects: pdf-shrinker: Compress PDF files with Ghostscript via cli. Unstar: Unstar github stars. Proxmox-Technical-Writing-Style-Skill: Unofficial Proxmox Technical Writing Style Skill. OS: Windows 11 / Android 13-14 / Linux. GitHub uptime: 11y 11m 9d. IDE: VS Code / JetBrains IDEs. Terminals: Tabby / Termius. Email: mknsltnw@gmail.com / me@msoltanov.com. Socials: X / LinkedIn / HN. Programming: Python / TypeScript / Go / Rust / Elixir. Mobile stack: Kotlin / Flutter / Dart. Daily languages: JSON / YAML / TOML / Lisp / Lua / Perl. Previous languages: JavaScript / PHP / C / Java. Human languages: Turkmen / Turkish / Russian / English. Commits: 36,927. Lines added: 5,012,496. Lines deleted: 4,179,379. Scope: accessible public + private / all branches.</desc>
 <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace" letter-spacing="0">
 <rect x="0.5" y="0.5" width="419" height="1439" rx="7" fill="#fafcfa" stroke="#bdccc2"/>
 <rect x="20" y="22" width="36" height="36" rx="4" fill="#e3ece6"/>
@@ -54,7 +54,7 @@
 <text x="22" y="673" fill="#905023" font-size="12" >OS</text>
 <text x="22" y="695" fill="#20342b" font-size="14" >Windows 11 / Android 13-14 / Linux</text>
 <text x="22" y="721" fill="#905023" font-size="12" >GitHub uptime</text>
-<text x="22" y="743" fill="#20342b" font-size="14" >11y 11m 8d</text>
+<text x="22" y="743" fill="#20342b" font-size="14" >11y 11m 9d</text>
 <text x="22" y="769" fill="#905023" font-size="12" >IDE</text>
 <text x="22" y="791" fill="#20342b" font-size="14" >VS Code / JetBrains IDEs</text>
 <text x="22" y="817" fill="#905023" font-size="12" >Terminals</text>
