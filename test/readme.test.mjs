@@ -40,14 +40,17 @@ test('the committed README tech stack matches the configuration', async () => {
   assert.equal(updateReadme(readme, { techStack: config.techStack }, {}), readme);
 });
 
-test('README alternatives expose the generated descriptions and confirmed contact links', async () => {
+test('README alternatives expose the generated descriptions and social badges link out', async () => {
   const { updateReadme } = await import('../scripts/readme.mjs');
-  const readme = '<img alt="Old text" src="assets/profile-dark.svg" width="860">\n\n[a@example.com](mailto:a@example.com)\n';
-  const config = { contact: { emails: ['a@example.com'], socials: [{ label: 'X', url: 'https://x.com/confirmed' }, { label: 'HN', url: null }] } };
+  const readme = '<img alt="Old text" src="assets/profile-dark.svg" width="860">\n\n<!-- socials:start -->\nold\n<!-- socials:end -->\n';
+  const config = { contact: { emails: ['a@example.com'], socials: [{ label: 'X', icon: 'x', handle: '@me', url: 'https://x.com/confirmed' }, { label: 'HN', icon: 'hn', url: null }] } };
   const assets = { 'profile-dark.svg': '<svg><desc id="desc">OS: Linux. Commits: 1,234. AI &amp; tools.</desc></svg>' };
   const result = updateReadme(readme, config, assets);
   assert.match(result, /alt="OS: Linux\. Commits: 1,234\. AI &amp; tools\."/);
-  assert.match(result, /\[X\]\(https:\/\/x\.com\/confirmed\)/);
-  assert.doesNotMatch(result, /\[HN\]|null|Old text/);
+  assert.match(result, /<a href="mailto:a@example\.com" title="Email"><picture>/);
+  assert.match(result, /<a href="https:\/\/x\.com\/confirmed" title="X"><picture>/);
+  assert.match(result, /srcset="assets\/badge-x-dark\.svg"/);
+  assert.match(result, /<img src="assets\/badge-x-light\.svg" alt="X: @me" height="28">/);
+  assert.doesNotMatch(result, /HN|null|Old text|\nold\n/);
   assert.equal(updateReadme(result, config, assets), result);
 });

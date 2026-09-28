@@ -6,7 +6,7 @@ import { collectActivity, collectLatestRelease } from './activity.mjs';
 import { readCache, writeCache } from './cache.mjs';
 import { formatUptime } from './details.mjs';
 import { updateReadme } from './readme.mjs';
-import { renderAssets } from './svg.mjs';
+import { BADGE_ICON_NAMES, renderAssets } from './svg.mjs';
 
 const PROJECT_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const MAX_FOCUS_ITEMS = 8;
@@ -40,7 +40,9 @@ function validateConfig(config) {
     const { emails = [], socials = [] } = config.contact ?? {};
     if (!Array.isArray(emails) || emails.length > 2 || emails.some((email) => !shortText(email, MAX_CONTACT_LENGTH) || !/^[^<>\s@]+@[^<>\s@]+\.[^<>\s@]+$/.test(email))
       || !Array.isArray(socials) || socials.length > 4 || socials.some((social) => !shortText(social?.label, MAX_DETAIL_LENGTH)
-        || (social.url !== null && (typeof social.url !== 'string' || !/^https:\/\/[^\s<>"']+$/.test(social.url))))) {
+        || (social.url !== null && (typeof social.url !== 'string' || !/^https:\/\/[^\s<>"']+$/.test(social.url)))
+        || (social.icon !== undefined && !BADGE_ICON_NAMES.includes(social.icon))
+        || (social.handle !== undefined && !shortText(social.handle, MAX_DETAIL_LENGTH)))) {
       throw new Error('Invalid contact configuration. Use email addresses and HTTPS profile links.');
     }
   }

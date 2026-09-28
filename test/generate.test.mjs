@@ -56,9 +56,9 @@ test('failed activity, private language, and release collection keep the last kn
   assert.ok(result.notices.includes('Kept the last known activity totals.'));
   assert.ok(result.notices.includes('Kept the last known private language totals.'));
   const svg = await readFile(join(root, 'assets/profile-dark.svg'), 'utf8');
-  assert.match(svg, /1,234/);
-  assert.doesNotMatch(svg, /Commits: Unavailable/);
-  assert.match(svg, /public-project \/ v2.1/);
+  assert.match(svg, /1_234/);
+  assert.doesNotMatch(svg, /&quot;unavailable&quot;/);
+  assert.match(svg, /public-project v2\.1/);
   assert.match(await readFile(join(root, 'assets/languages-dark.svg'), 'utf8'), /public \+ authorized private/);
 });
 
@@ -156,8 +156,9 @@ test('generation combines uptime, anonymous activity, and the latest public rele
   assert.match(svg, /GitHub uptime/);
   assert.match(svg, /11y 0m/);
   assert.doesNotMatch(svg, /11y 0m \d+d/);
-  assert.match(svg, /1,234/);
-  assert.match(svg, /public-project \/ v2.1 \/ 2026-09-12/);
+  assert.match(svg, /1_234/);
+  assert.match(svg, /public-project v2\.1/);
+  assert.match(svg, /2026-09-12/);
 });
 
 test('invalid system details fail before data collection', async (t) => {

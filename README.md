@@ -9,6 +9,27 @@
   <img alt="ALABAY CODE. Mekan, @msoltanov. Interests: Software Engineering, Cybersecurity, AI &amp; Experimentation, Infrastructure, Open Source, Growth Engineering. Public projects: pdf-shrinker: Compress PDF files with Ghostscript via cli. Unstar: Unstar github stars. Proxmox-Technical-Writing-Style-Skill: Unofficial Proxmox Technical Writing Style Skill. OS: Windows 11 / Android 13-14 / Linux. GitHub uptime: 11y 11m 18d. IDE: VS Code / JetBrains IDEs. Terminals: Tabby / Termius. Email: mknsltnw@gmail.com / me@msoltanov.com. Socials: X / LinkedIn / HN. Programming: Python / TypeScript / Go / Rust / Elixir. Mobile stack: Kotlin / Flutter / Dart. Daily languages: JSON / YAML / TOML / Lisp / Lua / Perl. Previous languages: JavaScript / PHP / C / Java. Human languages: Turkmen / Turkish / Russian / English. Commits: 36,927. Lines added: 5,012,496. Lines deleted: 4,179,379. Scope: accessible public + private / all branches." src="assets/profile-light.svg" width="860">
 </picture>
 
+<!-- socials:start -->
+<p>
+  <a href="mailto:mknsltnw@gmail.com" title="Email"><picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/badge-email-dark.svg">
+    <img src="assets/badge-email-light.svg" alt="Email: mknsltnw@gmail.com" height="28">
+  </picture></a>
+  <a href="https://x.com/0xsolt" title="X"><picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/badge-x-dark.svg">
+    <img src="assets/badge-x-light.svg" alt="X: @0xsolt" height="28">
+  </picture></a>
+  <a href="https://www.linkedin.com/in/mekan-soltanov-31986097" title="LinkedIn"><picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/badge-linkedin-dark.svg">
+    <img src="assets/badge-linkedin-light.svg" alt="LinkedIn: mekan-soltanov" height="28">
+  </picture></a>
+  <a href="https://news.ycombinator.com/user?id=soltanov" title="HN"><picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/badge-hn-dark.svg">
+    <img src="assets/badge-hn-light.svg" alt="HN: soltanov" height="28">
+  </picture></a>
+</p>
+<!-- socials:end -->
+
 ### Tech stack
 
 <!-- tech-stack:start -->
@@ -72,5 +93,3 @@
 </picture>
 
 [pdf-shrinker](https://github.com/msoltanov/pdf-shrinker) · [Unstar](https://github.com/msoltanov/Unstar) · [Proxmox writing skill](https://github.com/msoltanov/Proxmox-Technical-Writing-Style-Skill)
-
-[mknsltnw@gmail.com](mailto:mknsltnw@gmail.com) · [X](https://x.com/0xsolt) · [LinkedIn](https://www.linkedin.com/in/mekan-soltanov-31986097) · [HN](https://news.ycombinator.com/user?id=soltanov)
