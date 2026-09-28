@@ -171,3 +171,15 @@ test('invalid system details fail before data collection', async (t) => {
   await assert.rejects(generateProfile({ root, collect: async () => { fetched = true; return data; } }), /configuration/);
   assert.equal(fetched, false);
 });
+
+test('badges for removed contacts are deleted', async (t) => {
+  const root = await workspace(t);
+  await mkdir(join(root, 'assets'));
+  await writeFile(join(root, 'assets/badge-linkedin-dark.svg'), 'stale');
+  await writeFile(join(root, 'assets/notes.svg'), 'kept');
+  await generateProfile({ root, collect: async () => data });
+  const { readdir } = await import('node:fs/promises');
+  const names = await readdir(join(root, 'assets'));
+  assert.ok(!names.includes('badge-linkedin-dark.svg'));
+  assert.ok(names.includes('notes.svg'));
+});

@@ -1,4 +1,4 @@
-import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { collectProfile } from './github.mjs';
@@ -179,6 +179,12 @@ export async function generateProfile({
   let changed = 0;
   for (const [name, svg] of Object.entries(assets)) {
     changed += await replaceFile(join(directory, name), svg) ? 1 : 0;
+  }
+  for (const name of await readdir(directory)) {
+    if (/^badge-.+\.svg$/.test(name) && !(name in assets)) {
+      await rm(join(directory, name));
+      changed += 1;
+    }
   }
   const stats = {
     updatedAt,

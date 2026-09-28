@@ -181,7 +181,7 @@ test('language meters use linguist colors and Other uses a neutral color', () =>
   const rows = ['Astro', 'QML', 'MDX', 'SCSS', 'Kotlin', 'Other'].map((name) => ({ name, percentage: 10 }));
   const svg = renderAssets(config, { ...data, languages: { rows, alsoUsed: ['Go'], scope: 'public' } })['languages-dark.svg'];
   for (const color of ['#ff5a03', '#44a51c', '#fcb32c', '#c6538c', '#A97BFF', '#7d8f87']) {
-    assert.match(svg, new RegExp(`height="11" rx="1" fill="${color}"`));
+    assert.match(svg, new RegExp(`stroke="${color}" stroke-width="11"`));
   }
 });
 
@@ -191,11 +191,45 @@ test('social badges render per theme without links inside the image', () => {
     { label: 'Other', url: 'https://example.com' },
   ] } };
   const assets = renderAssets(social, data);
-  assert.deepEqual(Object.keys(assets).filter((name) => name.startsWith('badge-')).sort(), ['badge-email-dark.svg', 'badge-email-light.svg', 'badge-x-dark.svg', 'badge-x-light.svg']);
+  assert.deepEqual(Object.keys(assets).filter((name) => name.startsWith('badge-')).sort(), [
+    'badge-email-dark.svg', 'badge-email-light.svg', 'badge-other-dark.svg', 'badge-other-light.svg', 'badge-x-dark.svg', 'badge-x-light.svg',
+  ]);
   for (const name of ['badge-email-dark.svg', 'badge-x-light.svg']) {
     parse(assets[name]);
     assert.doesNotMatch(assets[name], /href|<script/);
   }
   assert.match(assets['badge-x-dark.svg'], />@me</);
   assert.match(assets['badge-email-light.svg'], />a@example\.com</);
+});
+
+test('badge identifiers stay unique for repeated icons', async () => {
+  const { badgeItems } = await import('../scripts/svg.mjs');
+  const items = badgeItems({ contact: { emails: ['a@example.com', 'b@example.com'], socials: [
+    { label: 'X', icon: 'x', url: 'https://x.com/a' }, { label: 'X', icon: 'x', url: 'https://x.com/b' }, { label: 'Mail', icon: 'email', url: 'https://example.com' },
+  ] } });
+  assert.deepEqual(items.map((item) => item.id), ['email', 'email-2', 'x', 'x-2', 'email-3']);
+});
+
+test('negative line totals are shown as unavailable', () => {
+  const detailed = { ...config, activity: { enabled: true } };
+  const svg = renderAssets(detailed, { ...data, activity: { status: 'ready', commits: 3, additions: 100, deletions: 250 } })['profile-dark.svg'];
+  assert.doesNotMatch(svg, /-150/);
+  assert.match(parse(svg).getElementsByTagName('desc')[0].textContent, /Lines of code: Unavailable/);
+});
+
+test('mobile shell text stays inside the pane, and long values are shortened', () => {
+  const detailed = {
+    ...config, activity: { enabled: true, maxCommitLines: 10000 },
+    system: { programming: ['Python', 'TypeScript', 'JavaScript', 'Go', 'Rust'], human: ['Turkmen', 'Turkish', 'Russian', 'English'] },
+  };
+  const release = { repository: 'Proxmox-Technical-Writing-Style-Skill', tag: 'v1.0.0-very-long-tag', publishedAt: '2026-09-01T00:00:00Z' };
+  const svg = renderAssets(detailed, { ...data, latestRelease: release })['profile-dark-mobile.svg'];
+  for (const node of Array.from(parse(svg).getElementsByTagName('text'))) {
+    if (node.getAttribute('font-size') !== '12' || node.getAttribute('text-anchor')) {
+      continue;
+    }
+    const right = Number(node.getAttribute('x')) + node.textContent.length * 12 * 0.6;
+    assert.ok(right <= 408, `${node.textContent} ends at ${right}`);
+  }
+  assert.match(parse(svg).getElementsByTagName('desc')[0].textContent, /Proxmox-Technical-Writing-Style-Skill v1\.0\.0-very-long-tag/);
 });

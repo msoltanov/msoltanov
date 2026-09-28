@@ -37,7 +37,7 @@ test('the committed README tech stack matches the configuration', async () => {
   const { updateReadme } = await import('../scripts/readme.mjs');
   const readme = await readFile(new URL('../README.md', import.meta.url), 'utf8');
   const config = JSON.parse(await readFile(new URL('../config/profile.json', import.meta.url), 'utf8'));
-  assert.equal(updateReadme(readme, { techStack: config.techStack }, {}), readme);
+  assert.equal(updateReadme(readme, { techStack: config.techStack, contact: config.contact }, {}), readme);
 });
 
 test('README alternatives expose the generated descriptions and social badges link out', async () => {
@@ -53,4 +53,15 @@ test('README alternatives expose the generated descriptions and social badges li
   assert.match(result, /<img src="assets\/badge-x-light\.svg" alt="X: @me" height="28">/);
   assert.doesNotMatch(result, /HN|null|Old text|\nold\n/);
   assert.equal(updateReadme(result, config, assets), result);
+});
+
+test('contacts are appended with markers when the README has none, and cleared when none remain', async () => {
+  const { updateReadme } = await import('../scripts/readme.mjs');
+  const config = { contact: { emails: ['a@example.com'], socials: [{ label: 'My Blog', url: 'https://blog.example.com' }] } };
+  const appended = updateReadme('Intro\n', config, {});
+  assert.match(appended, /^Intro\n\n<!-- socials:start -->\n<p>[\s\S]*<\/p>\n<!-- socials:end -->\n$/);
+  assert.match(appended, /href="https:\/\/blog\.example\.com" title="My Blog"/);
+  assert.match(appended, /badge-my-blog-light\.svg/);
+  assert.equal(updateReadme(appended, config, {}), appended);
+  assert.equal(updateReadme(appended, {}, {}), 'Intro\n\n<!-- socials:start -->\n<!-- socials:end -->\n');
 });

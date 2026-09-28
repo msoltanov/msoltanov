@@ -36,9 +36,10 @@ export function updateReadme(readme, config, assets) {
     result = result.replace(TECH_STACK, (original, start, end) => `${start}${newline}${techStack(config.techStack, newline)}${newline}${end}`);
   }
   const items = badgeItems(config);
-  if (items.length) {
-    const newline = result.includes('\r\n') ? '\r\n' : '\n';
-    result = result.replace(SOCIALS, (original, start, end) => `${start}${newline}${socials(items, newline)}${newline}${end}`);
+  const newline = result.includes('\r\n') ? '\r\n' : '\n';
+  const block = items.length ? `${newline}${socials(items, newline)}${newline}` : newline;
+  if (SOCIALS.test(result)) {
+    return result.replace(SOCIALS, (original, start, end) => `${start}${block}${end}`);
   }
-  return result;
+  return items.length ? `${result.trimEnd()}${newline}${newline}<!-- socials:start -->${block}<!-- socials:end -->${newline}` : result;
 }

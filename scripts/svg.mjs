@@ -23,9 +23,10 @@ const COMMAND_DURATION_MS = 1000;
 const BAR_DURATION_MS = 800;
 const BAR_STAGGER_MS = 90;
 const ACTIVITY_SCOPE = 'public + private, all branches';
+const COMMAND = 'cat mekan.toml';
 const LAYOUT = {
   desktop: { artSize: 10.5, artLine: 12.5, codeSize: 13, codeLine: 19, columns: 64, cells: 40 },
-  mobile: { artSize: 8, artLine: 9.5, codeSize: 12, codeLine: 17, columns: 54, cells: 34 },
+  mobile: { artSize: 8, artLine: 9.5, codeSize: 12, codeLine: 17, columns: 52, cells: 34 },
 };
 const MOTION_STYLES = `
 @keyframes cursor-blink { 0%, 49%, 100% { opacity: 1; } 50%, 99% { opacity: 0; } }
@@ -38,7 +39,7 @@ const MOTION_STYLES = `
 
 export function escapeXml(value) {
   return String(value)
-    .replace(/[^\u0009\u000a\u000d -퟿-�\u{10000}-\u{10ffff}]/gu, '')
+    .replace(/[^\u0009\u000a\u000d\u0020-\ud7ff\ue000-\ufffd\u{10000}-\u{10ffff}]/gu, '')
     .replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' })[character]);
 }
 
@@ -71,12 +72,16 @@ function textWidth(value, size) {
   return String(value).length * size * CHARACTER_WIDTH;
 }
 
+function countKnown(value, known = true) {
+  return known && Number.isSafeInteger(value) && value >= 0;
+}
+
 function formatCount(value, known = true) {
-  return known && Number.isSafeInteger(value) ? value.toLocaleString('en-US') : 'Unavailable';
+  return countKnown(value, known) ? value.toLocaleString('en-US') : 'Unavailable';
 }
 
 function tomlCount(value, known = true) {
-  return known && Number.isSafeInteger(value) ? [['number', value.toLocaleString('en-US').replaceAll(',', '_')]] : [['string', '"unavailable"']];
+  return countKnown(value, known) ? [['number', value.toLocaleString('en-US').replaceAll(',', '_')]] : [['string', '"unavailable"']];
 }
 
 function githubValues(config, data) {
@@ -89,14 +94,22 @@ function githubValues(config, data) {
   ];
 }
 
-function activityScope(config) {
+function locNote(config) {
   const limit = config.activity?.maxCommitLines;
-  return Number.isSafeInteger(limit) ? `${ACTIVITY_SCOPE}; lines of code skip commits over ${limit.toLocaleString('en-US')} lines` : ACTIVITY_SCOPE;
+  return Number.isSafeInteger(limit) ? `added - deleted, skips commits > ${limit.toLocaleString('en-US')} lines` : 'added - deleted';
+}
+
+function activityScope(config) {
+  return `commits: ${ACTIVITY_SCOPE}; lines of code: ${locNote(config)}`;
 }
 
 function tomlDocument(config, data, columns) {
   const lines = [];
-  const quote = (value) => JSON.stringify(String(value));
+  const quote = (value, room = columns) => {
+    const text = String(value);
+    const limit = Math.max(8, room - 2);
+    return JSON.stringify(text.length > limit ? `${text.slice(0, limit - 3)}...` : text);
+  };
   const section = (name) => {
     if (lines.length) {
       lines.push([]);
@@ -111,7 +124,7 @@ function tomlDocument(config, data, columns) {
       const headLength = width + 3;
       let body;
       if (Array.isArray(value) && typeof value[0] === 'string') {
-        const items = value.map(quote);
+        const items = value.map((item) => quote(item, columns - 4));
         const inline = `[${items.join(', ')}]`;
         if (headLength + inline.length <= columns) {
           body = [[['punctuation', '[']], ...items.map((item, index) => [['string', item], ...(index < items.length - 1 ? [['punctuation', ', ']] : [])]), [['punctuation', ']']]].flat();
@@ -138,7 +151,7 @@ function tomlDocument(config, data, columns) {
           continue;
         }
       } else {
-        body = Array.isArray(value) ? value : [['string', quote(value)]];
+        body = Array.isArray(value) ? value : [['string', quote(value, columns - headLength)]];
       }
       const bodyLength = body.reduce((total, [, text]) => total + text.length, 0);
       if (comment && headLength + bodyLength + comment.length + 4 > columns) {
@@ -163,7 +176,7 @@ function tomlDocument(config, data, columns) {
     entries([['programming', system.programming], ['mobile', system.mobile], ['daily', system.daily], ['previous', system.previous], ['human', system.human]]);
   }
   section('github');
-  const comments = { commits: ACTIVITY_SCOPE, loc: config.activity?.maxCommitLines ? `added - deleted, skips commits > ${config.activity.maxCommitLines.toLocaleString('en-US')} lines` : 'added - deleted' };
+  const comments = { commits: ACTIVITY_SCOPE, loc: locNote(config) };
   const release = data.latestRelease;
   entries([
     ...githubValues(config, data).map(([key, , value, known]) => [key, tomlCount(value, known), comments[key]]),
@@ -246,7 +259,7 @@ function artBlock(surface, x, y, mode) {
       }
     }
     surface.raw(`<text x="${x}" y="${y + index * artLine}" font-size="${artSize}" xml:space="preserve">${runs.map(([kind, value]) => kind === 'space'
-      ? `<tspan fill="${c.background}">${value}</tspan>`
+      ? value
       : `<tspan fill="${fills[kind]}">${escapeXml(value)}</tspan>`).join('')}</text>`);
   });
   return ALABAY.length * artLine;
@@ -262,20 +275,28 @@ function profile(config, data, theme, mode) {
   const codeX = mobile ? PADDING + 14 : PADDING + leftWidth + 20;
   const columns = mobile ? layout.columns : Math.floor((width - codeX - PADDING - 12) / (layout.codeSize * CHARACTER_WIDTH));
   const document = tomlDocument(config, data, columns);
-  const codeLines = [[['prompt', '❯ '], ['plain', 'cat mekan.toml']], ...document, [], [['prompt', '❯ ']]];
+  const codeLines = [[['prompt', '❯ ']], ...document, [], [['prompt', '❯ ']]];
   const artHeight = ALABAY.length * layout.artLine + 58;
   const top = PADDING + 10;
-  const artTop = mobile ? top + 30 : top + 30;
+  const artTop = top + 30;
   const codeTop = mobile ? top + 30 + artHeight + 40 : top + 30;
   const codeHeight = codeLines.length * layout.codeLine;
-  const bodyBottom = Math.max(mobile ? codeTop + codeHeight : codeTop + codeHeight, artTop + artHeight) + 10;
+  const bodyBottom = Math.max(codeTop + codeHeight, artTop + artHeight) + 10;
   const height = bodyBottom + STATUS_HEIGHT + PADDING + 8;
   const values = githubValues(config, data);
-  const summary = `${config.editorName}. ${config.name}, @${config.username}. Interests: ${config.focus.join(', ')}. ${
-    config.system ? `OS: ${config.system.os?.join(', ') ?? ''}. IDE: ${config.system.ides?.join(', ') ?? ''}. Programming: ${config.system.programming?.join(', ') ?? ''}. ` : ''
-  }${data.uptime ? `${data.uptime.label}: ${data.uptime.value}. ` : ''}${values.map(([, label, value, known]) => `${label}: ${formatCount(value, known)}`).join('. ')}.${
-    config.activity?.enabled ? ` Scope: ${activityScope(config)}.` : ''
-  }${data.projects.length ? ` Projects: ${data.projects.map((project) => project.name).join(', ')}.` : ''}`;
+  const { system = {} } = config;
+  const groups = [
+    ['OS', system.os], ['IDE', system.ides], ['Terminals', system.terminals], ['Programming', system.programming],
+    ['Mobile stack', system.mobile], ['Daily languages', system.daily], ['Previous languages', system.previous], ['Human languages', system.human],
+  ].filter(([, list]) => list?.length).map(([label, list]) => `${label}: ${list.join(', ')}`);
+  const release = data.latestRelease ? [`Latest release: ${data.latestRelease.repository} ${data.latestRelease.tag}, ${data.latestRelease.publishedAt.slice(0, 10)}`] : [];
+  const summary = [
+    `${config.editorName}. ${config.name}, @${config.username}`, `Interests: ${config.focus.join(', ')}`,
+    ...(data.uptime ? [`${data.uptime.label}: ${data.uptime.value}`] : []), ...groups,
+    ...values.map(([, label, value, known]) => `${label}: ${formatCount(value, known)}`),
+    ...(config.activity?.enabled ? [`Scope: ${activityScope(config)}`] : []), ...release,
+    ...(data.projects.length ? [`Projects: ${data.projects.map((project) => project.name).join(', ')}`] : []),
+  ].join('. ').concat('.');
   const s = canvas(theme, mode, `${config.editorName} / tmux`, summary, height);
   s.height = height;
   const { colors: c, line, text, segments, rect } = s;
@@ -298,7 +319,7 @@ function profile(config, data, theme, mode) {
     const y = codeTop + 14 + index * layout.codeLine;
     if (index === 0) {
       segments(codeX, y, [pieces[0]], layout.codeSize);
-      text(codeX + textWidth('❯ ', layout.codeSize), y, 'cat mekan.toml', c.text, layout.codeSize, 'class="terminal-command"');
+      text(codeX + textWidth('❯ ', layout.codeSize), y, COMMAND, c.text, layout.codeSize, 'class="terminal-command"');
       return;
     }
     if (pieces.length) {
@@ -352,11 +373,10 @@ function languages(config, data, theme, mode) {
     const meterY = mobile ? y + 9 : y - 10;
     const filled = row.percentage > 0 ? Math.max(1, Math.round(layout.cells * Math.min(100, row.percentage) / 100)) : 0;
     const color = row.name === 'Other' ? c.muted : LANGUAGE_COLORS[row.name] ?? c.accent;
-    for (let cell = 0; cell < layout.cells; cell += 1) {
-      rect(meterX + cell * (cellWidth + cellGap), meterY, cellWidth, 11, c.raised, 1);
-    }
+    const meter = (cells, fill) => `<path d="M${meterX} ${meterY + 5.5}h${cells * (cellWidth + cellGap) - cellGap}" stroke="${fill}" stroke-width="11" stroke-dasharray="${cellWidth} ${cellGap}"/>`;
+    raw(meter(layout.cells, c.raised));
     if (filled) {
-      raw(`<g class="language-bar" style="animation-delay: ${COMMAND_DURATION_MS + index * BAR_STAGGER_MS}ms">${Array.from({ length: filled }, (_, cell) => `<rect x="${meterX + cell * (cellWidth + cellGap)}" y="${meterY}" width="${cellWidth}" height="11" rx="1" fill="${color}"/>`).join('')}</g>`);
+      raw(`<g class="language-bar" style="animation-delay: ${COMMAND_DURATION_MS + index * BAR_STAGGER_MS}ms">${meter(filled, color)}</g>`);
     }
   });
   if (!rows.length) {
@@ -376,6 +396,7 @@ const BADGE_ICONS = {
   email: 'M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z',
   x: 'M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z',
   linkedin: 'M0 2a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2v20a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zM3.6 9v11.4h3.6V9zm1.8-5.8a2.1 2.1 0 1 0 0 4.2 2.1 2.1 0 0 0 0-4.2zM9.1 9v11.4h3.6v-5.5c0-1.5.3-2.9 2.1-2.9s1.8 1.7 1.8 3v5.4H20v-6.1c0-3.2-.7-5.6-4.4-5.6-1.8 0-3 1-3.5 1.9V9z',
+  link: 'M10.6 13.4a1 1 0 0 1 0-1.4l4-4a1 1 0 1 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0zM6.3 20.5a4.8 4.8 0 0 1-3.4-8.2l2.8-2.8a1 1 0 0 1 1.4 1.4l-2.8 2.8a2.8 2.8 0 0 0 4 4l2.8-2.8a1 1 0 0 1 1.4 1.4l-2.8 2.8a4.8 4.8 0 0 1-3.4 1.4zm11-6.3a1 1 0 0 1-.7-1.7l2.8-2.8a2.8 2.8 0 0 0-4-4l-2.8 2.8a1 1 0 0 1-1.4-1.4l2.8-2.8a4.8 4.8 0 0 1 6.8 6.8l-2.8 2.8a1 1 0 0 1-.7.3z',
   hn: 'M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z',
 };
 
@@ -406,12 +427,18 @@ function badge(item, theme) {
 
 export function badgeItems(config) {
   const { emails = [], socials = [] } = config.contact ?? {};
+  const used = new Map();
+  const unique = (base) => {
+    const count = (used.get(base) ?? 0) + 1;
+    used.set(base, count);
+    return count === 1 ? base : `${base}-${count}`;
+  };
   return [
-    ...emails.map((email, index) => ({ id: index ? `email-${index + 1}` : 'email', icon: 'email', label: 'Email', handle: email, url: `mailto:${email}` })),
-    ...socials.filter((social) => social.url && BADGE_ICONS[social.icon]).map((social) => ({
-      id: social.icon, icon: social.icon, label: social.label, handle: social.handle ?? social.label, url: social.url,
+    ...emails.map((email) => ({ icon: 'email', label: 'Email', handle: email, url: `mailto:${email}` })),
+    ...socials.filter((social) => social.url).map((social) => ({
+      icon: BADGE_ICONS[social.icon] ? social.icon : 'link', label: social.label, handle: social.handle ?? social.label, url: social.url,
     })),
-  ];
+  ].map((item) => ({ ...item, id: unique(item.icon === 'link' ? item.label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'link' : item.icon) }));
 }
 
 export function renderAssets(config, data) {
