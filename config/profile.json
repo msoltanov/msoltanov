@@ -14,22 +14,35 @@
     "os": ["Windows 11", "Android 13-14", "Linux"],
     "ides": ["VS Code", "JetBrains IDEs"],
     "terminals": ["Tabby", "Termius"],
-    "programming": ["Python", "TypeScript", "Go", "Rust", "Elixir"],
+    "programming": ["Python", "TypeScript", "JavaScript", "Go", "Rust"],
     "mobile": ["Kotlin", "Flutter", "Dart"],
     "daily": ["JSON", "YAML", "TOML", "Lisp", "Lua", "Perl"],
-    "previous": ["JavaScript", "PHP", "C", "Java"],
+    "previous": ["PHP", "C", "Java"],
     "human": ["Turkmen", "Turkish", "Russian", "English"]
   },
+  "techStack": [
+    { "label": "Python", "icon": "python", "url": "https://www.python.org/" },
+    { "label": "TypeScript", "icon": "typescript", "url": "https://www.typescriptlang.org/" },
+    { "label": "JavaScript", "icon": "javascript", "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+    { "label": "Go", "icon": "go", "url": "https://go.dev/" },
+    { "label": "Rust", "icon": "rust", "url": "https://www.rust-lang.org/" },
+    { "label": "Kotlin", "icon": "kotlin", "url": "https://kotlinlang.org/" },
+    { "label": "Flutter", "icon": "flutter", "url": "https://flutter.dev/" },
+    { "label": "Dart", "icon": "dart", "url": "https://dart.dev/" },
+    { "label": "Windows 11", "icon": "windows", "url": "https://www.microsoft.com/windows/windows-11" },
+    { "label": "Linux", "icon": "linux", "url": "https://www.kernel.org/" },
+    { "label": "VS Code", "icon": "vscode", "url": "https://code.visualstudio.com/" }
+  ],
   "uptime": { "source": "github" },
   "contact": {
-    "emails": ["mknsltnw@gmail.com", "me@msoltanov.com"],
+    "emails": ["mknsltnw@gmail.com"],
     "socials": [
       { "label": "X", "url": "https://x.com/0xsolt" },
-      { "label": "LinkedIn", "url": "https://tr.linkedin.com/in/mekan-soltanov-31986097" },
+      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/mekan-soltanov-31986097" },
       { "label": "HN", "url": "https://news.ycombinator.com/user?id=soltanov" }
     ]
   },
-  "activity": { "enabled": true },
+  "activity": { "enabled": true, "maxCommitLines": 10000 },
   "latestRelease": true,
   "featuredRepositories": [
     "pdf-shrinker",

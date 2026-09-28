@@ -1,3 +1,5 @@
+import { emptyCache } from './cache.mjs';
+
 const API_ORIGIN = 'https://api.github.com';
 const WEB_ORIGIN = 'https://github.com';
 const API_VERSION = '2022-11-28';
@@ -264,13 +266,31 @@ async function discoverRepositories(request, username, createdAt, now) {
   return repositories;
 }
 
-async function collectCommits(request, repositories, authorId) {
+async function collectCommits(request, repositories, authorId, { cache, deadline, maxCommitLines }) {
   const commits = new Set();
   const scannedHeads = new Set();
   let additions = 0;
   let deletions = 0;
 
+  const consume = ([oid, added, deleted, merge]) => {
+    if (commits.has(oid)) {
+      return;
+    }
+
+    commits.add(oid);
+    if (merge || added + deleted > maxCommitLines) {
+      return;
+    }
+
+    additions = count(additions + added);
+    deletions = count(deletions + deleted);
+  };
+
   const collectRepository = async (repositoryId) => {
+    if (Date.now() > deadline) {
+      throw new ActivityError('time-budget');
+    }
+
     const heads = new Set();
     await collectConnection(async (after) => {
       const data = await request(BRANCHES_QUERY, { repositoryId, after });
@@ -289,29 +309,28 @@ async function collectCommits(request, repositories, authorId) {
       }
 
       scannedHeads.add(headOid);
-      await collectConnection(async (after) => {
-        const data = await request(HISTORY_QUERY, { repositoryId, headOid, authorId, after });
-        return data.node?.object?.history;
-      }, (commit) => {
-        if (!OID_PATTERN.test(commit?.oid)) {
-          invalidResponse();
+      let entries = cache.heads.get(headOid);
+      if (!entries) {
+        if (Date.now() > deadline) {
+          throw new ActivityError('time-budget');
         }
 
-        const added = count(commit.additions);
-        const deleted = count(commit.deletions);
-        const parents = count(commit.parents?.totalCount);
-        if (commits.has(commit.oid)) {
-          return;
-        }
+        const scanned = [];
+        await collectConnection(async (after) => {
+          const data = await request(HISTORY_QUERY, { repositoryId, headOid, authorId, after });
+          return data.node?.object?.history;
+        }, (commit) => {
+          if (!OID_PATTERN.test(commit?.oid)) {
+            invalidResponse();
+          }
 
-        commits.add(commit.oid);
-        if (parents > 1) {
-          return;
-        }
+          scanned.push([commit.oid, count(commit.additions), count(commit.deletions), count(commit.parents?.totalCount) > 1 ? 1 : 0]);
+        });
+        entries = scanned;
+        cache.heads.set(headOid, entries);
+      }
 
-        additions = count(additions + added);
-        deletions = count(deletions + deleted);
-      });
+      entries.forEach(consume);
     }
   };
 
@@ -334,10 +353,16 @@ async function collectCommits(request, repositories, authorId) {
     throw failure;
   }
 
+  for (const head of cache.heads.keys()) {
+    if (!scannedHeads.has(head)) {
+      cache.heads.delete(head);
+    }
+  }
+
   return { commits: commits.size, additions, deletions };
 }
 
-export async function collectActivity(config, { env = process.env, fetchImpl = fetch, now = new Date() } = {}) {
+export async function collectActivity(config, { env = process.env, fetchImpl = fetch, now = new Date(), cache = emptyCache(), deadline = Infinity } = {}) {
   validateUsername(config.username);
   const token = typeof env.PROFILE_STATS_TOKEN === 'string' ? env.PROFILE_STATS_TOKEN.trim() : '';
   if (!token) {
@@ -357,8 +382,14 @@ export async function collectActivity(config, { env = process.env, fetchImpl = f
       invalidResponse();
     }
 
+    if (cache.authorId !== authorId) {
+      cache.authorId = authorId;
+      cache.heads.clear();
+    }
+
+    const maxCommitLines = config.activity?.maxCommitLines ?? Infinity;
     const repositories = await discoverRepositories(request, config.username, createdAt, now);
-    const totals = await collectCommits(request, repositories, authorId);
+    const totals = await collectCommits(request, repositories, authorId, { cache, deadline, maxCommitLines });
     return { status: 'ready', reason: null, scope: SCOPE, ...totals };
   } catch (error) {
     return unavailable(error instanceof ActivityError ? error.reason : 'request-failed');

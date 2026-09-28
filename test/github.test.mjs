@@ -191,6 +191,7 @@ for (const failAt of ['/user/repos', `/repos/${USERNAME}/${PRIVATE_NAME}/languag
     const result = await collectProfile(config, { env: { PROFILE_STATS_TOKEN: PRIVATE_TOKEN }, fetchImpl: fixture.fetchImpl });
     assert.deepEqual(result.languages, { rows: [{ name: 'Python', percentage: 100 }], alsoUsed: [], scope: 'public' });
     assert.equal(result.notices.length, 1);
+    assert.equal(result.privateUnavailable, true);
     assert.doesNotMatch(JSON.stringify(result), /PRIVATE_|first-private/);
   });
 }

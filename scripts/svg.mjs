@@ -7,6 +7,11 @@ const LANGUAGE_COLORS = {
   JavaScript: '#f1e05a', TypeScript: '#3178c6', Python: '#3572A5', PHP: '#4F5D95', Go: '#00ADD8',
   Dart: '#00B4AB', Rust: '#dea584', Shell: '#89e051', HTML: '#e34c26', CSS: '#663399',
   C: '#555555', 'C++': '#f34b7d', Ruby: '#701516', Java: '#b07219', Lua: '#000080', Swift: '#F05138',
+  Astro: '#ff5a03', QML: '#44a51c', MDX: '#fcb32c', SCSS: '#c6538c', Kotlin: '#A97BFF', Elixir: '#6e4a7e',
+  Dockerfile: '#384d54', Perl: '#0298c3', PowerShell: '#012456', CMake: '#DA3434', QMake: '#3f5a1b', 'Objective-C': '#438eff',
+  'Common Lisp': '#3fb68b', Racket: '#3c5caa', Tcl: '#e4cc98', Just: '#384d54', Vue: '#41b883', Svelte: '#ff3e00',
+  'C#': '#178600', Scala: '#c22d40', Haskell: '#5e5086', Clojure: '#db5855', Zig: '#ec915c', Nix: '#7e7eff',
+  'Jupyter Notebook': '#DA5B0B', 'Vim Script': '#199f4b', HCL: '#844FBA', Makefile: '#427819', Batchfile: '#C1F12E',
 };
 const FONT = 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace';
 const CODE_ROW_HEIGHT = 25;
@@ -17,6 +22,7 @@ const COMMAND_DURATION_MS = 1000;
 const BAR_DURATION_MS = 800;
 const BAR_STAGGER_MS = 90;
 const ACTIVITY_SCOPE = 'accessible public + private / all branches';
+const CHARACTER_WIDTH = 0.6;
 const MOTION_STYLES = `
 @keyframes cursor-blink { 0%, 49%, 100% { opacity: 1; } 50%, 99% { opacity: 0; } }
 @keyframes command-type { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
@@ -117,23 +123,41 @@ function systemInformation(config, data, mode) {
   ]);
   const columnHeight = (column) => column.reduce((total, group) => total + DETAIL_GROUP_GAP + group.lines.length * DETAIL_LINE_HEIGHT, 0);
   const contentHeight = mode === 'mobile' ? columnHeight(environment) + columnHeight(languages) + 16 : Math.max(columnHeight(environment), columnHeight(languages));
-  const activityHeight = config.activity?.enabled ? (mode === 'mobile' ? 170 : 134) : 0;
+  const values = githubValues(config, data);
+  const scopeLines = config.activity?.enabled ? wrap(activityScope(config), mode === 'mobile' ? 56 : 110) : [];
+  const valueRows = mode === 'mobile' ? values.length : Math.ceil(values.length / 3);
+  const activityHeight = 44 + valueRows * (mode === 'mobile' ? 28 : 62) + scopeLines.length * 18 + 12;
   const release = data.latestRelease;
   const releaseLines = release ? wrap(`${release.repository} / ${release.tag} / ${release.publishedAt.slice(0, 10)}`, mode === 'mobile' ? 43 : 93) : [];
   const releaseHeight = releaseLines.length ? 46 + releaseLines.length * DETAIL_LINE_HEIGHT : 0;
-  const activityDescription = config.activity?.enabled ? `${activityValues(data.activity).map(([label, value]) => `${label}: ${value}`).join('. ')}. Scope: ${ACTIVITY_SCOPE}` : '';
+  const activityDescription = `${values.map(([label, value]) => `${label}: ${value}`).join('. ')}${scopeLines.length ? `. Scope: ${activityScope(config)}` : ''}`;
   return {
-    environment, languages, contentHeight, activityHeight, releaseLines,
+    environment, languages, contentHeight, activityHeight, releaseLines, values, scopeLines,
     height: DETAIL_HEADER_HEIGHT + contentHeight + activityHeight + releaseHeight + 18,
     description: [...environment, ...languages].map((group) => `${group.label}: ${group.lines.join(' ')}`).concat(
-      activityDescription ? [activityDescription] : [], releaseLines.length ? [`Latest release: ${releaseLines.join(' ')}`] : [],
+      [activityDescription], releaseLines.length ? [`Latest release: ${releaseLines.join(' ')}`] : [],
     ).join('. '),
   };
 }
 
-function activityValues(activity) {
-  const count = (value) => activity?.status === 'ready' && Number.isSafeInteger(value) && value >= 0 ? value.toLocaleString('en-US') : 'Unavailable';
-  return [['Commits', count(activity?.commits)], ['Lines added', count(activity?.additions)], ['Lines deleted', count(activity?.deletions)]];
+function formatCount(value, known = true) {
+  return known && Number.isSafeInteger(value) && value >= 0 ? value.toLocaleString('en-US') : 'Unavailable';
+}
+
+function githubValues(config, data) {
+  const activity = data.activity;
+  const ready = activity?.status === 'ready';
+  return [
+    ...(config.activity?.enabled ? [
+      ['Commits', formatCount(activity?.commits, ready)], ['Lines added', formatCount(activity?.additions, ready)], ['Lines deleted', formatCount(activity?.deletions, ready)],
+    ] : []),
+    ['Public repos', formatCount(data.publicRepos)], ['Followers', formatCount(data.followers)], ['Stars earned', formatCount(data.starsEarned)],
+  ];
+}
+
+function activityScope(config) {
+  const limit = config.activity?.maxCommitLines;
+  return Number.isSafeInteger(limit) ? `${ACTIVITY_SCOPE} / line totals skip commits over ${limit.toLocaleString('en-US')} lines` : ACTIVITY_SCOPE;
 }
 
 function drawSystemInformation(surface, info, data, mode, startY) {
@@ -155,23 +179,22 @@ function drawSystemInformation(surface, info, data, mode, startY) {
   const environmentEnd = drawColumn(info.environment, 22, columnY);
   drawColumn(info.languages, mobile ? 22 : width / 2 + 16, mobile ? environmentEnd + 16 : columnY);
   let y = columnY + info.contentHeight;
-  if (info.activityHeight) {
-    line(22, y, width - 22, y);
-    text(22, y + 27, 'GITHUB / LIFETIME', c.muted, 11);
-    const values = activityValues(data.activity);
-    values.forEach(([label, value], index) => {
-      if (mobile) {
-        text(22, y + 56 + index * 28, label, c.muted, 13);
-        text(width - 22, y + 56 + index * 28, value, c.text, 16, 'text-anchor="end"');
-        return;
-      }
-      const x = 22 + index * (width - 44) / values.length;
-      text(x, y + 61, value, c.text, 24);
-      text(x, y + 85, label, c.muted, 12);
-    });
-    text(22, y + (mobile ? 144 : 113), ACTIVITY_SCOPE, c.muted, mobile ? 11 : 12);
-    y += info.activityHeight;
-  }
+  line(22, y, width - 22, y);
+  text(22, y + 27, 'GITHUB', c.muted, 11);
+  info.values.forEach(([label, value], index) => {
+    if (mobile) {
+      text(22, y + 56 + index * 28, label, c.muted, 13);
+      text(width - 22, y + 56 + index * 28, value, c.text, 16, 'text-anchor="end"');
+      return;
+    }
+    const x = 22 + (index % 3) * (width - 44) / 3;
+    const rowY = y + Math.floor(index / 3) * 62;
+    text(x, rowY + 61, value, c.text, 24);
+    text(x, rowY + 85, label, c.muted, 12);
+  });
+  const scopeY = y + 44 + (mobile ? info.values.length * 28 : Math.ceil(info.values.length / 3) * 62);
+  info.scopeLines.forEach((value, index) => text(22, scopeY + 8 + index * 18, value, c.muted, mobile ? 11 : 12));
+  y += info.activityHeight;
   if (info.releaseLines.length) {
     line(22, y, width - 22, y);
     text(22, y + 26, 'LATEST RELEASE', c.muted, 11);
@@ -253,7 +276,16 @@ function profile(config, data, theme, mode) {
   }
   rect(1, height - 34, width - 2, 33, c.raised);
   text(20, height - 12, `@${config.username}`, c.accent, 12);
-  text(width - 20, height - 12, mobile ? 'TypeScript   UTF-8' : 'profile.ts     TypeScript     UTF-8   LF', c.muted, 12, 'text-anchor="end"');
+  const status = mobile ? 'TypeScript   UTF-8' : 'profile.ts     TypeScript     UTF-8   LF';
+  let statusStart = 20 + (config.username.length + 1) * 12 * CHARACTER_WIDTH;
+  if (data.updatedAt) {
+    const stamp = `updated ${data.updatedAt}`;
+    text(statusStart + 14, height - 12, stamp, c.muted, 12);
+    statusStart += 14 + stamp.length * 12 * CHARACTER_WIDTH;
+  }
+  if (statusStart + 14 <= width - 20 - status.length * 12 * CHARACTER_WIDTH) {
+    text(width - 20, height - 12, status, c.muted, 12, 'text-anchor="end"');
+  }
   return s.finish();
 }
 
@@ -279,7 +311,7 @@ function languages(config, data, theme, mode) {
   rows.forEach((row, index) => {
     const y = startY + 26 + index * rowHeight;
     const label = row.name.length > (mobile ? 30 : 25) ? `${row.name.slice(0, mobile ? 27 : 22)}...` : row.name;
-    rect(22, y - 11, 7, 7, LANGUAGE_COLORS[row.name] ?? c.accent, 1);
+    rect(22, y - 11, 7, 7, row.name === 'Other' ? c.muted : LANGUAGE_COLORS[row.name] ?? c.accent, 1, `stroke="${c.border}"`);
     text(39, y, label, c.text, 15);
     text(width - 22, y, `${row.percentage.toFixed(1)}%`, c.text, 15, 'text-anchor="end"');
     const barX = mobile ? 22 : 310;
@@ -298,9 +330,12 @@ function languages(config, data, theme, mode) {
   }
   line(0, height - 43, width, height - 43);
   const repositoryLabel = config.filters?.includeForks || config.filters?.includeMirrors ? 'owned repositories' : 'owned source';
-  text(22, height - 17, `${repositoryLabel} / language bytes`, c.muted, 12);
+  const stamp = data.updatedAt ? `updated ${data.updatedAt}` : '';
+  text(22, height - 17, `${repositoryLabel} / ${mobile && stamp ? 'bytes' : 'language bytes'}${!mobile && stamp ? ` / ${stamp}` : ''}`, c.muted, 12);
   if (!mobile) {
     text(width - 22, height - 17, 'ALABAY CODE', c.accent, 12, 'text-anchor="end"');
+  } else if (stamp) {
+    text(width - 22, height - 17, stamp, c.muted, 12, 'text-anchor="end"');
   }
   return s.finish();
 }

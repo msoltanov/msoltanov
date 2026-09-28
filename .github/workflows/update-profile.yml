@@ -16,30 +16,42 @@ jobs:
   update:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: main
           persist-credentials: false
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '24'
           package-manager-cache: false
       - run: npm ci --ignore-scripts
       - run: npm test
+      - name: Restore encrypted activity cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .cache/activity.bin
+          key: activity-${{ github.run_id }}
+          restore-keys: activity-
       - name: Collect safe statistics and render assets
         run: npm run generate
         env:
           GITHUB_TOKEN: ${{ github.token }}
           PROFILE_STATS_TOKEN: ${{ secrets.PROFILE_STATS_TOKEN }}
           PROFILE_EXCLUDE_REPOSITORIES: ${{ secrets.PROFILE_EXCLUDE_REPOSITORIES }}
+      - name: Save encrypted activity cache
+        if: always() && hashFiles('.cache/activity.bin') != ''
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .cache/activity.bin
+          key: activity-${{ github.run_id }}-${{ github.run_attempt }}
       - run: npm run check
       - name: Commit changed assets
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          git add -- assets/*.svg README.md
+          git add -- assets/*.svg README.md data/stats.json
           if git diff --cached --quiet; then
             echo 'Profile assets unchanged.'
             exit 0
