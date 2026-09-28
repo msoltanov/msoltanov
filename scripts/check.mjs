@@ -19,7 +19,7 @@ for (const directory of directories) {
 }
 
 const assets = (await readdir('assets')).filter((name) => name.endsWith('.svg'));
-assert.equal(assets.length, 16, 'Generate all sixteen profile assets before this check.');
+assert.ok(assets.length >= 16, 'Generate all profile assets before this check.');
 for (const name of assets) {
   const svg = await readFile(join('assets', name), 'utf8');
   const document = new DOMParser({ onError: () => { throw new Error(`Invalid SVG XML: ${name}`); } }).parseFromString(svg, 'image/svg+xml');

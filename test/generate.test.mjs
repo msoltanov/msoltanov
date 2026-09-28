@@ -56,9 +56,9 @@ test('failed activity, private language, and release collection keep the last kn
   assert.ok(result.notices.includes('Kept the last known activity totals.'));
   assert.ok(result.notices.includes('Kept the last known private language totals.'));
   const svg = await readFile(join(root, 'assets/profile-dark.svg'), 'utf8');
-  assert.match(svg, /1,234/);
-  assert.doesNotMatch(svg, /Commits: Unavailable/);
-  assert.match(svg, /public-project \/ v2.1/);
+  assert.match(svg, /1_234/);
+  assert.doesNotMatch(svg, /&quot;unavailable&quot;/);
+  assert.match(svg, /public-project v2\.1/);
   assert.match(await readFile(join(root, 'assets/languages-dark.svg'), 'utf8'), /public \+ authorized private/);
 });
 
@@ -156,8 +156,9 @@ test('generation combines uptime, anonymous activity, and the latest public rele
   assert.match(svg, /GitHub uptime/);
   assert.match(svg, /11y 0m/);
   assert.doesNotMatch(svg, /11y 0m \d+d/);
-  assert.match(svg, /1,234/);
-  assert.match(svg, /public-project \/ v2.1 \/ 2026-09-12/);
+  assert.match(svg, /1_234/);
+  assert.match(svg, /public-project v2\.1/);
+  assert.match(svg, /2026-09-12/);
 });
 
 test('invalid system details fail before data collection', async (t) => {
@@ -169,4 +170,16 @@ test('invalid system details fail before data collection', async (t) => {
   let fetched = false;
   await assert.rejects(generateProfile({ root, collect: async () => { fetched = true; return data; } }), /configuration/);
   assert.equal(fetched, false);
+});
+
+test('badges for removed contacts are deleted', async (t) => {
+  const root = await workspace(t);
+  await mkdir(join(root, 'assets'));
+  await writeFile(join(root, 'assets/badge-linkedin-dark.svg'), 'stale');
+  await writeFile(join(root, 'assets/notes.svg'), 'kept');
+  await generateProfile({ root, collect: async () => data });
+  const { readdir } = await import('node:fs/promises');
+  const names = await readdir(join(root, 'assets'));
+  assert.ok(!names.includes('badge-linkedin-dark.svg'));
+  assert.ok(names.includes('notes.svg'));
 });

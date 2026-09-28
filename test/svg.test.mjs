@@ -81,12 +81,12 @@ test('full language diversity wraps and all labels survive in accessible text', 
   }
 });
 
-test('short identity content leaves enough room for the public project tree', () => {
+test('featured projects stay inside the shell pane above the status bar', () => {
   const projects = ['first-project', 'second-project', 'third-public-project'].map((name) => ({ name, description: '', url: '' }));
   const svg = renderAssets({ ...config, focus: [] }, { ...data, projects })['profile-dark.svg'];
   const texts = Array.from(parse(svg).getElementsByTagName('text'));
-  const lastProject = texts.find((node) => node.textContent === 'third-public-project');
-  const statusBar = texts.find((node) => node.textContent === '@msoltanov');
+  const lastProject = texts.find((node) => node.textContent.includes('"third-public-project"'));
+  const statusBar = texts.find((node) => node.textContent === '[msoltanov]');
   assert.ok(Number(lastProject.getAttribute('y')) + 35 < Number(statusBar.getAttribute('y')));
 });
 
@@ -96,12 +96,12 @@ test('language caption changes when forks or mirrors are included', () => {
   assert.doesNotMatch(assets['languages-dark.svg'], /owned source \/ language bytes/);
 });
 
-test('system details wrap every supplied item into both viewport layouts', () => {
+test('system details wrap every supplied item into both viewport layouts and leave contacts to the README', () => {
   const detailed = {
     ...config,
     system: {
       os: ['Windows 11', 'Android 13-14', 'Linux'],
-      ides: ['VS Code', 'JetBrains IDEs'], terminals: ['Tabby', 'Termius'],
+      ides: ['VS Code', 'JetBrains IDEs', 'Pulsar'], terminals: ['Tabby', 'Termius'],
       programming: ['Python', 'TypeScript', 'JavaScript', 'Go', 'Rust'],
       mobile: ['Kotlin', 'Flutter', 'Dart'], daily: ['JSON', 'YAML', 'TOML', 'Lisp', 'Lua', 'Perl'],
       previous: ['PHP', 'C', 'Java'], human: ['Turkmen', 'Turkish', 'Russian', 'English'],
@@ -113,9 +113,10 @@ test('system details wrap every supplied item into both viewport layouts', () =>
       continue;
     }
     const text = Array.from(parse(svg).getElementsByTagName('text')).map((node) => node.textContent).join(' ');
-    for (const value of [...Object.values(detailed.system).flat(), ...detailed.contact.emails, 'LinkedIn']) {
-      assert.ok(text.includes(value), `${name}: missing ${value}`);
+    for (const value of Object.values(detailed.system).flat()) {
+      assert.ok(text.includes(`"${value}"`), `${name}: missing ${value}`);
     }
+    assert.doesNotMatch(text, /mknsltnw|LinkedIn/);
   }
 });
 
@@ -139,45 +140,96 @@ test('animated and still variants contain the same readable profile content', ()
 test('activity values retain their scope and unavailable counts never become zero', () => {
   const detailed = { ...config, system: { os: ['Linux'] }, activity: { enabled: true } };
   const unavailable = renderAssets(detailed, { ...data, activity: { status: 'unavailable', commits: null, additions: null, deletions: null } });
-  assert.match(unavailable['profile-dark.svg'], /Commits/);
-  assert.match(unavailable['profile-dark.svg'], /Unavailable/);
+  assert.match(unavailable['profile-dark.svg'], /commits/);
+  assert.match(unavailable['profile-dark.svg'], /&quot;unavailable&quot;/);
+  assert.equal(unavailable['profile-dark.svg'].match(/&quot;unavailable&quot;/g).length, 2);
   const available = renderAssets(detailed, { ...data, activity: { status: 'ready', scope: 'authorized-branches', commits: 1234, additions: 45678, deletions: 912 } });
-  assert.match(available['profile-dark.svg'], /1,234/);
-  assert.match(available['profile-dark.svg'], /45,678/);
-  assert.match(available['profile-dark.svg'], /912/);
-  assert.match(available['profile-dark.svg'], /accessible public \+ private/);
+  assert.match(available['profile-dark.svg'], />1_234</);
+  assert.match(available['profile-dark.svg'], />44_766</);
+  assert.match(available['profile-dark.svg'], /public \+ private, all branches/);
+  assert.doesNotMatch(available['profile-dark.svg'], /45_678|Lines added|Lines deleted/);
   const description = parse(available['profile-dark.svg']).getElementsByTagName('desc')[0].textContent;
   assert.match(description, /Commits: 1,234/);
-  assert.match(description, /Lines added: 45,678/);
-  assert.match(description, /accessible public \+ private/);
+  assert.match(description, /Lines of code: 44,766/);
+  assert.match(description, /public \+ private, all branches/);
 });
 
-test('GitHub section shows public counts and the commit size limit', () => {
+test('GitHub section shows commits, lines of code, stars, and followers with the commit size limit', () => {
   const detailed = { ...config, system: { os: ['Linux'] }, activity: { enabled: true, maxCommitLines: 10000 } };
-  const assets = renderAssets(detailed, { ...data, activity: { status: 'ready', commits: 5, additions: 6, deletions: 7 } });
+  const assets = renderAssets(detailed, { ...data, activity: { status: 'ready', commits: 5, additions: 16, deletions: 7 } });
   for (const name of ['profile-dark.svg', 'profile-dark-mobile.svg']) {
     const text = Array.from(parse(assets[name]).getElementsByTagName('text')).map((node) => node.textContent).join(' ');
-    for (const value of ['Public repos', '16', 'Followers', '21', 'Stars earned', 'Commits']) {
+    for (const value of ['commits', 'loc', 'stars', 'followers', '= 9', '= 21']) {
       assert.ok(text.includes(value), `${name}: missing ${value}`);
     }
-    assert.match(text, /line totals skip commits over 10,000 lines/);
+    assert.match(text, /skips commits > 10,000 lines/);
+    assert.doesNotMatch(text, /Public repos|= 16/);
   }
   const description = parse(assets['profile-dark.svg']).getElementsByTagName('desc')[0].textContent;
-  assert.match(description, /Public repos: 16\. Followers: 21\. Stars earned: 0/);
+  assert.match(description, /Commits: 5\. Lines of code: 9\. Stars: 0\. Followers: 21/);
 });
 
-test('the updated date appears in both footers only when supplied', () => {
+test('the updated date appears in every status bar only when supplied', () => {
   const assets = renderAssets(config, { ...data, updatedAt: '2026-09-28' });
   for (const [name, svg] of Object.entries(assets)) {
-    assert.match(svg, /updated 2026-09-28/, name);
+    assert.match(svg, /2026-09-28/, name);
   }
   assert.doesNotMatch(Object.values(renderAssets(config, data)).join(''), /updated /);
 });
 
-test('common language swatches use their own colors and Other uses a neutral color', () => {
+test('language meters use linguist colors and Other uses a neutral color', () => {
   const rows = ['Astro', 'QML', 'MDX', 'SCSS', 'Kotlin', 'Other'].map((name) => ({ name, percentage: 10 }));
   const svg = renderAssets(config, { ...data, languages: { rows, alsoUsed: ['Go'], scope: 'public' } })['languages-dark.svg'];
-  for (const color of ['#ff5a03', '#44a51c', '#fcb32c', '#c6538c', '#A97BFF', '#a4b5ac']) {
-    assert.match(svg, new RegExp(`width="7" height="7" rx="1" fill="${color}"`));
+  for (const color of ['#ff5a03', '#44a51c', '#fcb32c', '#c6538c', '#A97BFF', '#7d8f87']) {
+    assert.match(svg, new RegExp(`stroke="${color}" stroke-width="11"`));
   }
+});
+
+test('social badges render per theme without links inside the image', () => {
+  const social = { ...config, contact: { emails: ['a@example.com'], socials: [
+    { label: 'X', icon: 'x', handle: '@me', url: 'https://x.com/me' },
+    { label: 'Other', url: 'https://example.com' },
+  ] } };
+  const assets = renderAssets(social, data);
+  assert.deepEqual(Object.keys(assets).filter((name) => name.startsWith('badge-')).sort(), [
+    'badge-email-dark.svg', 'badge-email-light.svg', 'badge-other-dark.svg', 'badge-other-light.svg', 'badge-x-dark.svg', 'badge-x-light.svg',
+  ]);
+  for (const name of ['badge-email-dark.svg', 'badge-x-light.svg']) {
+    parse(assets[name]);
+    assert.doesNotMatch(assets[name], /href|<script/);
+  }
+  assert.match(assets['badge-x-dark.svg'], />@me</);
+  assert.match(assets['badge-email-light.svg'], />a@example\.com</);
+});
+
+test('badge identifiers stay unique for repeated icons', async () => {
+  const { badgeItems } = await import('../scripts/svg.mjs');
+  const items = badgeItems({ contact: { emails: ['a@example.com', 'b@example.com'], socials: [
+    { label: 'X', icon: 'x', url: 'https://x.com/a' }, { label: 'X', icon: 'x', url: 'https://x.com/b' }, { label: 'Mail', icon: 'email', url: 'https://example.com' },
+  ] } });
+  assert.deepEqual(items.map((item) => item.id), ['email', 'email-2', 'x', 'x-2', 'email-3']);
+});
+
+test('negative line totals are shown as unavailable', () => {
+  const detailed = { ...config, activity: { enabled: true } };
+  const svg = renderAssets(detailed, { ...data, activity: { status: 'ready', commits: 3, additions: 100, deletions: 250 } })['profile-dark.svg'];
+  assert.doesNotMatch(svg, /-150/);
+  assert.match(parse(svg).getElementsByTagName('desc')[0].textContent, /Lines of code: Unavailable/);
+});
+
+test('mobile shell text stays inside the pane, and long values are shortened', () => {
+  const detailed = {
+    ...config, activity: { enabled: true, maxCommitLines: 10000 },
+    system: { programming: ['Python', 'TypeScript', 'JavaScript', 'Go', 'Rust'], human: ['Turkmen', 'Turkish', 'Russian', 'English'] },
+  };
+  const release = { repository: 'Proxmox-Technical-Writing-Style-Skill', tag: 'v1.0.0-very-long-tag', publishedAt: '2026-09-01T00:00:00Z' };
+  const svg = renderAssets(detailed, { ...data, latestRelease: release })['profile-dark-mobile.svg'];
+  for (const node of Array.from(parse(svg).getElementsByTagName('text'))) {
+    if (node.getAttribute('font-size') !== '12' || node.getAttribute('text-anchor')) {
+      continue;
+    }
+    const right = Number(node.getAttribute('x')) + node.textContent.length * 12 * 0.6;
+    assert.ok(right <= 408, `${node.textContent} ends at ${right}`);
+  }
+  assert.match(parse(svg).getElementsByTagName('desc')[0].textContent, /Proxmox-Technical-Writing-Style-Skill v1\.0\.0-very-long-tag/);
 });

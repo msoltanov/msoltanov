@@ -12,7 +12,7 @@
   ],
   "system": {
     "os": ["Windows 11", "Android 13-14", "Linux"],
-    "ides": ["VS Code", "JetBrains IDEs"],
+    "ides": ["VS Code", "JetBrains IDEs", "Pulsar"],
     "terminals": ["Tabby", "Termius"],
     "programming": ["Python", "TypeScript", "JavaScript", "Go", "Rust"],
     "mobile": ["Kotlin", "Flutter", "Dart"],
@@ -37,9 +37,9 @@
   "contact": {
     "emails": ["mknsltnw@gmail.com"],
     "socials": [
-      { "label": "X", "url": "https://x.com/0xsolt" },
-      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/mekan-soltanov-31986097" },
-      { "label": "HN", "url": "https://news.ycombinator.com/user?id=soltanov" }
+      { "label": "X", "icon": "x", "handle": "@0xsolt", "url": "https://x.com/0xsolt" },
+      { "label": "LinkedIn", "icon": "linkedin", "handle": "mekan-soltanov", "url": "https://www.linkedin.com/in/mekan-soltanov-31986097" },
+      { "label": "HN", "icon": "hn", "handle": "soltanov", "url": "https://news.ycombinator.com/user?id=soltanov" }
     ]
   },
   "activity": { "enabled": true, "maxCommitLines": 10000 },
