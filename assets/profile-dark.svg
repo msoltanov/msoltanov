@@ -8,6 +8,7 @@
 .editor-cursor { animation: cursor-blink 1s steps(1, end) 3; }
 .terminal-command { animation: command-type 1000ms steps(18, end) 1 both; transform-box: fill-box; }
 .language-bar { animation: bar-grow 800ms ease-out 1 both; transform-box: fill-box; transform-origin: left center; }
+@media (prefers-reduced-motion: reduce) { .editor-cursor, .terminal-command, .language-bar { animation: none; } }
 </style>
 <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace" letter-spacing="0">
 <rect x="0.5" y="0.5" width="859" height="848" rx="10" fill="#101315" stroke="#34403b"/>
