@@ -1,5 +1,4 @@
 const MONTHS_PER_YEAR = 12;
-const MILLISECONDS_PER_DAY = 86_400_000;
 
 export function formatUptime(value, now = new Date()) {
   if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}(?:T.*)?$/.test(value) || !Number.isFinite(now.getTime())) {
@@ -20,6 +19,5 @@ export function formatUptime(value, now = new Date()) {
   if (anniversary(months) > today) {
     months -= 1;
   }
-  const days = Math.round((today - anniversary(months)) / MILLISECONDS_PER_DAY);
-  return `${Math.floor(months / MONTHS_PER_YEAR)}y ${months % MONTHS_PER_YEAR}m ${days}d`;
+  return `${Math.floor(months / MONTHS_PER_YEAR)}y ${months % MONTHS_PER_YEAR}m`;
 }

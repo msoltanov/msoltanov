@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { collectActivity, collectLatestRelease } from '../scripts/activity.mjs';
+import { emptyCache } from '../scripts/cache.mjs';
 
 const USERNAME = 'msoltanov';
 const PRIVATE_TOKEN = 'PRIVATE_TOKEN_SENTINEL';
@@ -275,6 +276,56 @@ test('empty complete histories can produce known zero totals', async () => {
   const fixture = graph({ repositories: [] });
   const result = await collectActivity(config, options(fixture));
   assert.deepEqual(result, { status: 'ready', reason: null, scope: 'authorized-branches', commits: 0, additions: 0, deletions: 0 });
+});
+
+test('reuses cached branch heads and drops heads that no longer exist', async () => {
+  const cache = emptyCache();
+  const first = graph({ heads: { [PRIVATE_REPOSITORY]: [oid(1), oid(2)] }, histories: {
+    [oid(1)]: [{ oid: oid(10), additions: 12, deletions: 3 }],
+    [oid(2)]: [{ oid: oid(20), additions: 4, deletions: 1 }],
+  } });
+  assert.equal((await collectActivity(config, { ...options(first), cache })).commits, 2);
+  assert.deepEqual([...cache.heads.keys()], [oid(1), oid(2)]);
+  const second = graph({ heads: { [PRIVATE_REPOSITORY]: [oid(1), oid(3)] }, histories: {
+    [oid(3)]: [{ oid: oid(30), additions: 7, deletions: 2 }, { oid: oid(10), additions: 12, deletions: 3 }],
+  } });
+  const result = await collectActivity(config, { ...options(second), cache });
+  assert.deepEqual(result, { status: 'ready', reason: null, scope: 'authorized-branches', commits: 2, additions: 19, deletions: 5 });
+  assert.deepEqual(second.calls.filter(({ query }) => query.includes('query ActivityHistory')).map(({ variables }) => variables.headOid), [oid(3)]);
+  assert.deepEqual([...cache.heads.keys()].sort(), [oid(1), oid(3)]);
+});
+
+test('a cache from another author is discarded', async () => {
+  const cache = emptyCache();
+  cache.authorId = 'OTHER_ID';
+  cache.heads.set(oid(1), [[oid(99), 1000, 1000, 0]]);
+  const result = await collectActivity(config, { ...options(graph()), cache });
+  assert.deepEqual([result.commits, result.additions, result.deletions], [1, 12, 3]);
+  assert.equal(cache.authorId, 'USER_ID');
+});
+
+test('oversized commits count as commits but not as lines', async () => {
+  const fixture = graph({ histories: { [oid(1)]: [
+    { oid: oid(10), additions: 12, deletions: 3 },
+    { oid: oid(20), additions: 90000, deletions: 20000 },
+  ] } });
+  const result = await collectActivity({ ...config, activity: { maxCommitLines: 10000 } }, options(fixture));
+  assert.deepEqual([result.commits, result.additions, result.deletions], [2, 12, 3]);
+});
+
+test('an exhausted time budget stops new history scans and keeps completed heads cached', async () => {
+  const cache = emptyCache();
+  const fixture = graph({ heads: { [PRIVATE_REPOSITORY]: [oid(1)] } });
+  const result = await collectActivity(config, { ...options(fixture), cache, deadline: Date.now() - 1 });
+  assert.equal(result.reason, 'time-budget');
+  assert.equal(result.commits, null);
+  assert.equal(fixture.calls.filter(({ query }) => query.includes('query ActivityHistory')).length, 0);
+  cache.heads.set(oid(1), [[oid(10), 12, 3, 0]]);
+  const next = graph();
+  const resumed = await collectActivity(config, { ...options(next), cache });
+  assert.equal(resumed.status, 'ready');
+  assert.equal(resumed.commits, 1);
+  assert.equal(next.calls.filter(({ query }) => query.includes('query ActivityHistory')).length, 0);
 });
 
 test('rejects malformed usernames before network access', async () => {

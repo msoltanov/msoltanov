@@ -6,10 +6,11 @@ async function uptime(start, now) {
   return module.formatUptime(start, new Date(now));
 }
 
-test('uptime counts complete calendar months and days across leap years', async () => {
-  assert.equal(await uptime('2020-02-29', '2026-02-28T18:00:00Z'), '6y 0m 0d');
-  assert.equal(await uptime('2020-02-29', '2026-02-27T18:00:00Z'), '5y 11m 29d');
-  assert.equal(await uptime('2015-08-31', '2026-09-14T00:00:00Z'), '11y 0m 14d');
+test('uptime counts complete calendar months across leap years', async () => {
+  assert.equal(await uptime('2020-02-29', '2026-02-28T18:00:00Z'), '6y 0m');
+  assert.equal(await uptime('2020-02-29', '2026-02-27T18:00:00Z'), '5y 11m');
+  assert.equal(await uptime('2015-08-31', '2026-09-14T00:00:00Z'), '11y 0m');
+  assert.equal(await uptime('2015-08-31', '2026-09-29T00:00:00Z'), '11y 0m');
 });
 
 test('missing, invalid, and future uptime dates remain unavailable', async () => {

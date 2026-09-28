@@ -1,0 +1,74 @@
+{
+  "activity": {
+    "commits": 36927,
+    "additions": 5012496,
+    "deletions": 4179379
+  },
+  "languages": {
+    "rows": [
+      {
+        "name": "TypeScript",
+        "percentage": 43.6
+      },
+      {
+        "name": "Python",
+        "percentage": 21.5
+      },
+      {
+        "name": "JavaScript",
+        "percentage": 19
+      },
+      {
+        "name": "Astro",
+        "percentage": 3.7
+      },
+      {
+        "name": "Dart",
+        "percentage": 3.6
+      },
+      {
+        "name": "C++",
+        "percentage": 3.4
+      },
+      {
+        "name": "QML",
+        "percentage": 1.8
+      },
+      {
+        "name": "MDX",
+        "percentage": 1
+      },
+      {
+        "name": "SCSS",
+        "percentage": 1
+      },
+      {
+        "name": "Other",
+        "percentage": 1.4
+      }
+    ],
+    "alsoUsed": [
+      "Shell",
+      "Go",
+      "Rust",
+      "Dockerfile",
+      "PHP",
+      "QMake",
+      "Lua",
+      "Ruby",
+      "CMake",
+      "Perl",
+      "PowerShell",
+      "Just",
+      "Common Lisp",
+      "C",
+      "Racket",
+      "Swift",
+      "Tcl",
+      "Kotlin",
+      "Objective-C"
+    ],
+    "scope": "authorized"
+  },
+  "latestRelease": null
+}

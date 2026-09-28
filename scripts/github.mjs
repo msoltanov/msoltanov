@@ -203,6 +203,7 @@ export async function collectProfile(config, { env = process.env, fetchImpl = fe
   const publicLanguages = await collectLanguages(publicRepositories, publicRequest, username, filters, excluded);
   let languages = { ...summarizeLanguages(publicLanguages, config.languageLimit, filters.excludeLanguages), scope: 'public' };
   const notices = [];
+  let privateUnavailable = false;
 
   if (typeof env.PROFILE_STATS_TOKEN === 'string' && env.PROFILE_STATS_TOKEN.trim()) {
     try {
@@ -213,6 +214,7 @@ export async function collectProfile(config, { env = process.env, fetchImpl = fe
       const privateLanguages = await collectLanguages(privateRepositories, privateRequest, username, filters, excluded);
       languages = { ...summarizeLanguages([...publicLanguages, ...privateLanguages], config.languageLimit, filters.excludeLanguages), scope: 'authorized' };
     } catch {
+      privateUnavailable = true;
       notices.push(PRIVATE_FALLBACK_NOTICE);
     }
   }
@@ -233,5 +235,8 @@ export async function collectProfile(config, { env = process.env, fetchImpl = fe
   });
 
   const createdAt = typeof user.created_at === 'string' && Number.isFinite(Date.parse(user.created_at)) ? user.created_at : null;
-  return { publicRepos, followers, starsEarned, projects, languages, notices, ...(createdAt ? { createdAt } : {}) };
+  return {
+    publicRepos, followers, starsEarned, projects, languages, notices,
+    ...(createdAt ? { createdAt } : {}), ...(privateUnavailable ? { privateUnavailable } : {}),
+  };
 }

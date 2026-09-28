@@ -102,11 +102,11 @@ test('system details wrap every supplied item into both viewport layouts', () =>
     system: {
       os: ['Windows 11', 'Android 13-14', 'Linux'],
       ides: ['VS Code', 'JetBrains IDEs'], terminals: ['Tabby', 'Termius'],
-      programming: ['Python', 'TypeScript', 'Go', 'Rust', 'Elixir'],
+      programming: ['Python', 'TypeScript', 'JavaScript', 'Go', 'Rust'],
       mobile: ['Kotlin', 'Flutter', 'Dart'], daily: ['JSON', 'YAML', 'TOML', 'Lisp', 'Lua', 'Perl'],
-      previous: ['JavaScript', 'PHP', 'C', 'Java'], human: ['Turkmen', 'Turkish', 'Russian', 'English'],
+      previous: ['PHP', 'C', 'Java'], human: ['Turkmen', 'Turkish', 'Russian', 'English'],
     },
-    contact: { emails: ['mknsltnw@gmail.com', 'me@msoltanov.com'], socials: [{ label: 'LinkedIn', url: null }] },
+    contact: { emails: ['mknsltnw@gmail.com'], socials: [{ label: 'LinkedIn', url: null }] },
   };
   for (const [name, svg] of Object.entries(renderAssets(detailed, data))) {
     if (!name.startsWith('profile-')) {
@@ -150,4 +150,34 @@ test('activity values retain their scope and unavailable counts never become zer
   assert.match(description, /Commits: 1,234/);
   assert.match(description, /Lines added: 45,678/);
   assert.match(description, /accessible public \+ private/);
+});
+
+test('GitHub section shows public counts and the commit size limit', () => {
+  const detailed = { ...config, system: { os: ['Linux'] }, activity: { enabled: true, maxCommitLines: 10000 } };
+  const assets = renderAssets(detailed, { ...data, activity: { status: 'ready', commits: 5, additions: 6, deletions: 7 } });
+  for (const name of ['profile-dark.svg', 'profile-dark-mobile.svg']) {
+    const text = Array.from(parse(assets[name]).getElementsByTagName('text')).map((node) => node.textContent).join(' ');
+    for (const value of ['Public repos', '16', 'Followers', '21', 'Stars earned', 'Commits']) {
+      assert.ok(text.includes(value), `${name}: missing ${value}`);
+    }
+    assert.match(text, /line totals skip commits over 10,000 lines/);
+  }
+  const description = parse(assets['profile-dark.svg']).getElementsByTagName('desc')[0].textContent;
+  assert.match(description, /Public repos: 16\. Followers: 21\. Stars earned: 0/);
+});
+
+test('the updated date appears in both footers only when supplied', () => {
+  const assets = renderAssets(config, { ...data, updatedAt: '2026-09-28' });
+  for (const [name, svg] of Object.entries(assets)) {
+    assert.match(svg, /updated 2026-09-28/, name);
+  }
+  assert.doesNotMatch(Object.values(renderAssets(config, data)).join(''), /updated /);
+});
+
+test('common language swatches use their own colors and Other uses a neutral color', () => {
+  const rows = ['Astro', 'QML', 'MDX', 'SCSS', 'Kotlin', 'Other'].map((name) => ({ name, percentage: 10 }));
+  const svg = renderAssets(config, { ...data, languages: { rows, alsoUsed: ['Go'], scope: 'public' } })['languages-dark.svg'];
+  for (const color of ['#ff5a03', '#44a51c', '#fcb32c', '#c6538c', '#A97BFF', '#a4b5ac']) {
+    assert.match(svg, new RegExp(`width="7" height="7" rx="1" fill="${color}"`));
+  }
 });
