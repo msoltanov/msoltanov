@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="860" height="531" viewBox="0 0 860 531" role="img" aria-labelledby="title desc">
 <title id="title">ALABAY CODE / languages</title>
-<desc id="desc">Language byte share across eligible owned public + authorized private. TypeScript: 43.6%, Python: 21.5%, JavaScript: 19.0%, Astro: 3.7%, Dart: 3.6%, C++: 3.4%, QML: 1.8%, MDX: 1.0%, SCSS: 1.0%, Other: 1.4%. Other includes: Shell, Go, Rust, Dockerfile, PHP, QMake, Lua, Ruby, CMake, Perl, PowerShell, Just, Common Lisp, C, Racket, Swift, Tcl, Kotlin, Objective-C.</desc>
+<desc id="desc">Language byte share across eligible owned public + authorized private. TypeScript: 43.5%, Python: 21.7%, JavaScript: 19.0%, Astro: 3.7%, Dart: 3.6%, C++: 3.3%, QML: 1.8%, MDX: 1.0%, SCSS: 1.0%, Other: 1.4%. Other includes: Shell, Go, Rust, Dockerfile, PHP, QMake, Lua, Ruby, CMake, Perl, PowerShell, Just, Common Lisp, C, Racket, Swift, Tcl, Kotlin, Objective-C.</desc>
 <style>
 @keyframes cursor-blink { 0%, 49%, 100% { opacity: 1; } 50%, 99% { opacity: 0; } }
 @keyframes command-type { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
@@ -18,11 +18,11 @@
 <text x="41.6" y="66" fill="#e3ebe8" font-size="13" class="terminal-command">languages --top 9</text>
 <text x="26" y="85" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#7d8f87"># public + authorized private / owned source / language bytes</tspan></text>
 <text x="26" y="123" fill="#e3ebe8" font-size="13" >TypeScript</text>
-<text x="834" y="123" fill="#e3ebe8" font-size="13" text-anchor="end">43.6%</text>
+<text x="834" y="123" fill="#e3ebe8" font-size="13" text-anchor="end">43.5%</text>
 <path d="M176 118.5h358" stroke="#1e2528" stroke-width="11" stroke-dasharray="7 2"/>
 <g class="language-bar" style="animation-delay: 1000ms"><path d="M176 118.5h151" stroke="#3178c6" stroke-width="11" stroke-dasharray="7 2"/></g>
 <text x="26" y="149" fill="#e3ebe8" font-size="13" >Python</text>
-<text x="834" y="149" fill="#e3ebe8" font-size="13" text-anchor="end">21.5%</text>
+<text x="834" y="149" fill="#e3ebe8" font-size="13" text-anchor="end">21.7%</text>
 <path d="M176 144.5h358" stroke="#1e2528" stroke-width="11" stroke-dasharray="7 2"/>
 <g class="language-bar" style="animation-delay: 1090ms"><path d="M176 144.5h79" stroke="#3572A5" stroke-width="11" stroke-dasharray="7 2"/></g>
 <text x="26" y="175" fill="#e3ebe8" font-size="13" >JavaScript</text>
@@ -38,7 +38,7 @@
 <path d="M176 222.5h358" stroke="#1e2528" stroke-width="11" stroke-dasharray="7 2"/>
 <g class="language-bar" style="animation-delay: 1360ms"><path d="M176 222.5h7" stroke="#00B4AB" stroke-width="11" stroke-dasharray="7 2"/></g>
 <text x="26" y="253" fill="#e3ebe8" font-size="13" >C++</text>
-<text x="834" y="253" fill="#e3ebe8" font-size="13" text-anchor="end">3.4%</text>
+<text x="834" y="253" fill="#e3ebe8" font-size="13" text-anchor="end">3.3%</text>
 <path d="M176 248.5h358" stroke="#1e2528" stroke-width="11" stroke-dasharray="7 2"/>
 <g class="language-bar" style="animation-delay: 1450ms"><path d="M176 248.5h7" stroke="#f34b7d" stroke-width="11" stroke-dasharray="7 2"/></g>
 <text x="26" y="279" fill="#e3ebe8" font-size="13" >QML</text>
@@ -66,6 +66,6 @@
 <text x="22" y="510" fill="#0d1f18" font-size="12" font-weight="700">[msoltanov]</text>
 <text x="108.39999999999999" y="510" fill="#0d1f18" font-size="12" >0:profile-</text>
 <text x="187.6" y="510" fill="#0d1f18" font-size="12" font-weight="700">1:languages*</text>
-<text x="838" y="510" fill="#0d1f18" font-size="12" text-anchor="end">updated 2026-09-28</text>
+<text x="838" y="510" fill="#0d1f18" font-size="12" text-anchor="end">updated 2026-09-29</text>
 </g>
 </svg>
