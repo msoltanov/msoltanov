@@ -2,16 +2,14 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
-test('each card is one picture with a plain dark source, the pattern GitHub supports', async () => {
+test('the profile card is one picture with a plain dark source, the pattern GitHub supports', async () => {
   const readme = await readFile(new URL('../README.md', import.meta.url), 'utf8');
-  assert.doesNotMatch(readme, /gh-(?:dark|light)-mode-only|max-width|prefers-reduced-motion|-mobile|-still/);
-  assert.doesNotMatch(readme, /assets\/languages-/);
-  for (const surface of ['profile']) {
-    const picture = readme.slice(readme.lastIndexOf('<picture>', readme.indexOf(`src="assets/${surface}-light.svg"`))).split('</picture>')[0];
-    const sources = [...picture.matchAll(/<source media="([^"]+)" srcset="assets\/([^"]+)">/g)].map(([, media, file]) => [media, file]);
-    assert.deepEqual(sources, [['(prefers-color-scheme: dark)', `${surface}-dark.svg`]]);
-  }
+  assert.doesNotMatch(readme, /gh-(?:dark|light)-mode-only|max-width|prefers-reduced-motion|-mobile|-still|assets\/languages-/);
+  const picture = readme.slice(readme.lastIndexOf('<picture>', readme.indexOf('src="assets/profile-light.svg"'))).split('</picture>')[0];
+  const sources = [...picture.matchAll(/<source media="([^"]+)" srcset="assets\/([^"]+)">/g)].map(([, media, file]) => [media, file]);
+  assert.deepEqual(sources, [['(prefers-color-scheme: dark)', 'profile-dark.svg']]);
 });
+
 test('tech stack is rendered from configuration between markers', async () => {
   const { updateReadme } = await import('../scripts/readme.mjs');
   const readme = 'Intro\n<!-- tech-stack:start -->\nold\n<!-- tech-stack:end -->\nEnd\n';

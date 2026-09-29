@@ -60,6 +60,8 @@ test('same safe input produces byte-identical output and no generation timestamp
 });
 
 test('empty languages and projects remain valid and claim no invented data', () => {
+  const empty = renderAssets(config, { ...data, projects: [], languages: { rows: [], alsoUsed: [], scope: 'public' } })['profile-dark.svg'];
+  assert.match(parse(empty).getElementsByTagName('desc')[0].textContent, /No language bytes reported\.$/);
   const assets = renderAssets(config, { ...data, projects: [], languages: { rows: [], alsoUsed: [], scope: 'public' } });
   assert.match(assets['profile-dark.svg'], /No language bytes reported/);
   assert.doesNotMatch(assets['profile-dark.svg'], /NaN|Infinity|undefined/);
@@ -81,15 +83,15 @@ test('full language diversity wraps and all labels survive in accessible text', 
   }
 });
 
-test('featured projects stay inside the shell pane above the status bar', () => {
+test('the last shell line stays above the languages pane', () => {
   const projects = ['first-project', 'second-project', 'third-public-project'].map((name) => ({ name, description: '', url: '' }));
-  const svg = renderAssets({ ...config, focus: [] }, { ...data, projects })['profile-dark.svg'];
+  const detailed = { ...config, system: { os: ['Linux'], programming: ['Python', 'Go'] }, activity: { enabled: true } };
+  const svg = renderAssets(detailed, { ...data, projects })['profile-dark.svg'];
   const texts = Array.from(parse(svg).getElementsByTagName('text'));
   const lastProject = texts.find((node) => node.textContent.includes('"third-public-project"'));
-  const statusBar = texts.find((node) => node.textContent === '[msoltanov]');
-  assert.ok(Number(lastProject.getAttribute('y')) + 35 < Number(statusBar.getAttribute('y')));
+  const languagesPane = texts.find((node) => node.textContent === '2 languages');
+  assert.ok(Number(lastProject.getAttribute('y')) + 19 < Number(languagesPane.getAttribute('y')));
 });
-
 test('language caption changes when forks or mirrors are included', () => {
   const assets = renderAssets({ ...config, filters: { includeForks: true } }, data);
   assert.match(assets['profile-dark.svg'], /owned repositories \/ language bytes/);
@@ -121,9 +123,9 @@ test('system details show every supplied item and leave contacts to the README',
 });
 
 test('animations are short and stop for reduced motion', () => {
-  const assets = renderAssets(config, data);
-  for (const svg of Object.values(assets)) {
-    assert.doesNotMatch(svg, /infinite|<animate/);
+  const assets = renderAssets({ ...config, contact: { emails: ['a@example.com'] } }, data);
+  for (const [name, svg] of Object.entries(assets).filter(([name]) => name.startsWith('profile-'))) {
+    assert.doesNotMatch(svg, /infinite|<animate/, name);
     assert.match(svg, /@media \(prefers-reduced-motion: reduce\) \{ \.editor-cursor, \.terminal-command, \.language-bar \{ animation: none; \} \}/);
   }
   assert.match(assets['profile-dark.svg'], /class="editor-cursor"/);

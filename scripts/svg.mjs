@@ -210,7 +210,7 @@ ${parts.join('\n')}
 </g>
 </svg>
 `;
-  return { colors, width, rect, text, line, segments, raw, finish };
+  return { colors, width, height, rect, text, line, segments, raw, finish };
 }
 
 function paneTitle(surface, x1, x2, y, label, active) {
@@ -257,20 +257,18 @@ function artBlock(surface, x, y) {
 }
 
 function profile(config, data, theme) {
-  const layout = LAYOUT;
-  const width = WIDTH;
   const artColumns = Math.max(...ALABAY.map((row) => row.length));
-  const artWidth = textWidth('x'.repeat(artColumns), layout.artSize);
+  const artWidth = textWidth('x'.repeat(artColumns), LAYOUT.artSize);
   const leftWidth = Math.ceil(artWidth) + 36;
   const codeX = PADDING + leftWidth + 20;
-  const columns = Math.floor((width - codeX - PADDING - 12) / (layout.codeSize * CHARACTER_WIDTH));
+  const columns = Math.floor((WIDTH - codeX - PADDING - 12) / (LAYOUT.codeSize * CHARACTER_WIDTH));
   const document = tomlDocument(config, data, columns);
   const codeLines = [[['prompt', '❯ ']], ...document, [], [['prompt', '❯ ']]];
-  const artHeight = ALABAY.length * layout.artLine + 58;
+  const artHeight = ALABAY.length * LAYOUT.artLine + 58;
   const top = PADDING + 10;
   const contentTop = top + 30;
-  const codeHeight = codeLines.length * layout.codeLine;
-  const bodyBottom = Math.max(contentTop + codeHeight, contentTop + artHeight) + 10;
+  const codeHeight = codeLines.length * LAYOUT.codeLine;
+  const bodyBottom = contentTop + Math.max(codeHeight, artHeight) + 10;
   const plan = languagePlan(config, data);
   const languagesTop = bodyBottom + 14;
   const height = languagesTop + plan.height + STATUS_HEIGHT + PADDING + 8;
@@ -289,11 +287,10 @@ function profile(config, data, theme) {
     ...(data.projects.length ? [`Projects: ${data.projects.map((project) => project.name).join(', ')}`] : []),
   ].join('. ').concat('. ', plan.description);
   const s = canvas(theme, `${config.editorName} / tmux`, summary, height);
-  s.height = height;
   const { colors: c, line, text, segments, rect } = s;
   const divider = PADDING + leftWidth;
   paneTitle(s, PADDING, divider, top, '0 alabay', false);
-  paneTitle(s, divider, width - PADDING, top, '1 zsh', true);
+  paneTitle(s, divider, WIDTH - PADDING, top, '1 zsh', true);
   line(divider, top, divider, bodyBottom, c.border);
   const artX = PADDING + (leftWidth - artWidth) / 2;
   const artY = Math.max(contentTop, top + (bodyBottom - top - artHeight) / 2);
@@ -302,18 +299,18 @@ function profile(config, data, theme) {
   text(labelX, Number((artY + drawnArt + 26).toFixed(1)), config.editorName, c.accent, 17, 'font-weight="700" text-anchor="middle" letter-spacing="2"');
   text(labelX, Number((artY + drawnArt + 46).toFixed(1)), `github.com/${config.username}`, c.muted, 12, 'text-anchor="middle"');
   codeLines.forEach((pieces, index) => {
-    const y = contentTop + 14 + index * layout.codeLine;
+    const y = contentTop + 14 + index * LAYOUT.codeLine;
     if (index === 0) {
-      segments(codeX, y, [pieces[0]], layout.codeSize);
-      text(codeX + textWidth('❯ ', layout.codeSize), y, COMMAND, c.text, layout.codeSize, 'class="terminal-command"');
+      segments(codeX, y, [pieces[0]], LAYOUT.codeSize);
+      text(codeX + textWidth('❯ ', LAYOUT.codeSize), y, COMMAND, c.text, LAYOUT.codeSize, 'class="terminal-command"');
       return;
     }
     if (pieces.length) {
-      segments(codeX, y, pieces, layout.codeSize);
+      segments(codeX, y, pieces, LAYOUT.codeSize);
     }
   });
-  const cursorY = contentTop + 14 + (codeLines.length - 1) * layout.codeLine;
-  rect(Number((codeX + textWidth('❯ ', layout.codeSize)).toFixed(1)), cursorY - layout.codeSize + 2, 8, layout.codeSize + 2, c.accent, 0, 'class="editor-cursor"');
+  const cursorY = contentTop + 14 + (codeLines.length - 1) * LAYOUT.codeLine;
+  rect(Number((codeX + textWidth('❯ ', LAYOUT.codeSize)).toFixed(1)), cursorY - LAYOUT.codeSize + 2, 8, LAYOUT.codeSize + 2, c.accent, 0, 'class="editor-cursor"');
   drawLanguages(s, plan, languagesTop);
   statusBar(s, config, data);
   return s.finish();
@@ -329,47 +326,47 @@ function languagePlan(config, data) {
   const rowsOffset = 44 + (captionLines.length + 2) * LAYOUT.codeLine;
   const alsoOffset = rowsOffset + Math.max(rows.length, 1) * ROW_HEIGHT + 10;
   const height = alsoOffset + (alsoLines.length ? (alsoLines.length + 1) * LAYOUT.codeLine : 0) + 6;
-  const description = `Language byte share across eligible owned ${scopeLabel}: ${rows.map((row) => `${row.name}: ${row.percentage.toFixed(1)}%`).join(', ')}.${alsoUsed.length ? ` Other includes: ${alsoUsed.join(', ')}.` : ''}`;
+  const description = rows.length
+    ? `Language byte share across eligible owned ${scopeLabel}: ${rows.map((row) => `${row.name} ${row.percentage.toFixed(1)}%`).join(', ')}.${alsoUsed.length ? ` Other includes: ${alsoUsed.join(', ')}.` : ''}`
+    : 'No language bytes reported.';
   return { rows, captionLines, alsoLines, rowsOffset, alsoOffset, height, description };
 }
 
 function drawLanguages(s, plan, top) {
-  const layout = LAYOUT;
-  const width = WIDTH;
   const { rows, captionLines, alsoLines } = plan;
   const rowsTop = top + plan.rowsOffset;
   const alsoTop = top + plan.alsoOffset;
   const x = PADDING + 14;
   const { colors: c, text, segments, raw } = s;
-  paneTitle(s, PADDING, width - PADDING, top, '2 languages', false);
+  paneTitle(s, PADDING, WIDTH - PADDING, top, '2 languages', false);
   const firstY = top + 44;
-  segments(x, firstY, [['prompt', '❯ ']], layout.codeSize);
-  text(x + textWidth('❯ ', layout.codeSize), firstY, `languages --top ${rows.filter((row) => row.name !== 'Other').length}`, c.text, layout.codeSize, 'class="terminal-command"');
-  captionLines.forEach((value, index) => segments(x, firstY + (index + 1) * layout.codeLine, [['comment', `# ${value}`]], layout.codeSize));
+  segments(x, firstY, [['prompt', '❯ ']], LAYOUT.codeSize);
+  text(x + textWidth('❯ ', LAYOUT.codeSize), firstY, `languages --top ${rows.filter((row) => row.name !== 'Other').length}`, c.text, LAYOUT.codeSize, 'class="terminal-command"');
+  captionLines.forEach((value, index) => segments(x, firstY + (index + 1) * LAYOUT.codeLine, [['comment', `# ${value}`]], LAYOUT.codeSize));
   const cellWidth = 7;
   const cellGap = 2;
   const nameWidth = 150;
   rows.forEach((row, index) => {
     const y = rowsTop + index * ROW_HEIGHT;
     const label = row.name.length > 17 ? `${row.name.slice(0, 14)}...` : row.name;
-    text(x, y, label, c.text, layout.codeSize);
-    text(width - PADDING - 14, y, `${row.percentage.toFixed(1)}%`, c.text, layout.codeSize, 'text-anchor="end"');
+    text(x, y, label, c.text, LAYOUT.codeSize);
+    text(WIDTH - PADDING - 14, y, `${row.percentage.toFixed(1)}%`, c.text, LAYOUT.codeSize, 'text-anchor="end"');
     const meterX = x + nameWidth;
     const meterY = y - 10;
-    const filled = row.percentage > 0 ? Math.max(1, Math.round(layout.cells * Math.min(100, row.percentage) / 100)) : 0;
+    const filled = row.percentage > 0 ? Math.max(1, Math.round(LAYOUT.cells * Math.min(100, row.percentage) / 100)) : 0;
     const color = row.name === 'Other' ? c.muted : LANGUAGE_COLORS[row.name] ?? c.accent;
     const meter = (cells, fill) => `<path d="M${meterX} ${meterY + 5.5}h${cells * (cellWidth + cellGap) - cellGap}" stroke="${fill}" stroke-width="11" stroke-dasharray="${cellWidth} ${cellGap}"/>`;
-    raw(meter(layout.cells, c.raised));
+    raw(meter(LAYOUT.cells, c.raised));
     if (filled) {
       raw(`<g class="language-bar" style="animation-delay: ${COMMAND_DURATION_MS + index * BAR_STAGGER_MS}ms">${meter(filled, color)}</g>`);
     }
   });
   if (!rows.length) {
-    text(x, rowsTop, 'No language bytes reported.', c.muted, layout.codeSize);
+    text(x, rowsTop, 'No language bytes reported.', c.muted, LAYOUT.codeSize);
   }
   if (alsoLines.length) {
-    segments(x, alsoTop + layout.codeLine * 0.5, [['comment', '# also used, included in Other:']], layout.codeSize);
-    alsoLines.forEach((value, index) => segments(x, alsoTop + layout.codeLine * (index + 1.5), [['comment', `# ${value}`]], layout.codeSize));
+    segments(x, alsoTop + LAYOUT.codeLine * 0.5, [['comment', '# also used, included in Other:']], LAYOUT.codeSize);
+    alsoLines.forEach((value, index) => segments(x, alsoTop + LAYOUT.codeLine * (index + 1.5), [['comment', `# ${value}`]], LAYOUT.codeSize));
   }
 }
 

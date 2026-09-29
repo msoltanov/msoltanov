@@ -181,7 +181,7 @@ export async function generateProfile({
     changed += await replaceFile(join(directory, name), svg) ? 1 : 0;
   }
   for (const name of await readdir(directory)) {
-    if (/^(?:profile|languages|badge)-.+\.svg$/.test(name) && !(name in assets)) {
+    if (/^(?:(?:profile|languages)-(?:dark|light)(?:-mobile)?(?:-still)?|badge-.+)\.svg$/.test(name) && !(name in assets)) {
       await rm(join(directory, name));
       changed += 1;
     }
