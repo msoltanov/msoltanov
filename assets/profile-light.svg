@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="860" height="849" viewBox="0 0 860 849" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="1297" viewBox="0 0 860 1297" role="img" aria-labelledby="title desc">
 <title id="title">ALABAY CODE / tmux</title>
-<desc id="desc">ALABAY CODE. Mekan, @msoltanov. Interests: Software Engineering, Cybersecurity, AI &amp; Experimentation, Infrastructure, Open Source, Growth Engineering. GitHub uptime: 11y 11m. OS: Windows 11, Android 13-14, Linux. IDE: VS Code, JetBrains IDEs, Pulsar. Terminals: Tabby, Termius. Programming: Python, TypeScript, JavaScript, Go, Rust. Mobile stack: Kotlin, Flutter, Dart. Daily languages: JSON, YAML, TOML, Lisp, Lua, Perl. Previous languages: PHP, C, Java. Human languages: Turkmen, Turkish, Russian, English. Commits: 36,929. Lines of code: 475,474. Stars: 0. Followers: 21. Scope: commits: public + private, all branches; lines of code: added - deleted, skips commits &gt; 10,000 lines. Projects: pdf-shrinker, Unstar, Proxmox-Technical-Writing-Style-Skill.</desc>
+<desc id="desc">ALABAY CODE. Mekan, @msoltanov. Interests: Software Engineering, Cybersecurity, AI &amp; Experimentation, Infrastructure, Open Source, Growth Engineering. GitHub uptime: 11y 11m. OS: Windows 11, Android 13-14, Linux. IDE: VS Code, JetBrains IDEs, Pulsar. Terminals: Tabby, Termius. Programming: Python, TypeScript, JavaScript, Go, Rust. Mobile stack: Kotlin, Flutter, Dart. Daily languages: JSON, YAML, TOML, Lisp, Lua, Perl. Previous languages: PHP, C, Java. Human languages: Turkmen, Turkish, Russian, English. Commits: 36,929. Lines of code: 475,474. Stars: 0. Followers: 21. Scope: commits: public + private, all branches; lines of code: added - deleted, skips commits &gt; 10,000 lines. Projects: pdf-shrinker, Unstar, Proxmox-Technical-Writing-Style-Skill. Language byte share across eligible owned public + authorized private: TypeScript: 43.6%, Python: 21.5%, JavaScript: 19.0%, Astro: 3.7%, Dart: 3.6%, C++: 3.4%, QML: 1.8%, MDX: 1.0%, SCSS: 1.0%, Other: 1.4%. Other includes: Shell, Go, Rust, Dockerfile, PHP, QMake, Lua, Ruby, CMake, Perl, PowerShell, Just, Common Lisp, C, Racket, Swift, Tcl, Kotlin, Objective-C.</desc>
 <style>
 @keyframes cursor-blink { 0%, 49%, 100% { opacity: 1; } 50%, 99% { opacity: 0; } }
 @keyframes command-type { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
@@ -11,7 +11,7 @@
 @media (prefers-reduced-motion: reduce) { .editor-cursor, .terminal-command, .language-bar { animation: none; } }
 </style>
 <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace" letter-spacing="0">
-<rect x="0.5" y="0.5" width="859" height="848" rx="10" fill="#fbfcfa" stroke="#c3d0c7"/>
+<rect x="0.5" y="0.5" width="859" height="1296" rx="10" fill="#fbfcfa" stroke="#c3d0c7"/>
 <path d="M12 22L332 22" fill="none" stroke="#c3d0c7"/>
 <rect x="22" y="13" width="72" height="18" rx="0" fill="#fbfcfa"/>
 <text x="29.2" y="26" fill="#62786c" font-size="12" >0 alabay</text>
@@ -80,10 +80,58 @@
 <text x="352" y="750" fill="#1f332a" font-size="13" xml:space="preserve"><tspan fill="#62786c">]</tspan></text>
 <text x="352" y="788" fill="#1f332a" font-size="13" xml:space="preserve"><tspan fill="#21634d">❯ </tspan></text>
 <rect x="367.6" y="777" width="8" height="15" rx="0" fill="#21634d" class="editor-cursor"/>
-<rect x="12" y="811" width="836" height="26" rx="4" fill="#21634d"/>
-<text x="22" y="828" fill="#f3faf6" font-size="12" font-weight="700">[msoltanov]</text>
-<text x="108.39999999999999" y="828" fill="#f3faf6" font-size="12" font-weight="700">0:profile*</text>
-<text x="187.6" y="828" fill="#f3faf6" font-size="12" >1:languages-</text>
-<text x="838" y="828" fill="#f3faf6" font-size="12" text-anchor="end">updated 2026-09-28</text>
+<path d="M12 817L848 817" fill="none" stroke="#c3d0c7"/>
+<rect x="22" y="808" width="93.6" height="18" rx="0" fill="#fbfcfa"/>
+<text x="29.2" y="821" fill="#62786c" font-size="12" >2 languages</text>
+<text x="26" y="861" fill="#1f332a" font-size="13" xml:space="preserve"><tspan fill="#21634d">❯ </tspan></text>
+<text x="41.6" y="861" fill="#1f332a" font-size="13" class="terminal-command">languages --top 9</text>
+<text x="26" y="880" fill="#1f332a" font-size="13" xml:space="preserve"><tspan fill="#62786c"># public + authorized private / owned source / language bytes</tspan></text>
+<text x="26" y="918" fill="#1f332a" font-size="13" >TypeScript</text>
+<text x="834" y="918" fill="#1f332a" font-size="13" text-anchor="end">43.6%</text>
+<path d="M176 913.5h358" stroke="#e6ede8" stroke-width="11" stroke-dasharray="7 2"/>
+<g class="language-bar" style="animation-delay: 1000ms"><path d="M176 913.5h151" stroke="#3178c6" stroke-width="11" stroke-dasharray="7 2"/></g>
+<text x="26" y="944" fill="#1f332a" font-size="13" >Python</text>
+<text x="834" y="944" fill="#1f332a" font-size="13" text-anchor="end">21.5%</text>
+<path d="M176 939.5h358" stroke="#e6ede8" stroke-width="11" stroke-dasharray="7 2"/>
+<g class="language-bar" style="animation-delay: 1090ms"><path d="M176 939.5h79" stroke="#3572A5" stroke-width="11" stroke-dasharray="7 2"/></g>
+<text x="26" y="970" fill="#1f332a" font-size="13" >JavaScript</text>
+<text x="834" y="970" fill="#1f332a" font-size="13" text-anchor="end">19.0%</text>
+<path d="M176 965.5h358" stroke="#e6ede8" stroke-width="11" stroke-dasharray="7 2"/>
+<g class="language-bar" style="animation-delay: 1180ms"><path d="M176 965.5h70" stroke="#f1e05a" stroke-width="11" stroke-dasharray="7 2"/></g>
+<text x="26" y="996" fill="#1f332a" font-size="13" >Astro</text>
+<text x="834" y="996" fill="#1f332a" font-size="13" text-anchor="end">3.7%</text>
+<path d="M176 991.5h358" stroke="#e6ede8" stroke-width="11" stroke-dasharray="7 2"/>
+<g class="language-bar" style="animation-delay: 1270ms"><path d="M176 991.5h7" stroke="#ff5a03" stroke-width="11" stroke-dasharray="7 2"/></g>
+<text x="26" y="1022" fill="#1f332a" font-size="13" >Dart</text>
+<text x="834" y="1022" fill="#1f332a" font-size="13" text-anchor="end">3.6%</text>
+<path d="M176 1017.5h358" stroke="#e6ede8" stroke-width="11" stroke-dasharray="7 2"/>
+<g class="language-bar" style="animation-delay: 1360ms"><path d="M176 1017.5h7" stroke="#00B4AB" stroke-width="11" stroke-dasharray="7 2"/></g>
+<text x="26" y="1048" fill="#1f332a" font-size="13" >C++</text>
+<text x="834" y="1048" fill="#1f332a" font-size="13" text-anchor="end">3.4%</text>
+<path d="M176 1043.5h358" stroke="#e6ede8" stroke-width="11" stroke-dasharray="7 2"/>
+<g class="language-bar" style="animation-delay: 1450ms"><path d="M176 1043.5h7" stroke="#f34b7d" stroke-width="11" stroke-dasharray="7 2"/></g>
+<text x="26" y="1074" fill="#1f332a" font-size="13" >QML</text>
+<text x="834" y="1074" fill="#1f332a" font-size="13" text-anchor="end">1.8%</text>
+<path d="M176 1069.5h358" stroke="#e6ede8" stroke-width="11" stroke-dasharray="7 2"/>
+<g class="language-bar" style="animation-delay: 1540ms"><path d="M176 1069.5h7" stroke="#44a51c" stroke-width="11" stroke-dasharray="7 2"/></g>
+<text x="26" y="1100" fill="#1f332a" font-size="13" >MDX</text>
+<text x="834" y="1100" fill="#1f332a" font-size="13" text-anchor="end">1.0%</text>
+<path d="M176 1095.5h358" stroke="#e6ede8" stroke-width="11" stroke-dasharray="7 2"/>
+<g class="language-bar" style="animation-delay: 1630ms"><path d="M176 1095.5h7" stroke="#fcb32c" stroke-width="11" stroke-dasharray="7 2"/></g>
+<text x="26" y="1126" fill="#1f332a" font-size="13" >SCSS</text>
+<text x="834" y="1126" fill="#1f332a" font-size="13" text-anchor="end">1.0%</text>
+<path d="M176 1121.5h358" stroke="#e6ede8" stroke-width="11" stroke-dasharray="7 2"/>
+<g class="language-bar" style="animation-delay: 1720ms"><path d="M176 1121.5h7" stroke="#c6538c" stroke-width="11" stroke-dasharray="7 2"/></g>
+<text x="26" y="1152" fill="#1f332a" font-size="13" >Other</text>
+<text x="834" y="1152" fill="#1f332a" font-size="13" text-anchor="end">1.4%</text>
+<path d="M176 1147.5h358" stroke="#e6ede8" stroke-width="11" stroke-dasharray="7 2"/>
+<g class="language-bar" style="animation-delay: 1810ms"><path d="M176 1147.5h7" stroke="#62786c" stroke-width="11" stroke-dasharray="7 2"/></g>
+<text x="26" y="1197.5" fill="#1f332a" font-size="13" xml:space="preserve"><tspan fill="#62786c"># also used, included in Other:</tspan></text>
+<text x="26" y="1216.5" fill="#1f332a" font-size="13" xml:space="preserve"><tspan fill="#62786c"># Shell, Go, Rust, Dockerfile, PHP, QMake, Lua, Ruby, CMake, Perl, PowerShell, Just, Common Lisp, C,</tspan></text>
+<text x="26" y="1235.5" fill="#1f332a" font-size="13" xml:space="preserve"><tspan fill="#62786c"># Racket, Swift, Tcl, Kotlin, Objective-C</tspan></text>
+<rect x="12" y="1259" width="836" height="26" rx="4" fill="#21634d"/>
+<text x="22" y="1276" fill="#f3faf6" font-size="12" font-weight="700">[msoltanov]</text>
+<text x="108.39999999999999" y="1276" fill="#f3faf6" font-size="12" font-weight="700">0:profile*</text>
+<text x="838" y="1276" fill="#f3faf6" font-size="12" text-anchor="end">updated 2026-09-28</text>
 </g>
 </svg>

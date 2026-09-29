@@ -19,6 +19,7 @@ const FONT = 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation 
 const CHARACTER_WIDTH = 0.6;
 const PADDING = 12;
 const STATUS_HEIGHT = 26;
+const ROW_HEIGHT = 26;
 const COMMAND_DURATION_MS = 1000;
 const BAR_DURATION_MS = 800;
 const BAR_STAGGER_MS = 90;
@@ -221,18 +222,13 @@ function paneTitle(surface, x1, x2, y, label, active) {
   text(x1 + 10 + textWidth(' ', 12), y + 4, label, active ? c.accent : c.muted, 12);
 }
 
-function statusBar(surface, config, data, activeWindow) {
+function statusBar(surface, config, data) {
   const { colors: c, width, rect, text } = surface;
   const y = surface.height - PADDING - STATUS_HEIGHT;
   rect(PADDING, y, width - PADDING * 2, STATUS_HEIGHT, c.accent, 4);
   const baseline = y + 17;
   text(PADDING + 10, baseline, `[${config.username}]`, c.ink, 12, 'font-weight="700"');
-  let x = PADDING + 10 + textWidth(`[${config.username}] `, 12);
-  for (const [index, name] of ['profile', 'languages'].entries()) {
-    const label = `${index}:${name}${name === activeWindow ? '*' : '-'}`;
-    text(x, baseline, label, c.ink, 12, name === activeWindow ? 'font-weight="700"' : '');
-    x += textWidth(`${label} `, 12);
-  }
+  text(PADDING + 10 + textWidth(`[${config.username}] `, 12), baseline, '0:profile*', c.ink, 12, 'font-weight="700"');
   if (data.updatedAt) {
     text(width - PADDING - 10, baseline, `updated ${data.updatedAt}`, c.ink, 12, 'text-anchor="end"');
   }
@@ -275,7 +271,9 @@ function profile(config, data, theme) {
   const contentTop = top + 30;
   const codeHeight = codeLines.length * layout.codeLine;
   const bodyBottom = Math.max(contentTop + codeHeight, contentTop + artHeight) + 10;
-  const height = bodyBottom + STATUS_HEIGHT + PADDING + 8;
+  const plan = languagePlan(config, data);
+  const languagesTop = bodyBottom + 14;
+  const height = languagesTop + plan.height + STATUS_HEIGHT + PADDING + 8;
   const values = githubValues(config, data);
   const { system = {} } = config;
   const groups = [
@@ -289,7 +287,7 @@ function profile(config, data, theme) {
     ...values.map(([, label, value, known]) => `${label}: ${formatCount(value, known)}`),
     ...(config.activity?.enabled ? [`Scope: ${activityScope(config)}`] : []), ...release,
     ...(data.projects.length ? [`Projects: ${data.projects.map((project) => project.name).join(', ')}`] : []),
-  ].join('. ').concat('.');
+  ].join('. ').concat('. ', plan.description);
   const s = canvas(theme, `${config.editorName} / tmux`, summary, height);
   s.height = height;
   const { colors: c, line, text, segments, rect } = s;
@@ -316,35 +314,35 @@ function profile(config, data, theme) {
   });
   const cursorY = contentTop + 14 + (codeLines.length - 1) * layout.codeLine;
   rect(Number((codeX + textWidth('❯ ', layout.codeSize)).toFixed(1)), cursorY - layout.codeSize + 2, 8, layout.codeSize + 2, c.accent, 0, 'class="editor-cursor"');
-  statusBar(s, config, data, 'profile');
+  drawLanguages(s, plan, languagesTop);
+  statusBar(s, config, data);
   return s.finish();
 }
 
-function languages(config, data, theme) {
-  const layout = LAYOUT;
-  const width = WIDTH;
+function languagePlan(config, data) {
   const { rows, alsoUsed, scope } = data.languages;
   const scopeLabel = scope === 'authorized' ? 'public + authorized private' : 'public repositories';
   const repositoryLabel = config.filters?.includeForks || config.filters?.includeMirrors ? 'owned repositories' : 'owned source';
-  const columns = Math.floor((width - PADDING * 2 - 28) / (layout.codeSize * CHARACTER_WIDTH));
+  const columns = Math.floor((WIDTH - PADDING * 2 - 28) / (LAYOUT.codeSize * CHARACTER_WIDTH));
   const captionLines = wrap(`${scopeLabel} / ${repositoryLabel} / language bytes`, columns - 2);
   const alsoLines = alsoUsed.length ? wrap(alsoUsed.join(', '), columns - 2) : [];
-  const rowHeight = 26;
-  const top = PADDING + 10;
-  const contentTop = top + 30;
+  const rowsOffset = 44 + (captionLines.length + 2) * LAYOUT.codeLine;
+  const alsoOffset = rowsOffset + Math.max(rows.length, 1) * ROW_HEIGHT + 10;
+  const height = alsoOffset + (alsoLines.length ? (alsoLines.length + 1) * LAYOUT.codeLine : 0) + 6;
+  const description = `Language byte share across eligible owned ${scopeLabel}: ${rows.map((row) => `${row.name}: ${row.percentage.toFixed(1)}%`).join(', ')}.${alsoUsed.length ? ` Other includes: ${alsoUsed.join(', ')}.` : ''}`;
+  return { rows, captionLines, alsoLines, rowsOffset, alsoOffset, height, description };
+}
+
+function drawLanguages(s, plan, top) {
+  const layout = LAYOUT;
+  const width = WIDTH;
+  const { rows, captionLines, alsoLines } = plan;
+  const rowsTop = top + plan.rowsOffset;
+  const alsoTop = top + plan.alsoOffset;
   const x = PADDING + 14;
-  const rowsTop = contentTop + 14 + (1 + captionLines.length + 1) * layout.codeLine;
-  const rowsHeight = Math.max(rows.length, 1) * rowHeight;
-  const alsoTop = rowsTop + rowsHeight + 10;
-  const promptY = alsoTop + (alsoLines.length ? (alsoLines.length + 1) * layout.codeLine : 0) + layout.codeLine;
-  const bodyBottom = promptY + 16;
-  const height = bodyBottom + STATUS_HEIGHT + PADDING + 8;
-  const description = `Language byte share across eligible owned ${scopeLabel}. ${rows.map((row) => `${row.name}: ${row.percentage.toFixed(1)}%`).join(', ')}.${alsoUsed.length ? ` Other includes: ${alsoUsed.join(', ')}.` : ''}`;
-  const s = canvas(theme, `${config.editorName} / languages`, description, height);
-  s.height = height;
-  const { colors: c, text, segments, rect, raw } = s;
-  paneTitle(s, PADDING, width - PADDING, top, '1 zsh', true);
-  const firstY = contentTop + 14;
+  const { colors: c, text, segments, raw } = s;
+  paneTitle(s, PADDING, width - PADDING, top, '2 languages', false);
+  const firstY = top + 44;
   segments(x, firstY, [['prompt', '❯ ']], layout.codeSize);
   text(x + textWidth('❯ ', layout.codeSize), firstY, `languages --top ${rows.filter((row) => row.name !== 'Other').length}`, c.text, layout.codeSize, 'class="terminal-command"');
   captionLines.forEach((value, index) => segments(x, firstY + (index + 1) * layout.codeLine, [['comment', `# ${value}`]], layout.codeSize));
@@ -352,7 +350,7 @@ function languages(config, data, theme) {
   const cellGap = 2;
   const nameWidth = 150;
   rows.forEach((row, index) => {
-    const y = rowsTop + index * rowHeight;
+    const y = rowsTop + index * ROW_HEIGHT;
     const label = row.name.length > 17 ? `${row.name.slice(0, 14)}...` : row.name;
     text(x, y, label, c.text, layout.codeSize);
     text(width - PADDING - 14, y, `${row.percentage.toFixed(1)}%`, c.text, layout.codeSize, 'text-anchor="end"');
@@ -373,10 +371,6 @@ function languages(config, data, theme) {
     segments(x, alsoTop + layout.codeLine * 0.5, [['comment', '# also used, included in Other:']], layout.codeSize);
     alsoLines.forEach((value, index) => segments(x, alsoTop + layout.codeLine * (index + 1.5), [['comment', `# ${value}`]], layout.codeSize));
   }
-  segments(x, promptY, [['prompt', '❯ ']], layout.codeSize);
-  rect(Number((x + textWidth('❯ ', layout.codeSize)).toFixed(1)), promptY - layout.codeSize + 2, 8, layout.codeSize + 2, c.accent, 0, 'class="editor-cursor"');
-  statusBar(s, config, data, 'languages');
-  return s.finish();
 }
 
 const BADGE_ICONS = {
@@ -432,7 +426,6 @@ export function renderAssets(config, data) {
   const assets = {};
   for (const theme of Object.keys(THEMES)) {
     assets[`profile-${theme}.svg`] = profile(config, data, theme);
-    assets[`languages-${theme}.svg`] = languages(config, data, theme);
   }
   for (const item of badgeItems(config)) {
     for (const theme of Object.keys(THEMES)) {

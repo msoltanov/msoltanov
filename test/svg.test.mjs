@@ -24,7 +24,7 @@ test('XML escapes markup, quotes, and invalid XML control characters', () => {
 
 test('renders one side-by-side card per surface and theme', () => {
   const assets = renderAssets(config, data);
-  assert.deepEqual(Object.keys(assets).sort(), ['languages-dark.svg', 'languages-light.svg', 'profile-dark.svg', 'profile-light.svg']);
+  assert.deepEqual(Object.keys(assets).sort(), ['profile-dark.svg', 'profile-light.svg']);
   for (const svg of Object.values(assets)) {
     const document = parse(svg);
     assert.equal(document.documentElement.nodeName, 'svg');
@@ -44,7 +44,7 @@ test('all inserted strings remain text even with hostile public metadata', () =>
     projects: [{ name: hostile, description: hostile, url: 'javascript:alert(1)' }],
     languages: { ...data.languages, rows: [{ name: hostile, percentage: 100 }] },
   });
-  assert.equal(Object.keys(assets).length, 4);
+  assert.equal(Object.keys(assets).length, 2);
   for (const svg of Object.values(assets)) {
     const document = parse(svg);
     assert.equal(document.getElementsByTagName('script').length, 0);
@@ -61,18 +61,18 @@ test('same safe input produces byte-identical output and no generation timestamp
 
 test('empty languages and projects remain valid and claim no invented data', () => {
   const assets = renderAssets(config, { ...data, projects: [], languages: { rows: [], alsoUsed: [], scope: 'public' } });
-  assert.match(assets['languages-dark.svg'], /No language bytes reported/);
-  assert.doesNotMatch(assets['languages-dark.svg'], /NaN|Infinity|undefined/);
+  assert.match(assets['profile-dark.svg'], /No language bytes reported/);
+  assert.doesNotMatch(assets['profile-dark.svg'], /NaN|Infinity|undefined/);
   assert.doesNotMatch(assets['profile-dark.svg'], /pdf-shrinker/);
 });
 
 test('full language diversity wraps and all labels survive in accessible text', () => {
   const alsoUsed = ['C++', 'Jupyter Notebook', 'Objective-C++', 'Vim Script', 'Shell', 'Lua', 'Dart', 'HCL'];
   const assets = renderAssets(config, { ...data, languages: { ...data.languages, alsoUsed, scope: 'authorized' } });
-  assert.equal(Object.keys(assets).length, 4);
+  assert.equal(Object.keys(assets).length, 2);
   for (const [name, svg] of Object.entries(assets)) {
     parse(svg);
-    if (name.startsWith('languages')) {
+    if (name.startsWith('profile')) {
       assert.match(svg, /public \+ authorized private/);
       for (const language of alsoUsed) {
         assert.ok(svg.includes(escapeXml(language)));
@@ -92,8 +92,8 @@ test('featured projects stay inside the shell pane above the status bar', () => 
 
 test('language caption changes when forks or mirrors are included', () => {
   const assets = renderAssets({ ...config, filters: { includeForks: true } }, data);
-  assert.match(assets['languages-dark.svg'], /owned repositories \/ language bytes/);
-  assert.doesNotMatch(assets['languages-dark.svg'], /owned source \/ language bytes/);
+  assert.match(assets['profile-dark.svg'], /owned repositories \/ language bytes/);
+  assert.doesNotMatch(assets['profile-dark.svg'], /owned source \/ language bytes/);
 });
 
 test('system details show every supplied item and leave contacts to the README', () => {
@@ -127,8 +127,8 @@ test('animations are short and stop for reduced motion', () => {
     assert.match(svg, /@media \(prefers-reduced-motion: reduce\) \{ \.editor-cursor, \.terminal-command, \.language-bar \{ animation: none; \} \}/);
   }
   assert.match(assets['profile-dark.svg'], /class="editor-cursor"/);
-  assert.match(assets['languages-dark.svg'], /class="terminal-command"/);
-  assert.match(assets['languages-dark.svg'], /class="language-bar"/);
+  assert.match(assets['profile-dark.svg'], /class="terminal-command"/);
+  assert.match(assets['profile-dark.svg'], /class="language-bar"/);
 });
 
 test('activity values retain their scope and unavailable counts never become zero', () => {
@@ -173,7 +173,7 @@ test('the updated date appears in every status bar only when supplied', () => {
 
 test('language meters use linguist colors and Other uses a neutral color', () => {
   const rows = ['Astro', 'QML', 'MDX', 'SCSS', 'Kotlin', 'Other'].map((name) => ({ name, percentage: 10 }));
-  const svg = renderAssets(config, { ...data, languages: { rows, alsoUsed: ['Go'], scope: 'public' } })['languages-dark.svg'];
+  const svg = renderAssets(config, { ...data, languages: { rows, alsoUsed: ['Go'], scope: 'public' } })['profile-dark.svg'];
   for (const color of ['#ff5a03', '#44a51c', '#fcb32c', '#c6538c', '#A97BFF', '#7d8f87']) {
     assert.match(svg, new RegExp(`stroke="${color}" stroke-width="11"`));
   }

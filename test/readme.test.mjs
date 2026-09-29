@@ -5,7 +5,8 @@ import test from 'node:test';
 test('each card is one picture with a plain dark source, the pattern GitHub supports', async () => {
   const readme = await readFile(new URL('../README.md', import.meta.url), 'utf8');
   assert.doesNotMatch(readme, /gh-(?:dark|light)-mode-only|max-width|prefers-reduced-motion|-mobile|-still/);
-  for (const surface of ['profile', 'languages']) {
+  assert.doesNotMatch(readme, /assets\/languages-/);
+  for (const surface of ['profile']) {
     const picture = readme.slice(readme.lastIndexOf('<picture>', readme.indexOf(`src="assets/${surface}-light.svg"`))).split('</picture>')[0];
     const sources = [...picture.matchAll(/<source media="([^"]+)" srcset="assets\/([^"]+)">/g)].map(([, media, file]) => [media, file]);
     assert.deepEqual(sources, [['(prefers-color-scheme: dark)', `${surface}-dark.svg`]]);
