@@ -19,7 +19,9 @@ for (const directory of directories) {
 }
 
 const assets = (await readdir('assets')).filter((name) => name.endsWith('.svg'));
-assert.ok(assets.length >= 16, 'Generate all profile assets before this check.');
+for (const name of ['profile-dark.svg', 'profile-light.svg']) {
+  assert.ok(assets.includes(name), `Generate ${name} before this check.`);
+}
 for (const name of assets) {
   const svg = await readFile(join('assets', name), 'utf8');
   const document = new DOMParser({ onError: () => { throw new Error(`Invalid SVG XML: ${name}`); } }).parseFromString(svg, 'image/svg+xml');
@@ -30,9 +32,9 @@ for (const name of assets) {
   assert.doesNotMatch(svg, /(?:github_pat_|gh[pousr]_)[A-Za-z0-9_]{20,}/);
   for (const style of Array.from(document.getElementsByTagName('style'))) {
     assert.doesNotMatch(style.textContent, /@import|url\s*\(|expression\s*\(|javascript:|infinite/i);
-  }
-  if (name.endsWith('-still.svg')) {
-    assert.doesNotMatch(svg, /<style>|animation/);
+    if (/animation\s*:/.test(style.textContent)) {
+      assert.match(style.textContent, /@media \(prefers-reduced-motion: reduce\)/, `${name}: animation must stop for reduced motion`);
+    }
   }
 }
 process.stdout.write(`JavaScript syntax and source policy passed. ${assets.length} SVG files passed XML, content, and motion checks.\n`);

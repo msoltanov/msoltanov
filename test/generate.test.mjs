@@ -16,10 +16,10 @@ async function workspace(t) {
   return directory;
 }
 
-test('generation writes sixteen assets and a stats snapshot once and skips identical output', async (t) => {
+test('generation writes the cards and a stats snapshot once and skips identical output', async (t) => {
   const root = await workspace(t);
   const now = new Date('2026-09-14T00:00:00Z');
-  assert.deepEqual(await generateProfile({ root, now, collect: async () => data }), { changed: 17, notices: [] });
+  assert.deepEqual(await generateProfile({ root, now, collect: async () => data }), { changed: 3, notices: [] });
   assert.deepEqual(await generateProfile({ root, now, collect: async () => data }), { changed: 0, notices: [] });
   assert.match(await readFile(join(root, 'assets/profile-light.svg'), 'utf8'), /ALABAY CODE/);
   assert.equal(JSON.parse(await readFile(join(root, 'data/stats.json'), 'utf8')).updatedAt, '2026-09-14');
@@ -59,7 +59,7 @@ test('failed activity, private language, and release collection keep the last kn
   assert.match(svg, /1_234/);
   assert.doesNotMatch(svg, /&quot;unavailable&quot;/);
   assert.match(svg, /public-project v2\.1/);
-  assert.match(await readFile(join(root, 'assets/languages-dark.svg'), 'utf8'), /public \+ authorized private/);
+  assert.match(await readFile(join(root, 'assets/profile-dark.svg'), 'utf8'), /public \+ authorized private/);
 });
 
 test('activity receives the cache and a deadline, and the cache is encrypted with the stats token', async (t) => {
@@ -133,8 +133,8 @@ test('generates nine named languages and a tenth Other row using all language by
     assert.deepEqual(languages.alsoUsed, ['Dart', 'Lua']);
     return { ...data, languages: { ...languages, scope: 'public' } };
   };
-  assert.equal((await generateProfile({ root, collect })).changed, 17);
-  const svg = await readFile(join(root, 'assets/languages-dark.svg'), 'utf8');
+  assert.equal((await generateProfile({ root, collect })).changed, 3);
+  const svg = await readFile(join(root, 'assets/profile-dark.svg'), 'utf8');
   assert.match(svg, />Ruby<\/text>/);
   assert.match(svg, />Other<\/text>/);
   assert.match(svg, />6\.0%<\/text>/);
@@ -172,14 +172,16 @@ test('invalid system details fail before data collection', async (t) => {
   assert.equal(fetched, false);
 });
 
-test('badges for removed contacts are deleted', async (t) => {
+test('old card variants and badges for removed contacts are deleted', async (t) => {
   const root = await workspace(t);
   await mkdir(join(root, 'assets'));
   await writeFile(join(root, 'assets/badge-linkedin-dark.svg'), 'stale');
+  await writeFile(join(root, 'assets/profile-dark-mobile-still.svg'), 'stale');
   await writeFile(join(root, 'assets/notes.svg'), 'kept');
   await generateProfile({ root, collect: async () => data });
   const { readdir } = await import('node:fs/promises');
   const names = await readdir(join(root, 'assets'));
   assert.ok(!names.includes('badge-linkedin-dark.svg'));
+  assert.ok(!names.includes('profile-dark-mobile-still.svg'));
   assert.ok(names.includes('notes.svg'));
 });

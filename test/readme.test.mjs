@@ -2,22 +2,12 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
-test('each card is one picture that picks theme, motion, and width from media queries', async () => {
+test('the profile card is one picture with a plain dark source, the pattern GitHub supports', async () => {
   const readme = await readFile(new URL('../README.md', import.meta.url), 'utf8');
-  assert.doesNotMatch(readme, /gh-(?:dark|light)-mode-only/);
-  for (const surface of ['profile', 'languages']) {
-    const picture = readme.slice(readme.lastIndexOf('<picture>', readme.indexOf(`src="assets/${surface}-light.svg"`))).split('</picture>')[0];
-    const sources = [...picture.matchAll(/<source media="([^"]+)" srcset="assets\/([^"]+)">/g)].map(([, media, file]) => [media, file]);
-    assert.deepEqual(sources, [
-      ['(prefers-color-scheme: dark) and (prefers-reduced-motion: reduce) and (max-width: 600px)', `${surface}-dark-mobile-still.svg`],
-      ['(prefers-color-scheme: dark) and (prefers-reduced-motion: reduce)', `${surface}-dark-still.svg`],
-      ['(prefers-color-scheme: dark) and (max-width: 600px)', `${surface}-dark-mobile.svg`],
-      ['(prefers-color-scheme: dark)', `${surface}-dark.svg`],
-      ['(prefers-reduced-motion: reduce) and (max-width: 600px)', `${surface}-light-mobile-still.svg`],
-      ['(prefers-reduced-motion: reduce)', `${surface}-light-still.svg`],
-      ['(max-width: 600px)', `${surface}-light-mobile.svg`],
-    ]);
-  }
+  assert.doesNotMatch(readme, /gh-(?:dark|light)-mode-only|max-width|prefers-reduced-motion|-mobile|-still|assets\/languages-/);
+  const picture = readme.slice(readme.lastIndexOf('<picture>', readme.indexOf('src="assets/profile-light.svg"'))).split('</picture>')[0];
+  const sources = [...picture.matchAll(/<source media="([^"]+)" srcset="assets\/([^"]+)">/g)].map(([, media, file]) => [media, file]);
+  assert.deepEqual(sources, [['(prefers-color-scheme: dark)', 'profile-dark.svg']]);
 });
 
 test('tech stack is rendered from configuration between markers', async () => {

@@ -1,6 +1,6 @@
 import { ALABAY } from './alabay.mjs';
 
-const WIDTH = { desktop: 860, mobile: 420 };
+const WIDTH = 860;
 const THEMES = {
   dark: { background: '#101315', raised: '#1e2528', border: '#34403b', text: '#e3ebe8', muted: '#7d8f87', accent: '#91d7bd', ink: '#0d1f18', copper: '#eebd95', keyword: '#c4b4e5', string: '#c5dda8', number: '#9dcced' },
   light: { background: '#fbfcfa', raised: '#e6ede8', border: '#c3d0c7', text: '#1f332a', muted: '#62786c', accent: '#21634d', ink: '#f3faf6', copper: '#905023', keyword: '#704d8f', string: '#49701e', number: '#205f8e' },
@@ -19,15 +19,13 @@ const FONT = 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation 
 const CHARACTER_WIDTH = 0.6;
 const PADDING = 12;
 const STATUS_HEIGHT = 26;
+const ROW_HEIGHT = 26;
 const COMMAND_DURATION_MS = 1000;
 const BAR_DURATION_MS = 800;
 const BAR_STAGGER_MS = 90;
 const ACTIVITY_SCOPE = 'public + private, all branches';
 const COMMAND = 'cat mekan.toml';
-const LAYOUT = {
-  desktop: { artSize: 10.5, artLine: 12.5, codeSize: 13, codeLine: 19, columns: 64, cells: 40 },
-  mobile: { artSize: 8, artLine: 9.5, codeSize: 12, codeLine: 17, columns: 52, cells: 34 },
-};
+const LAYOUT = { artSize: 10.5, artLine: 12.5, codeSize: 13, codeLine: 19, cells: 40 };
 const MOTION_STYLES = `
 @keyframes cursor-blink { 0%, 49%, 100% { opacity: 1; } 50%, 99% { opacity: 0; } }
 @keyframes command-type { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
@@ -35,6 +33,7 @@ const MOTION_STYLES = `
 .editor-cursor { animation: cursor-blink 1s steps(1, end) 3; }
 .terminal-command { animation: command-type ${COMMAND_DURATION_MS}ms steps(18, end) 1 both; transform-box: fill-box; }
 .language-bar { animation: bar-grow ${BAR_DURATION_MS}ms ease-out 1 both; transform-box: fill-box; transform-origin: left center; }
+@media (prefers-reduced-motion: reduce) { .editor-cursor, .terminal-command, .language-bar { animation: none; } }
 `;
 
 export function escapeXml(value) {
@@ -189,9 +188,9 @@ function tomlDocument(config, data, columns) {
   return lines;
 }
 
-function canvas(theme, mode, title, description, height) {
+function canvas(theme, title, description, height) {
   const colors = THEMES[theme];
-  const width = WIDTH[mode];
+  const width = WIDTH;
   const parts = [];
   const rect = (x, y, w, h, color, radius = 0, extra = '') => parts.push(`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${radius}" fill="${color}"${extra ? ` ${extra}` : ''}/>`);
   const text = (x, y, value, color = colors.text, size = 13, extra = '') => parts.push(`<text x="${x}" y="${y}" fill="${color}" font-size="${size}" ${extra}>${escapeXml(value)}</text>`);
@@ -211,7 +210,7 @@ ${parts.join('\n')}
 </g>
 </svg>
 `;
-  return { colors, width, rect, text, line, segments, raw, finish };
+  return { colors, width, height, rect, text, line, segments, raw, finish };
 }
 
 function paneTitle(surface, x1, x2, y, label, active) {
@@ -223,29 +222,21 @@ function paneTitle(surface, x1, x2, y, label, active) {
   text(x1 + 10 + textWidth(' ', 12), y + 4, label, active ? c.accent : c.muted, 12);
 }
 
-function statusBar(surface, config, data, mode, activeWindow) {
+function statusBar(surface, config, data) {
   const { colors: c, width, rect, text } = surface;
-  const height = surface.height;
-  const y = height - PADDING - STATUS_HEIGHT;
+  const y = surface.height - PADDING - STATUS_HEIGHT;
   rect(PADDING, y, width - PADDING * 2, STATUS_HEIGHT, c.accent, 4);
   const baseline = y + 17;
   text(PADDING + 10, baseline, `[${config.username}]`, c.ink, 12, 'font-weight="700"');
-  let x = PADDING + 10 + textWidth(`[${config.username}] `, 12);
-  const windows = mode === 'mobile' ? [activeWindow] : ['profile', 'languages'];
-  for (const name of windows) {
-    const index = name === 'profile' ? 0 : 1;
-    const label = `${index}:${name}${name === activeWindow ? '*' : '-'}`;
-    text(x, baseline, label, c.ink, 12, name === activeWindow ? 'font-weight="700"' : '');
-    x += textWidth(`${label} `, 12);
-  }
+  text(PADDING + 10 + textWidth(`[${config.username}] `, 12), baseline, '0:profile*', c.ink, 12, 'font-weight="700"');
   if (data.updatedAt) {
-    text(width - PADDING - 10, baseline, mode === 'mobile' ? data.updatedAt : `updated ${data.updatedAt}`, c.ink, 12, 'text-anchor="end"');
+    text(width - PADDING - 10, baseline, `updated ${data.updatedAt}`, c.ink, 12, 'text-anchor="end"');
   }
 }
 
-function artBlock(surface, x, y, mode) {
+function artBlock(surface, x, y) {
   const { colors: c } = surface;
-  const { artSize, artLine } = LAYOUT[mode];
+  const { artSize, artLine } = LAYOUT;
   const tone = (character) => (/[@%#]/.test(character) ? 'patch' : /[*+=]/.test(character) ? 'coat' : 'edge');
   const fills = { patch: c.copper, coat: c.text, edge: c.muted };
   ALABAY.forEach((row, index) => {
@@ -265,24 +256,22 @@ function artBlock(surface, x, y, mode) {
   return ALABAY.length * artLine;
 }
 
-function profile(config, data, theme, mode) {
-  const mobile = mode === 'mobile';
-  const layout = LAYOUT[mode];
-  const width = WIDTH[mode];
+function profile(config, data, theme) {
   const artColumns = Math.max(...ALABAY.map((row) => row.length));
-  const artWidth = textWidth('x'.repeat(artColumns), layout.artSize);
-  const leftWidth = mobile ? width - PADDING * 2 : Math.ceil(artWidth) + 36;
-  const codeX = mobile ? PADDING + 14 : PADDING + leftWidth + 20;
-  const columns = mobile ? layout.columns : Math.floor((width - codeX - PADDING - 12) / (layout.codeSize * CHARACTER_WIDTH));
+  const artWidth = textWidth('x'.repeat(artColumns), LAYOUT.artSize);
+  const leftWidth = Math.ceil(artWidth) + 36;
+  const codeX = PADDING + leftWidth + 20;
+  const columns = Math.floor((WIDTH - codeX - PADDING - 12) / (LAYOUT.codeSize * CHARACTER_WIDTH));
   const document = tomlDocument(config, data, columns);
   const codeLines = [[['prompt', '❯ ']], ...document, [], [['prompt', '❯ ']]];
-  const artHeight = ALABAY.length * layout.artLine + 58;
+  const artHeight = ALABAY.length * LAYOUT.artLine + 58;
   const top = PADDING + 10;
-  const artTop = top + 30;
-  const codeTop = mobile ? top + 30 + artHeight + 40 : top + 30;
-  const codeHeight = codeLines.length * layout.codeLine;
-  const bodyBottom = Math.max(codeTop + codeHeight, artTop + artHeight) + 10;
-  const height = bodyBottom + STATUS_HEIGHT + PADDING + 8;
+  const contentTop = top + 30;
+  const codeHeight = codeLines.length * LAYOUT.codeLine;
+  const bodyBottom = contentTop + Math.max(codeHeight, artHeight) + 10;
+  const plan = languagePlan(config, data);
+  const languagesTop = bodyBottom + 14;
+  const height = languagesTop + plan.height + STATUS_HEIGHT + PADDING + 8;
   const values = githubValues(config, data);
   const { system = {} } = config;
   const groups = [
@@ -296,100 +285,89 @@ function profile(config, data, theme, mode) {
     ...values.map(([, label, value, known]) => `${label}: ${formatCount(value, known)}`),
     ...(config.activity?.enabled ? [`Scope: ${activityScope(config)}`] : []), ...release,
     ...(data.projects.length ? [`Projects: ${data.projects.map((project) => project.name).join(', ')}`] : []),
-  ].join('. ').concat('.');
-  const s = canvas(theme, mode, `${config.editorName} / tmux`, summary, height);
-  s.height = height;
+  ].join('. ').concat('. ', plan.description);
+  const s = canvas(theme, `${config.editorName} / tmux`, summary, height);
   const { colors: c, line, text, segments, rect } = s;
-  if (mobile) {
-    paneTitle(s, PADDING, width - PADDING, top, '0 alabay', false);
-    paneTitle(s, PADDING, width - PADDING, codeTop - 28, '1 zsh', true);
-  } else {
-    const divider = PADDING + leftWidth;
-    paneTitle(s, PADDING, divider, top, '0 alabay', false);
-    paneTitle(s, divider, width - PADDING, top, '1 zsh', true);
-    line(divider, top, divider, bodyBottom, c.border);
-  }
-  const artX = mobile ? (width - artWidth) / 2 : PADDING + (leftWidth - artWidth) / 2;
-  const artY = mobile ? artTop : Math.max(artTop, top + (bodyBottom - top - artHeight) / 2);
-  const drawnArt = artBlock(s, Number(artX.toFixed(1)), Number((artY + 10).toFixed(1)), mode);
-  const labelX = mobile ? width / 2 : PADDING + leftWidth / 2;
-  text(labelX, Number((artY + drawnArt + 26).toFixed(1)), config.editorName, c.accent, mobile ? 15 : 17, 'font-weight="700" text-anchor="middle" letter-spacing="2"');
+  const divider = PADDING + leftWidth;
+  paneTitle(s, PADDING, divider, top, '0 alabay', false);
+  paneTitle(s, divider, WIDTH - PADDING, top, '1 zsh', true);
+  line(divider, top, divider, bodyBottom, c.border);
+  const artX = PADDING + (leftWidth - artWidth) / 2;
+  const artY = Math.max(contentTop, top + (bodyBottom - top - artHeight) / 2);
+  const drawnArt = artBlock(s, Number(artX.toFixed(1)), Number((artY + 10).toFixed(1)));
+  const labelX = PADDING + leftWidth / 2;
+  text(labelX, Number((artY + drawnArt + 26).toFixed(1)), config.editorName, c.accent, 17, 'font-weight="700" text-anchor="middle" letter-spacing="2"');
   text(labelX, Number((artY + drawnArt + 46).toFixed(1)), `github.com/${config.username}`, c.muted, 12, 'text-anchor="middle"');
   codeLines.forEach((pieces, index) => {
-    const y = codeTop + 14 + index * layout.codeLine;
+    const y = contentTop + 14 + index * LAYOUT.codeLine;
     if (index === 0) {
-      segments(codeX, y, [pieces[0]], layout.codeSize);
-      text(codeX + textWidth('❯ ', layout.codeSize), y, COMMAND, c.text, layout.codeSize, 'class="terminal-command"');
+      segments(codeX, y, [pieces[0]], LAYOUT.codeSize);
+      text(codeX + textWidth('❯ ', LAYOUT.codeSize), y, COMMAND, c.text, LAYOUT.codeSize, 'class="terminal-command"');
       return;
     }
     if (pieces.length) {
-      segments(codeX, y, pieces, layout.codeSize);
+      segments(codeX, y, pieces, LAYOUT.codeSize);
     }
   });
-  const cursorY = codeTop + 14 + (codeLines.length - 1) * layout.codeLine;
-  rect(Number((codeX + textWidth('❯ ', layout.codeSize)).toFixed(1)), cursorY - layout.codeSize + 2, 8, layout.codeSize + 2, c.accent, 0, 'class="editor-cursor"');
-  statusBar(s, config, data, mode, 'profile');
+  const cursorY = contentTop + 14 + (codeLines.length - 1) * LAYOUT.codeLine;
+  rect(Number((codeX + textWidth('❯ ', LAYOUT.codeSize)).toFixed(1)), cursorY - LAYOUT.codeSize + 2, 8, LAYOUT.codeSize + 2, c.accent, 0, 'class="editor-cursor"');
+  drawLanguages(s, plan, languagesTop);
+  statusBar(s, config, data);
   return s.finish();
 }
 
-function languages(config, data, theme, mode) {
-  const mobile = mode === 'mobile';
-  const layout = LAYOUT[mode];
-  const width = WIDTH[mode];
+function languagePlan(config, data) {
   const { rows, alsoUsed, scope } = data.languages;
   const scopeLabel = scope === 'authorized' ? 'public + authorized private' : 'public repositories';
   const repositoryLabel = config.filters?.includeForks || config.filters?.includeMirrors ? 'owned repositories' : 'owned source';
-  const columns = mobile ? layout.columns : Math.floor((width - PADDING * 2 - 28) / (layout.codeSize * CHARACTER_WIDTH));
+  const columns = Math.floor((WIDTH - PADDING * 2 - 28) / (LAYOUT.codeSize * CHARACTER_WIDTH));
   const captionLines = wrap(`${scopeLabel} / ${repositoryLabel} / language bytes`, columns - 2);
   const alsoLines = alsoUsed.length ? wrap(alsoUsed.join(', '), columns - 2) : [];
-  const rowHeight = mobile ? 38 : 26;
-  const top = PADDING + 10;
-  const contentTop = top + 30;
+  const rowsOffset = 44 + (captionLines.length + 2) * LAYOUT.codeLine;
+  const alsoOffset = rowsOffset + Math.max(rows.length, 1) * ROW_HEIGHT + 10;
+  const height = alsoOffset + (alsoLines.length ? (alsoLines.length + 1) * LAYOUT.codeLine : 0) + 6;
+  const description = rows.length
+    ? `Language byte share across eligible owned ${scopeLabel}: ${rows.map((row) => `${row.name} ${row.percentage.toFixed(1)}%`).join(', ')}.${alsoUsed.length ? ` Other includes: ${alsoUsed.join(', ')}.` : ''}`
+    : 'No language bytes reported.';
+  return { rows, captionLines, alsoLines, rowsOffset, alsoOffset, height, description };
+}
+
+function drawLanguages(s, plan, top) {
+  const { rows, captionLines, alsoLines } = plan;
+  const rowsTop = top + plan.rowsOffset;
+  const alsoTop = top + plan.alsoOffset;
   const x = PADDING + 14;
-  const rowsTop = contentTop + 14 + (1 + captionLines.length + 1) * layout.codeLine;
-  const rowsHeight = Math.max(rows.length, 1) * rowHeight;
-  const alsoTop = rowsTop + rowsHeight + 10;
-  const promptY = alsoTop + (alsoLines.length ? (alsoLines.length + 1) * layout.codeLine : 0) + layout.codeLine;
-  const bodyBottom = promptY + 16;
-  const height = bodyBottom + STATUS_HEIGHT + PADDING + 8;
-  const description = `Language byte share across eligible owned ${scopeLabel}. ${rows.map((row) => `${row.name}: ${row.percentage.toFixed(1)}%`).join(', ')}.${alsoUsed.length ? ` Other includes: ${alsoUsed.join(', ')}.` : ''}`;
-  const s = canvas(theme, mode, `${config.editorName} / languages`, description, height);
-  s.height = height;
-  const { colors: c, text, segments, rect, raw } = s;
-  paneTitle(s, PADDING, width - PADDING, top, '1 zsh', true);
-  const firstY = contentTop + 14;
-  segments(x, firstY, [['prompt', '❯ ']], layout.codeSize);
-  text(x + textWidth('❯ ', layout.codeSize), firstY, `languages --top ${rows.filter((row) => row.name !== 'Other').length}`, c.text, layout.codeSize, 'class="terminal-command"');
-  captionLines.forEach((value, index) => segments(x, firstY + (index + 1) * layout.codeLine, [['comment', `# ${value}`]], layout.codeSize));
-  const cellWidth = mobile ? 8 : 7;
+  const { colors: c, text, segments, raw } = s;
+  paneTitle(s, PADDING, WIDTH - PADDING, top, '2 languages', false);
+  const firstY = top + 44;
+  segments(x, firstY, [['prompt', '❯ ']], LAYOUT.codeSize);
+  text(x + textWidth('❯ ', LAYOUT.codeSize), firstY, `languages --top ${rows.filter((row) => row.name !== 'Other').length}`, c.text, LAYOUT.codeSize, 'class="terminal-command"');
+  captionLines.forEach((value, index) => segments(x, firstY + (index + 1) * LAYOUT.codeLine, [['comment', `# ${value}`]], LAYOUT.codeSize));
+  const cellWidth = 7;
   const cellGap = 2;
-  const nameWidth = mobile ? 0 : 150;
+  const nameWidth = 150;
   rows.forEach((row, index) => {
-    const y = rowsTop + index * rowHeight;
-    const label = row.name.length > (mobile ? 30 : 17) ? `${row.name.slice(0, mobile ? 27 : 14)}...` : row.name;
-    text(x, y, label, c.text, layout.codeSize);
-    text(width - PADDING - 14, y, `${row.percentage.toFixed(1)}%`, c.text, layout.codeSize, 'text-anchor="end"');
-    const meterX = mobile ? x : x + nameWidth;
-    const meterY = mobile ? y + 9 : y - 10;
-    const filled = row.percentage > 0 ? Math.max(1, Math.round(layout.cells * Math.min(100, row.percentage) / 100)) : 0;
+    const y = rowsTop + index * ROW_HEIGHT;
+    const label = row.name.length > 17 ? `${row.name.slice(0, 14)}...` : row.name;
+    text(x, y, label, c.text, LAYOUT.codeSize);
+    text(WIDTH - PADDING - 14, y, `${row.percentage.toFixed(1)}%`, c.text, LAYOUT.codeSize, 'text-anchor="end"');
+    const meterX = x + nameWidth;
+    const meterY = y - 10;
+    const filled = row.percentage > 0 ? Math.max(1, Math.round(LAYOUT.cells * Math.min(100, row.percentage) / 100)) : 0;
     const color = row.name === 'Other' ? c.muted : LANGUAGE_COLORS[row.name] ?? c.accent;
     const meter = (cells, fill) => `<path d="M${meterX} ${meterY + 5.5}h${cells * (cellWidth + cellGap) - cellGap}" stroke="${fill}" stroke-width="11" stroke-dasharray="${cellWidth} ${cellGap}"/>`;
-    raw(meter(layout.cells, c.raised));
+    raw(meter(LAYOUT.cells, c.raised));
     if (filled) {
       raw(`<g class="language-bar" style="animation-delay: ${COMMAND_DURATION_MS + index * BAR_STAGGER_MS}ms">${meter(filled, color)}</g>`);
     }
   });
   if (!rows.length) {
-    text(x, rowsTop, 'No language bytes reported.', c.muted, layout.codeSize);
+    text(x, rowsTop, 'No language bytes reported.', c.muted, LAYOUT.codeSize);
   }
   if (alsoLines.length) {
-    segments(x, alsoTop + layout.codeLine * 0.5, [['comment', '# also used, included in Other:']], layout.codeSize);
-    alsoLines.forEach((value, index) => segments(x, alsoTop + layout.codeLine * (index + 1.5), [['comment', `# ${value}`]], layout.codeSize));
+    segments(x, alsoTop + LAYOUT.codeLine * 0.5, [['comment', '# also used, included in Other:']], LAYOUT.codeSize);
+    alsoLines.forEach((value, index) => segments(x, alsoTop + LAYOUT.codeLine * (index + 1.5), [['comment', `# ${value}`]], LAYOUT.codeSize));
   }
-  segments(x, promptY, [['prompt', '❯ ']], layout.codeSize);
-  rect(Number((x + textWidth('❯ ', layout.codeSize)).toFixed(1)), promptY - layout.codeSize + 2, 8, layout.codeSize + 2, c.accent, 0, 'class="editor-cursor"');
-  statusBar(s, config, data, mode, 'languages');
-  return s.finish();
 }
 
 const BADGE_ICONS = {
@@ -444,16 +422,7 @@ export function badgeItems(config) {
 export function renderAssets(config, data) {
   const assets = {};
   for (const theme of Object.keys(THEMES)) {
-    for (const mode of Object.keys(WIDTH)) {
-      const suffix = mode === 'mobile' ? '-mobile' : '';
-      assets[`profile-${theme}${suffix}.svg`] = profile(config, data, theme, mode);
-      assets[`languages-${theme}${suffix}.svg`] = languages(config, data, theme, mode);
-    }
-  }
-  for (const [name, svg] of Object.entries(assets)) {
-    assets[name.replace('.svg', '-still.svg')] = svg.replace(/<style>[\s\S]*?<\/style>\n/, '')
-      .replace(/ class="(?:editor-cursor|terminal-command|language-bar)"/g, '')
-      .replace(/ style="animation-delay: [0-9]+ms"/g, '');
+    assets[`profile-${theme}.svg`] = profile(config, data, theme);
   }
   for (const item of badgeItems(config)) {
     for (const theme of Object.keys(THEMES)) {

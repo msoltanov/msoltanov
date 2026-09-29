@@ -1,12 +1,6 @@
 <picture>
-  <source media="(prefers-color-scheme: dark) and (prefers-reduced-motion: reduce) and (max-width: 600px)" srcset="assets/profile-dark-mobile-still.svg">
-  <source media="(prefers-color-scheme: dark) and (prefers-reduced-motion: reduce)" srcset="assets/profile-dark-still.svg">
-  <source media="(prefers-color-scheme: dark) and (max-width: 600px)" srcset="assets/profile-dark-mobile.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/profile-dark.svg">
-  <source media="(prefers-reduced-motion: reduce) and (max-width: 600px)" srcset="assets/profile-light-mobile-still.svg">
-  <source media="(prefers-reduced-motion: reduce)" srcset="assets/profile-light-still.svg">
-  <source media="(max-width: 600px)" srcset="assets/profile-light-mobile.svg">
-  <img alt="ALABAY CODE. Mekan, @msoltanov. Interests: Software Engineering, Cybersecurity, AI &amp; Experimentation, Infrastructure, Open Source, Growth Engineering. GitHub uptime: 11y 11m. OS: Windows 11, Android 13-14, Linux. IDE: VS Code, JetBrains IDEs, Pulsar. Terminals: Tabby, Termius. Programming: Python, TypeScript, JavaScript, Go, Rust. Mobile stack: Kotlin, Flutter, Dart. Daily languages: JSON, YAML, TOML, Lisp, Lua, Perl. Previous languages: PHP, C, Java. Human languages: Turkmen, Turkish, Russian, English. Commits: 36,950. Lines of code: 479,791. Stars: 0. Followers: 22. Scope: commits: public + private, all branches; lines of code: added - deleted, skips commits &gt; 10,000 lines. Projects: pdf-shrinker, Unstar, Proxmox-Technical-Writing-Style-Skill." src="assets/profile-light.svg" width="860">
+  <img alt="ALABAY CODE. Mekan, @msoltanov. Interests: Software Engineering, Cybersecurity, AI &amp; Experimentation, Infrastructure, Open Source, Growth Engineering. GitHub uptime: 11y 11m. OS: Windows 11, Android 13-14, Linux. IDE: VS Code, JetBrains IDEs, Pulsar. Terminals: Tabby, Termius. Programming: Python, TypeScript, JavaScript, Go, Rust. Mobile stack: Kotlin, Flutter, Dart. Daily languages: JSON, YAML, TOML, Lisp, Lua, Perl. Previous languages: PHP, C, Java. Human languages: Turkmen, Turkish, Russian, English. Commits: 36,950. Lines of code: 479,791. Stars: 0. Followers: 22. Scope: commits: public + private, all branches; lines of code: added - deleted, skips commits &gt; 10,000 lines. Projects: pdf-shrinker, Unstar, Proxmox-Technical-Writing-Style-Skill. Language byte share across eligible owned public + authorized private: TypeScript 43.5%, Python 21.7%, JavaScript 19.0%, Astro 3.7%, Dart 3.6%, C++ 3.3%, QML 1.8%, MDX 1.0%, SCSS 1.0%, Other 1.4%. Other includes: Shell, Go, Rust, Dockerfile, PHP, QMake, Lua, Ruby, CMake, Perl, PowerShell, Just, Common Lisp, C, Racket, Swift, Tcl, Kotlin, Objective-C." src="assets/profile-light.svg" width="860">
 </picture>
 
 <!-- socials:start -->
@@ -80,16 +74,5 @@
   </picture></a>
 </p>
 <!-- tech-stack:end -->
-
-<picture>
-  <source media="(prefers-color-scheme: dark) and (prefers-reduced-motion: reduce) and (max-width: 600px)" srcset="assets/languages-dark-mobile-still.svg">
-  <source media="(prefers-color-scheme: dark) and (prefers-reduced-motion: reduce)" srcset="assets/languages-dark-still.svg">
-  <source media="(prefers-color-scheme: dark) and (max-width: 600px)" srcset="assets/languages-dark-mobile.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="assets/languages-dark.svg">
-  <source media="(prefers-reduced-motion: reduce) and (max-width: 600px)" srcset="assets/languages-light-mobile-still.svg">
-  <source media="(prefers-reduced-motion: reduce)" srcset="assets/languages-light-still.svg">
-  <source media="(max-width: 600px)" srcset="assets/languages-light-mobile.svg">
-  <img alt="Language byte share across eligible owned public + authorized private. TypeScript: 43.5%, Python: 21.7%, JavaScript: 19.0%, Astro: 3.7%, Dart: 3.6%, C++: 3.3%, QML: 1.8%, MDX: 1.0%, SCSS: 1.0%, Other: 1.4%. Other includes: Shell, Go, Rust, Dockerfile, PHP, QMake, Lua, Ruby, CMake, Perl, PowerShell, Just, Common Lisp, C, Racket, Swift, Tcl, Kotlin, Objective-C." src="assets/languages-light.svg" width="860">
-</picture>
 
 [pdf-shrinker](https://github.com/msoltanov/pdf-shrinker) · [Unstar](https://github.com/msoltanov/Unstar) · [Proxmox writing skill](https://github.com/msoltanov/Proxmox-Technical-Writing-Style-Skill)
