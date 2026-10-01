@@ -1,0 +1,13 @@
+{
+  "name": "Mekan Soltanov",
+  "username": "msoltanov",
+  "editorName": "ALABAY CODE",
+  "focus": ["Software Engineer", "Platform Engineer", "Growth Engineer"],
+  "featuredRepositories": [
+    "pdf-shrinker",
+    "ikea-like-name-generator",
+    "hackernews-agent-skills"
+  ],
+  "languageLimit": 6,
+  "animated": false
+}
