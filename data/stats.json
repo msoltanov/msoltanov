@@ -1,54 +1,55 @@
 {
-  "updatedAt": "2026-10-03",
+  "updatedAt": "2026-10-06",
   "activity": {
-    "commits": 36966,
-    "additions": 609713,
+    "commits": 36976,
+    "additions": 626611,
     "deletions": 127838
   },
   "languages": {
     "rows": [
       {
         "name": "TypeScript",
-        "percentage": 43.4
+        "percentage": 43.9
       },
       {
         "name": "Python",
-        "percentage": 21.8
+        "percentage": 21
       },
       {
         "name": "JavaScript",
-        "percentage": 19.1
+        "percentage": 18.7
       },
       {
         "name": "Astro",
-        "percentage": 3.7
+        "percentage": 3.5
       },
       {
         "name": "Dart",
-        "percentage": 3.6
+        "percentage": 3.5
       },
       {
         "name": "C++",
-        "percentage": 3.3
+        "percentage": 3.2
       },
       {
         "name": "QML",
-        "percentage": 1.8
+        "percentage": 1.7
+      },
+      {
+        "name": "Svelte",
+        "percentage": 1.2
       },
       {
         "name": "MDX",
         "percentage": 1
       },
       {
-        "name": "SCSS",
-        "percentage": 0.9
-      },
-      {
         "name": "Other",
-        "percentage": 1.4
+        "percentage": 2.3
       }
     ],
     "alsoUsed": [
+      "SCSS",
       "Shell",
       "Go",
       "Rust",

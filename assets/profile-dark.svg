@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="860" height="1297" viewBox="0 0 860 1297" role="img" aria-labelledby="title desc">
 <title id="title">ALABAY CODE / tmux</title>
-<desc id="desc">ALABAY CODE. Mekan, @msoltanov. Interests: Software Engineering, Cybersecurity, AI &amp; Experimentation, Infrastructure, Open Source, Growth Engineering. GitHub uptime: 11y 11m. OS: Windows 11, Android 13-14, Linux. IDE: VS Code, JetBrains IDEs, Pulsar. Terminals: Tabby, Termius. Programming: Python, TypeScript, JavaScript, Go, Rust. Mobile stack: Kotlin, Flutter, Dart. Daily languages: JSON, YAML, TOML, Lisp, Lua, Perl. Previous languages: PHP, C, Java. Human languages: Turkmen, Turkish, Russian, English. Commits: 36,966. Lines of code: 481,875. Stars: 0. Followers: 22. Scope: commits: public + private, all branches; lines of code: added - deleted, skips commits &gt; 10,000 lines. Projects: pdf-shrinker, Unstar, Proxmox-Technical-Writing-Style-Skill. Language byte share across eligible owned public + authorized private: TypeScript 43.4%, Python 21.8%, JavaScript 19.1%, Astro 3.7%, Dart 3.6%, C++ 3.3%, QML 1.8%, MDX 1.0%, SCSS 0.9%, Other 1.4%. Other includes: Shell, Go, Rust, Dockerfile, PHP, QMake, Lua, Ruby, CMake, Perl, PowerShell, Just, Common Lisp, C, Racket, Swift, Tcl, Kotlin, Objective-C.</desc>
+<desc id="desc">ALABAY CODE. Mekan, @msoltanov. Interests: Software Engineering, Cybersecurity, AI &amp; Experimentation, Infrastructure, Open Source, Growth Engineering. GitHub uptime: 11y 11m. OS: Windows 11, Android 13-14, Linux. IDE: VS Code, JetBrains IDEs, Pulsar. Terminals: Tabby, Termius. Programming: Python, TypeScript, JavaScript, Go, Rust. Mobile stack: Kotlin, Flutter, Dart. Daily languages: JSON, YAML, TOML, Lisp, Lua, Perl. Previous languages: PHP, C, Java. Human languages: Turkmen, Turkish, Russian, English. Commits: 36,976. Lines of code: 498,773. Stars: 0. Followers: 22. Scope: commits: public + private, all branches; lines of code: added - deleted, skips commits &gt; 10,000 lines. Projects: pdf-shrinker, Unstar, Proxmox-Technical-Writing-Style-Skill. Language byte share across eligible owned public + authorized private: TypeScript 43.9%, Python 21.0%, JavaScript 18.7%, Astro 3.5%, Dart 3.5%, C++ 3.2%, QML 1.7%, Svelte 1.2%, MDX 1.0%, Other 2.3%. Other includes: SCSS, Shell, Go, Rust, Dockerfile, PHP, QMake, Lua, Ruby, CMake, Perl, PowerShell, Just, Common Lisp, C, Racket, Swift, Tcl, Kotlin, Objective-C.</desc>
 <style>
 @keyframes cursor-blink { 0%, 49%, 100% { opacity: 1; } 50%, 99% { opacity: 0; } }
 @keyframes command-type { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
@@ -68,9 +68,9 @@
 <text x="352" y="484" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#eebd95">previous   </tspan><tspan fill="#7d8f87"> = </tspan><tspan fill="#7d8f87">[</tspan><tspan fill="#c5dda8">&quot;PHP&quot;</tspan><tspan fill="#7d8f87">, </tspan><tspan fill="#c5dda8">&quot;C&quot;</tspan><tspan fill="#7d8f87">, </tspan><tspan fill="#c5dda8">&quot;Java&quot;</tspan><tspan fill="#7d8f87">]</tspan></text>
 <text x="352" y="503" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#eebd95">human      </tspan><tspan fill="#7d8f87"> = </tspan><tspan fill="#7d8f87">[</tspan><tspan fill="#c5dda8">&quot;Turkmen&quot;</tspan><tspan fill="#7d8f87">, </tspan><tspan fill="#c5dda8">&quot;Turkish&quot;</tspan><tspan fill="#7d8f87">, </tspan><tspan fill="#c5dda8">&quot;Russian&quot;</tspan><tspan fill="#7d8f87">, </tspan><tspan fill="#c5dda8">&quot;English&quot;</tspan><tspan fill="#7d8f87">]</tspan></text>
 <text x="352" y="541" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#7d8f87">[</tspan><tspan fill="#c4b4e5">github</tspan><tspan fill="#7d8f87">]</tspan></text>
-<text x="352" y="560" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#eebd95">commits  </tspan><tspan fill="#7d8f87"> = </tspan><tspan fill="#9dcced">36_966</tspan><tspan fill="#7d8f87">  # public + private, all branches</tspan></text>
+<text x="352" y="560" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#eebd95">commits  </tspan><tspan fill="#7d8f87"> = </tspan><tspan fill="#9dcced">36_976</tspan><tspan fill="#7d8f87">  # public + private, all branches</tspan></text>
 <text x="352" y="579" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#7d8f87"># added - deleted, skips commits &gt; 10,000 lines</tspan></text>
-<text x="352" y="598" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#eebd95">loc      </tspan><tspan fill="#7d8f87"> = </tspan><tspan fill="#9dcced">481_875</tspan></text>
+<text x="352" y="598" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#eebd95">loc      </tspan><tspan fill="#7d8f87"> = </tspan><tspan fill="#9dcced">498_773</tspan></text>
 <text x="352" y="617" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#eebd95">stars    </tspan><tspan fill="#7d8f87"> = </tspan><tspan fill="#9dcced">0</tspan></text>
 <text x="352" y="636" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#eebd95">followers</tspan><tspan fill="#7d8f87"> = </tspan><tspan fill="#9dcced">22</tspan></text>
 <text x="352" y="674" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#7d8f87">[</tspan><tspan fill="#c4b4e5">projects</tspan><tspan fill="#7d8f87">]</tspan></text>
@@ -87,51 +87,51 @@
 <text x="41.6" y="861" fill="#e3ebe8" font-size="13" class="terminal-command">languages --top 9</text>
 <text x="26" y="880" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#7d8f87"># public + authorized private / owned source / language bytes</tspan></text>
 <text x="26" y="918" fill="#e3ebe8" font-size="13" >TypeScript</text>
-<text x="834" y="918" fill="#e3ebe8" font-size="13" text-anchor="end">43.4%</text>
+<text x="834" y="918" fill="#e3ebe8" font-size="13" text-anchor="end">43.9%</text>
 <path d="M176 913.5h358" stroke="#1e2528" stroke-width="11" stroke-dasharray="7 2"/>
-<g class="language-bar" style="animation-delay: 1000ms"><path d="M176 913.5h151" stroke="#3178c6" stroke-width="11" stroke-dasharray="7 2"/></g>
+<g class="language-bar" style="animation-delay: 1000ms"><path d="M176 913.5h160" stroke="#3178c6" stroke-width="11" stroke-dasharray="7 2"/></g>
 <text x="26" y="944" fill="#e3ebe8" font-size="13" >Python</text>
-<text x="834" y="944" fill="#e3ebe8" font-size="13" text-anchor="end">21.8%</text>
+<text x="834" y="944" fill="#e3ebe8" font-size="13" text-anchor="end">21.0%</text>
 <path d="M176 939.5h358" stroke="#1e2528" stroke-width="11" stroke-dasharray="7 2"/>
-<g class="language-bar" style="animation-delay: 1090ms"><path d="M176 939.5h79" stroke="#3572A5" stroke-width="11" stroke-dasharray="7 2"/></g>
+<g class="language-bar" style="animation-delay: 1090ms"><path d="M176 939.5h70" stroke="#3572A5" stroke-width="11" stroke-dasharray="7 2"/></g>
 <text x="26" y="970" fill="#e3ebe8" font-size="13" >JavaScript</text>
-<text x="834" y="970" fill="#e3ebe8" font-size="13" text-anchor="end">19.1%</text>
+<text x="834" y="970" fill="#e3ebe8" font-size="13" text-anchor="end">18.7%</text>
 <path d="M176 965.5h358" stroke="#1e2528" stroke-width="11" stroke-dasharray="7 2"/>
-<g class="language-bar" style="animation-delay: 1180ms"><path d="M176 965.5h70" stroke="#f1e05a" stroke-width="11" stroke-dasharray="7 2"/></g>
+<g class="language-bar" style="animation-delay: 1180ms"><path d="M176 965.5h61" stroke="#f1e05a" stroke-width="11" stroke-dasharray="7 2"/></g>
 <text x="26" y="996" fill="#e3ebe8" font-size="13" >Astro</text>
-<text x="834" y="996" fill="#e3ebe8" font-size="13" text-anchor="end">3.7%</text>
+<text x="834" y="996" fill="#e3ebe8" font-size="13" text-anchor="end">3.5%</text>
 <path d="M176 991.5h358" stroke="#1e2528" stroke-width="11" stroke-dasharray="7 2"/>
 <g class="language-bar" style="animation-delay: 1270ms"><path d="M176 991.5h7" stroke="#ff5a03" stroke-width="11" stroke-dasharray="7 2"/></g>
 <text x="26" y="1022" fill="#e3ebe8" font-size="13" >Dart</text>
-<text x="834" y="1022" fill="#e3ebe8" font-size="13" text-anchor="end">3.6%</text>
+<text x="834" y="1022" fill="#e3ebe8" font-size="13" text-anchor="end">3.5%</text>
 <path d="M176 1017.5h358" stroke="#1e2528" stroke-width="11" stroke-dasharray="7 2"/>
 <g class="language-bar" style="animation-delay: 1360ms"><path d="M176 1017.5h7" stroke="#00B4AB" stroke-width="11" stroke-dasharray="7 2"/></g>
 <text x="26" y="1048" fill="#e3ebe8" font-size="13" >C++</text>
-<text x="834" y="1048" fill="#e3ebe8" font-size="13" text-anchor="end">3.3%</text>
+<text x="834" y="1048" fill="#e3ebe8" font-size="13" text-anchor="end">3.2%</text>
 <path d="M176 1043.5h358" stroke="#1e2528" stroke-width="11" stroke-dasharray="7 2"/>
 <g class="language-bar" style="animation-delay: 1450ms"><path d="M176 1043.5h7" stroke="#f34b7d" stroke-width="11" stroke-dasharray="7 2"/></g>
 <text x="26" y="1074" fill="#e3ebe8" font-size="13" >QML</text>
-<text x="834" y="1074" fill="#e3ebe8" font-size="13" text-anchor="end">1.8%</text>
+<text x="834" y="1074" fill="#e3ebe8" font-size="13" text-anchor="end">1.7%</text>
 <path d="M176 1069.5h358" stroke="#1e2528" stroke-width="11" stroke-dasharray="7 2"/>
 <g class="language-bar" style="animation-delay: 1540ms"><path d="M176 1069.5h7" stroke="#44a51c" stroke-width="11" stroke-dasharray="7 2"/></g>
-<text x="26" y="1100" fill="#e3ebe8" font-size="13" >MDX</text>
-<text x="834" y="1100" fill="#e3ebe8" font-size="13" text-anchor="end">1.0%</text>
+<text x="26" y="1100" fill="#e3ebe8" font-size="13" >Svelte</text>
+<text x="834" y="1100" fill="#e3ebe8" font-size="13" text-anchor="end">1.2%</text>
 <path d="M176 1095.5h358" stroke="#1e2528" stroke-width="11" stroke-dasharray="7 2"/>
-<g class="language-bar" style="animation-delay: 1630ms"><path d="M176 1095.5h7" stroke="#fcb32c" stroke-width="11" stroke-dasharray="7 2"/></g>
-<text x="26" y="1126" fill="#e3ebe8" font-size="13" >SCSS</text>
-<text x="834" y="1126" fill="#e3ebe8" font-size="13" text-anchor="end">0.9%</text>
+<g class="language-bar" style="animation-delay: 1630ms"><path d="M176 1095.5h7" stroke="#ff3e00" stroke-width="11" stroke-dasharray="7 2"/></g>
+<text x="26" y="1126" fill="#e3ebe8" font-size="13" >MDX</text>
+<text x="834" y="1126" fill="#e3ebe8" font-size="13" text-anchor="end">1.0%</text>
 <path d="M176 1121.5h358" stroke="#1e2528" stroke-width="11" stroke-dasharray="7 2"/>
-<g class="language-bar" style="animation-delay: 1720ms"><path d="M176 1121.5h7" stroke="#c6538c" stroke-width="11" stroke-dasharray="7 2"/></g>
+<g class="language-bar" style="animation-delay: 1720ms"><path d="M176 1121.5h7" stroke="#fcb32c" stroke-width="11" stroke-dasharray="7 2"/></g>
 <text x="26" y="1152" fill="#e3ebe8" font-size="13" >Other</text>
-<text x="834" y="1152" fill="#e3ebe8" font-size="13" text-anchor="end">1.4%</text>
+<text x="834" y="1152" fill="#e3ebe8" font-size="13" text-anchor="end">2.3%</text>
 <path d="M176 1147.5h358" stroke="#1e2528" stroke-width="11" stroke-dasharray="7 2"/>
 <g class="language-bar" style="animation-delay: 1810ms"><path d="M176 1147.5h7" stroke="#7d8f87" stroke-width="11" stroke-dasharray="7 2"/></g>
 <text x="26" y="1197.5" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#7d8f87"># also used, included in Other:</tspan></text>
-<text x="26" y="1216.5" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#7d8f87"># Shell, Go, Rust, Dockerfile, PHP, QMake, Lua, Ruby, CMake, Perl, PowerShell, Just, Common Lisp, C,</tspan></text>
-<text x="26" y="1235.5" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#7d8f87"># Racket, Swift, Tcl, Kotlin, Objective-C</tspan></text>
+<text x="26" y="1216.5" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#7d8f87"># SCSS, Shell, Go, Rust, Dockerfile, PHP, QMake, Lua, Ruby, CMake, Perl, PowerShell, Just, Common Lisp,</tspan></text>
+<text x="26" y="1235.5" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#7d8f87"># C, Racket, Swift, Tcl, Kotlin, Objective-C</tspan></text>
 <rect x="12" y="1259" width="836" height="26" rx="4" fill="#91d7bd"/>
 <text x="22" y="1276" fill="#0d1f18" font-size="12" font-weight="700">[msoltanov]</text>
 <text x="108.39999999999999" y="1276" fill="#0d1f18" font-size="12" font-weight="700">0:profile*</text>
-<text x="838" y="1276" fill="#0d1f18" font-size="12" text-anchor="end">updated 2026-10-03</text>
+<text x="838" y="1276" fill="#0d1f18" font-size="12" text-anchor="end">updated 2026-10-06</text>
 </g>
 </svg>
