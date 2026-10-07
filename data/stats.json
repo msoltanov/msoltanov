@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-10-06",
+  "updatedAt": "2026-10-07",
   "activity": {
-    "commits": 36976,
-    "additions": 626611,
-    "deletions": 127838
+    "commits": 36978,
+    "additions": 626720,
+    "deletions": 127889
   },
   "languages": {
     "rows": [
@@ -61,6 +61,7 @@
       "CMake",
       "Perl",
       "PowerShell",
+      "Inno Setup",
       "Just",
       "Common Lisp",
       "C",
@@ -68,6 +69,7 @@
       "Swift",
       "Tcl",
       "Kotlin",
+      "Batchfile",
       "Objective-C"
     ],
     "scope": "authorized"
