@@ -1,0 +1,19 @@
+{
+  "$schema": "https://html-validate.org/schema/config.json",
+  "extends": [
+    "html-validate:recommended",
+    "html-validate:document",
+    "html-validate:a11y",
+    "html-validate:prettier"
+  ],
+  "rules": {
+    "doctype-style": ["error", {"style": "lowercase"}],
+    "attr-quotes": ["error", {"style": "double", "unquoted": false}],
+    "no-inline-style": ["error", {"include": ["style"]}],
+    "no-dup-id": "error",
+    "require-sri": ["error", {"target": "crossorigin"}],
+    "heading-level": "off",
+    "no-deprecated-attr": "off",
+    "long-title": "off"
+  }
+}
