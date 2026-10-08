@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-10-07",
+  "updatedAt": "2026-10-08",
   "activity": {
-    "commits": 36978,
-    "additions": 626720,
-    "deletions": 127889
+    "commits": 36989,
+    "additions": 627428,
+    "deletions": 127909
   },
   "languages": {
     "rows": [
@@ -41,11 +41,11 @@
       },
       {
         "name": "MDX",
-        "percentage": 1
+        "percentage": 0.9
       },
       {
         "name": "Other",
-        "percentage": 2.3
+        "percentage": 2.4
       }
     ],
     "alsoUsed": [
@@ -54,13 +54,13 @@
       "Go",
       "Rust",
       "Dockerfile",
+      "PowerShell",
       "PHP",
       "QMake",
       "Lua",
       "Ruby",
       "CMake",
       "Perl",
-      "PowerShell",
       "Inno Setup",
       "Just",
       "Common Lisp",
@@ -68,6 +68,7 @@
       "Racket",
       "Swift",
       "Tcl",
+      "NSIS",
       "Kotlin",
       "Batchfile",
       "Objective-C"

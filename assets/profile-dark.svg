@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="860" height="1297" viewBox="0 0 860 1297" role="img" aria-labelledby="title desc">
 <title id="title">ALABAY CODE / tmux</title>
-<desc id="desc">ALABAY CODE. Mekan, @msoltanov. Interests: Software Engineering, Cybersecurity, AI &amp; Experimentation, Infrastructure, Open Source, Growth Engineering. GitHub uptime: 11y 11m. OS: Windows 11, Android 13-14, Linux. IDE: VS Code, JetBrains IDEs, Pulsar. Terminals: Tabby, Termius. Programming: Python, TypeScript, JavaScript, Go, Rust. Mobile stack: Kotlin, Flutter, Dart. Daily languages: JSON, YAML, TOML, Lisp, Lua, Perl. Previous languages: PHP, C, Java. Human languages: Turkmen, Turkish, Russian, English. Commits: 36,978. Lines of code: 498,831. Stars: 0. Followers: 22. Scope: commits: public + private, all branches; lines of code: added - deleted, skips commits &gt; 10,000 lines. Projects: pdf-shrinker, Unstar, Proxmox-Technical-Writing-Style-Skill. Language byte share across eligible owned public + authorized private: TypeScript 43.9%, Python 21.0%, JavaScript 18.7%, Astro 3.5%, Dart 3.5%, C++ 3.2%, QML 1.7%, Svelte 1.2%, MDX 1.0%, Other 2.3%. Other includes: SCSS, Shell, Go, Rust, Dockerfile, PHP, QMake, Lua, Ruby, CMake, Perl, PowerShell, Inno Setup, Just, Common Lisp, C, Racket, Swift, Tcl, Kotlin, Batchfile, Objective-C.</desc>
+<desc id="desc">ALABAY CODE. Mekan, @msoltanov. Interests: Software Engineering, Cybersecurity, AI &amp; Experimentation, Infrastructure, Open Source, Growth Engineering. GitHub uptime: 12y 0m. OS: Windows 11, Android 13-14, Linux. IDE: VS Code, JetBrains IDEs, Pulsar. Terminals: Tabby, Termius. Programming: Python, TypeScript, JavaScript, Go, Rust. Mobile stack: Kotlin, Flutter, Dart. Daily languages: JSON, YAML, TOML, Lisp, Lua, Perl. Previous languages: PHP, C, Java. Human languages: Turkmen, Turkish, Russian, English. Commits: 36,989. Lines of code: 499,519. Stars: 0. Followers: 22. Scope: commits: public + private, all branches; lines of code: added - deleted, skips commits &gt; 10,000 lines. Projects: pdf-shrinker, Unstar, Proxmox-Technical-Writing-Style-Skill. Language byte share across eligible owned public + authorized private: TypeScript 43.9%, Python 21.0%, JavaScript 18.7%, Astro 3.5%, Dart 3.5%, C++ 3.2%, QML 1.7%, Svelte 1.2%, MDX 0.9%, Other 2.4%. Other includes: SCSS, Shell, Go, Rust, Dockerfile, PowerShell, PHP, QMake, Lua, Ruby, CMake, Perl, Inno Setup, Just, Common Lisp, C, Racket, Swift, Tcl, NSIS, Kotlin, Batchfile, Objective-C.</desc>
 <style>
 @keyframes cursor-blink { 0%, 49%, 100% { opacity: 1; } 50%, 99% { opacity: 0; } }
 @keyframes command-type { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
@@ -49,7 +49,7 @@
 <text x="352" y="85" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#7d8f87">[</tspan><tspan fill="#c4b4e5">user</tspan><tspan fill="#7d8f87">]</tspan></text>
 <text x="352" y="104" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#eebd95">name     </tspan><tspan fill="#7d8f87"> = </tspan><tspan fill="#c5dda8">&quot;Mekan&quot;</tspan></text>
 <text x="352" y="123" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#eebd95">handle   </tspan><tspan fill="#7d8f87"> = </tspan><tspan fill="#c5dda8">&quot;msoltanov&quot;</tspan></text>
-<text x="352" y="142" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#eebd95">uptime   </tspan><tspan fill="#7d8f87"> = </tspan><tspan fill="#c5dda8">&quot;11y 11m&quot;</tspan><tspan fill="#7d8f87">  # on github</tspan></text>
+<text x="352" y="142" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#eebd95">uptime   </tspan><tspan fill="#7d8f87"> = </tspan><tspan fill="#c5dda8">&quot;12y 0m&quot;</tspan><tspan fill="#7d8f87">  # on github</tspan></text>
 <text x="352" y="161" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#eebd95">interests</tspan><tspan fill="#7d8f87"> = </tspan><tspan fill="#7d8f87">[</tspan></text>
 <text x="352" y="180" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#e3ebe8">  </tspan><tspan fill="#c5dda8">&quot;Software Engineering&quot;</tspan><tspan fill="#7d8f87">, </tspan><tspan fill="#c5dda8">&quot;Cybersecurity&quot;</tspan><tspan fill="#7d8f87">, </tspan></text>
 <text x="352" y="199" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#e3ebe8">  </tspan><tspan fill="#c5dda8">&quot;AI &amp; Experimentation&quot;</tspan><tspan fill="#7d8f87">, </tspan><tspan fill="#c5dda8">&quot;Infrastructure&quot;</tspan><tspan fill="#7d8f87">, </tspan><tspan fill="#c5dda8">&quot;Open Source&quot;</tspan><tspan fill="#7d8f87">, </tspan></text>
@@ -68,9 +68,9 @@
 <text x="352" y="484" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#eebd95">previous   </tspan><tspan fill="#7d8f87"> = </tspan><tspan fill="#7d8f87">[</tspan><tspan fill="#c5dda8">&quot;PHP&quot;</tspan><tspan fill="#7d8f87">, </tspan><tspan fill="#c5dda8">&quot;C&quot;</tspan><tspan fill="#7d8f87">, </tspan><tspan fill="#c5dda8">&quot;Java&quot;</tspan><tspan fill="#7d8f87">]</tspan></text>
 <text x="352" y="503" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#eebd95">human      </tspan><tspan fill="#7d8f87"> = </tspan><tspan fill="#7d8f87">[</tspan><tspan fill="#c5dda8">&quot;Turkmen&quot;</tspan><tspan fill="#7d8f87">, </tspan><tspan fill="#c5dda8">&quot;Turkish&quot;</tspan><tspan fill="#7d8f87">, </tspan><tspan fill="#c5dda8">&quot;Russian&quot;</tspan><tspan fill="#7d8f87">, </tspan><tspan fill="#c5dda8">&quot;English&quot;</tspan><tspan fill="#7d8f87">]</tspan></text>
 <text x="352" y="541" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#7d8f87">[</tspan><tspan fill="#c4b4e5">github</tspan><tspan fill="#7d8f87">]</tspan></text>
-<text x="352" y="560" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#eebd95">commits  </tspan><tspan fill="#7d8f87"> = </tspan><tspan fill="#9dcced">36_978</tspan><tspan fill="#7d8f87">  # public + private, all branches</tspan></text>
+<text x="352" y="560" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#eebd95">commits  </tspan><tspan fill="#7d8f87"> = </tspan><tspan fill="#9dcced">36_989</tspan><tspan fill="#7d8f87">  # public + private, all branches</tspan></text>
 <text x="352" y="579" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#7d8f87"># added - deleted, skips commits &gt; 10,000 lines</tspan></text>
-<text x="352" y="598" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#eebd95">loc      </tspan><tspan fill="#7d8f87"> = </tspan><tspan fill="#9dcced">498_831</tspan></text>
+<text x="352" y="598" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#eebd95">loc      </tspan><tspan fill="#7d8f87"> = </tspan><tspan fill="#9dcced">499_519</tspan></text>
 <text x="352" y="617" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#eebd95">stars    </tspan><tspan fill="#7d8f87"> = </tspan><tspan fill="#9dcced">0</tspan></text>
 <text x="352" y="636" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#eebd95">followers</tspan><tspan fill="#7d8f87"> = </tspan><tspan fill="#9dcced">22</tspan></text>
 <text x="352" y="674" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#7d8f87">[</tspan><tspan fill="#c4b4e5">projects</tspan><tspan fill="#7d8f87">]</tspan></text>
@@ -119,19 +119,19 @@
 <path d="M176 1095.5h358" stroke="#1e2528" stroke-width="11" stroke-dasharray="7 2"/>
 <g class="language-bar" style="animation-delay: 1630ms"><path d="M176 1095.5h7" stroke="#ff3e00" stroke-width="11" stroke-dasharray="7 2"/></g>
 <text x="26" y="1126" fill="#e3ebe8" font-size="13" >MDX</text>
-<text x="834" y="1126" fill="#e3ebe8" font-size="13" text-anchor="end">1.0%</text>
+<text x="834" y="1126" fill="#e3ebe8" font-size="13" text-anchor="end">0.9%</text>
 <path d="M176 1121.5h358" stroke="#1e2528" stroke-width="11" stroke-dasharray="7 2"/>
 <g class="language-bar" style="animation-delay: 1720ms"><path d="M176 1121.5h7" stroke="#fcb32c" stroke-width="11" stroke-dasharray="7 2"/></g>
 <text x="26" y="1152" fill="#e3ebe8" font-size="13" >Other</text>
-<text x="834" y="1152" fill="#e3ebe8" font-size="13" text-anchor="end">2.3%</text>
+<text x="834" y="1152" fill="#e3ebe8" font-size="13" text-anchor="end">2.4%</text>
 <path d="M176 1147.5h358" stroke="#1e2528" stroke-width="11" stroke-dasharray="7 2"/>
 <g class="language-bar" style="animation-delay: 1810ms"><path d="M176 1147.5h7" stroke="#7d8f87" stroke-width="11" stroke-dasharray="7 2"/></g>
 <text x="26" y="1197.5" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#7d8f87"># also used, included in Other:</tspan></text>
-<text x="26" y="1216.5" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#7d8f87"># SCSS, Shell, Go, Rust, Dockerfile, PHP, QMake, Lua, Ruby, CMake, Perl, PowerShell, Inno Setup, Just,</tspan></text>
-<text x="26" y="1235.5" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#7d8f87"># Common Lisp, C, Racket, Swift, Tcl, Kotlin, Batchfile, Objective-C</tspan></text>
+<text x="26" y="1216.5" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#7d8f87"># SCSS, Shell, Go, Rust, Dockerfile, PowerShell, PHP, QMake, Lua, Ruby, CMake, Perl, Inno Setup, Just,</tspan></text>
+<text x="26" y="1235.5" fill="#e3ebe8" font-size="13" xml:space="preserve"><tspan fill="#7d8f87"># Common Lisp, C, Racket, Swift, Tcl, NSIS, Kotlin, Batchfile, Objective-C</tspan></text>
 <rect x="12" y="1259" width="836" height="26" rx="4" fill="#91d7bd"/>
 <text x="22" y="1276" fill="#0d1f18" font-size="12" font-weight="700">[msoltanov]</text>
 <text x="108.39999999999999" y="1276" fill="#0d1f18" font-size="12" font-weight="700">0:profile*</text>
-<text x="838" y="1276" fill="#0d1f18" font-size="12" text-anchor="end">updated 2026-10-07</text>
+<text x="838" y="1276" fill="#0d1f18" font-size="12" text-anchor="end">updated 2026-10-08</text>
 </g>
 </svg>
