@@ -1,0 +1,390 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://msoltanov.github.io/profile/schemas/v1/profile.schema.json",
+  "title": "Profile configuration",
+  "description": "Approved profile content and collection settings.",
+  "$comment": "Version-one field names, lower-case enum values and nullable snapshot fields remain compatible with the existing persisted formats.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "username", "editorName", "focus", "languageLimit"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Optional editor reference to this configuration schema.",
+      "minLength": 1,
+      "maxLength": 2048,
+      "examples": ["../schemas/profile.schema.json"]
+    },
+    "name": {
+      "$ref": "#/$defs/shortText",
+      "description": "Public display name.",
+      "maxLength": 23,
+      "type": "string"
+    },
+    "username": {
+      "type": "string",
+      "description": "GitHub account name.",
+      "minLength": 1,
+      "maxLength": 23,
+      "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$"
+    },
+    "editorName": {
+      "$ref": "#/$defs/shortText",
+      "description": "Public desk brand.",
+      "maxLength": 20,
+      "type": "string"
+    },
+    "focus": {
+      "type": "array",
+      "description": "Ordered terminal headline cycle.",
+      "items": {
+        "$ref": "#/$defs/shortText",
+        "description": "One professional headline."
+      },
+      "maxItems": 8
+    },
+    "interests": {
+      "$ref": "#/$defs/textList",
+      "description": "Optional public interests."
+    },
+    "workingWith": {
+      "$ref": "#/$defs/textList",
+      "description": "Current programming languages."
+    },
+    "currentlyLearning": {
+      "$ref": "#/$defs/shortText",
+      "description": "Current learning statement."
+    },
+    "employment": {
+      "type": "object",
+      "description": "Optional employment statement.",
+      "additionalProperties": false,
+      "required": ["role", "company"],
+      "properties": {
+        "role": {
+          "$ref": "#/$defs/shortText",
+          "description": "Job role."
+        },
+        "company": {
+          "$ref": "#/$defs/shortText",
+          "description": "Employer."
+        },
+        "location": {
+          "$ref": "#/$defs/shortText",
+          "description": "Optional location."
+        }
+      }
+    },
+    "system": {
+      "type": "object",
+      "description": "Optional environment and tool details.",
+      "additionalProperties": false,
+      "required": [],
+      "properties": {
+        "os": {
+          "$ref": "#/$defs/textList",
+          "description": "Operating systems."
+        },
+        "ides": {
+          "$ref": "#/$defs/textList",
+          "description": "Editors and IDEs."
+        },
+        "terminals": {
+          "$ref": "#/$defs/textList",
+          "description": "Terminal applications."
+        },
+        "programming": {
+          "$ref": "#/$defs/textList",
+          "description": "Programming languages."
+        },
+        "mobile": {
+          "$ref": "#/$defs/textList",
+          "description": "Mobile development tools."
+        },
+        "daily": {
+          "$ref": "#/$defs/textList",
+          "description": "Configuration and scripting languages."
+        },
+        "previous": {
+          "$ref": "#/$defs/textList",
+          "description": "Previous programming languages."
+        },
+        "human": {
+          "$ref": "#/$defs/textList",
+          "description": "Human languages."
+        }
+      }
+    },
+    "techStack": {
+      "type": "array",
+      "description": "Optional configured skill links.",
+      "items": {
+        "type": "object",
+        "description": "One linked technology.",
+        "additionalProperties": false,
+        "required": ["label", "icon", "url"],
+        "properties": {
+          "label": {
+            "$ref": "#/$defs/shortText",
+            "description": "Visible technology label."
+          },
+          "icon": {
+            "type": "string",
+            "description": "Skill icon identifier.",
+            "minLength": 1,
+            "maxLength": 32,
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "url": {
+            "$ref": "#/$defs/httpsUrl",
+            "description": "Official technology link."
+          }
+        }
+      },
+      "maxItems": 30
+    },
+    "uptime": {
+      "type": "object",
+      "description": "Calendar uptime configuration.",
+      "additionalProperties": false,
+      "required": ["source"],
+      "properties": {
+        "source": {
+          "type": "string",
+          "description": "Existing uptime source identifier.",
+          "enum": ["github", "birth", "coding", "custom"],
+          "examples": ["github"]
+        },
+        "since": {
+          "description": "UTC timestamp or calendar start date for a non-GitHub source.",
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date",
+              "maxLength": 10
+            },
+            {
+              "type": "string",
+              "format": "date-time",
+              "maxLength": 40
+            }
+          ],
+          "examples": ["2015-03-01"]
+        }
+      },
+      "anyOf": [
+        {
+          "properties": {
+            "source": {
+              "const": "github"
+            }
+          }
+        },
+        {
+          "properties": {
+            "since": {
+              "type": "string"
+            }
+          },
+          "required": ["since"]
+        }
+      ]
+    },
+    "contact": {
+      "type": "object",
+      "description": "Approved public contact links.",
+      "additionalProperties": false,
+      "required": [],
+      "properties": {
+        "emails": {
+          "type": "array",
+          "description": "Public email addresses.",
+          "items": {
+            "type": "string",
+            "description": "One public email address.",
+            "minLength": 1,
+            "maxLength": 100,
+            "format": "email"
+          },
+          "maxItems": 2
+        },
+        "socials": {
+          "type": "array",
+          "description": "Public social account links.",
+          "items": {
+            "type": "object",
+            "description": "One optional social link.",
+            "additionalProperties": false,
+            "required": ["label", "url"],
+            "properties": {
+              "label": {
+                "$ref": "#/$defs/shortText",
+                "description": "Visible service label."
+              },
+              "url": {
+                "description": "HTTPS profile URL, or null to disable this contact.",
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/httpsUrl",
+                    "description": "Public social profile URL."
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "icon": {
+                "type": "string",
+                "description": "Supported badge icon identifier.",
+                "enum": ["email", "x", "linkedin", "link", "hn"]
+              },
+              "handle": {
+                "type": "string",
+                "description": "Public contact handle.",
+                "minLength": 1,
+                "maxLength": 100
+              }
+            }
+          },
+          "maxItems": 4
+        }
+      }
+    },
+    "activity": {
+      "type": "object",
+      "description": "Authored activity collection settings.",
+      "additionalProperties": false,
+      "required": [],
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether authored activity is collected."
+        },
+        "maxCommitLines": {
+          "type": "integer",
+          "description": "Maximum total changed lines per counted line-diff commit.",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      }
+    },
+    "latestRelease": {
+      "type": "boolean",
+      "description": "Whether the latest public release is collected."
+    },
+    "projectSource": {
+      "type": "string",
+      "description": "Use the public GitHub pinned or popular showcase.",
+      "const": "github-profile",
+      "examples": ["github-profile"]
+    },
+    "featuredRepositories": {
+      "type": "array",
+      "description": "Legacy manually ordered public project names.",
+      "items": {
+        "type": "string",
+        "description": "Public repository name.",
+        "minLength": 1,
+        "maxLength": 100,
+        "pattern": "^(?!\\.\\.?$)[a-zA-Z0-9_.-]+$"
+      },
+      "maxItems": 6
+    },
+    "languageLimit": {
+      "type": "integer",
+      "description": "Maximum named language rows before Other.",
+      "minimum": 1,
+      "maximum": 9
+    },
+    "filters": {
+      "type": "object",
+      "description": "Language-statistics eligibility filters.",
+      "additionalProperties": false,
+      "required": [],
+      "properties": {
+        "includeForks": {
+          "type": "boolean",
+          "description": "Whether fork language bytes are included."
+        },
+        "includeArchived": {
+          "type": "boolean",
+          "description": "Whether archived repository language bytes are included."
+        },
+        "includeMirrors": {
+          "type": "boolean",
+          "description": "Whether mirror language bytes are included."
+        },
+        "excludeLanguages": {
+          "type": "array",
+          "description": "Languages excluded before ranking.",
+          "items": {
+            "$ref": "#/$defs/shortText",
+            "description": "Excluded language name."
+          },
+          "maxItems": 2048
+        },
+        "excludeRepositories": {
+          "type": "array",
+          "description": "Public owner/repository exclusions; private exclusions stay in the environment.",
+          "items": {
+            "type": "string",
+            "description": "Public owner/repository identifier.",
+            "minLength": 1,
+            "maxLength": 140,
+            "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?/(?!\\.\\.?$)[a-zA-Z0-9_.-]+$"
+          },
+          "maxItems": 2048,
+          "examples": [["example-user/example-project"]]
+        }
+      }
+    },
+    "animated": {
+      "type": "boolean",
+      "description": "Whether repeating GIF assets are generated."
+    }
+  },
+  "$defs": {
+    "shortText": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 48,
+      "pattern": "^[^\\u0000-\\u001f]+$",
+      "description": "A nonempty display value without control characters."
+    },
+    "textList": {
+      "type": "array",
+      "description": "A short ordered list of display values.",
+      "items": {
+        "$ref": "#/$defs/shortText",
+        "description": "Display list item."
+      },
+      "maxItems": 10
+    },
+    "httpsUrl": {
+      "type": "string",
+      "description": "HTTPS URL without whitespace or markup delimiters.",
+      "minLength": 1,
+      "maxLength": 2048,
+      "format": "uri",
+      "pattern": "^https://[^\\s<>\"']+$"
+    }
+  },
+  "anyOf": [
+    {
+      "required": ["projectSource"],
+      "properties": {
+        "projectSource": {
+          "const": "github-profile"
+        }
+      }
+    },
+    {
+      "required": ["featuredRepositories"],
+      "properties": {
+        "featuredRepositories": {
+          "type": "array"
+        }
+      }
+    }
+  ]
+}

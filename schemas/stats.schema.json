@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://msoltanov.github.io/profile/schemas/v1/stats.schema.json",
+  "title": "Statistics snapshot",
+  "description": "Latest accepted aggregate data.",
+  "$comment": "Version-one field names, lower-case enum values and nullable snapshot fields remain compatible with the existing persisted formats.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["updatedAt", "activity", "languages", "latestRelease"],
+  "properties": {
+    "updatedAt": {
+      "type": "string",
+      "description": "Last rendered content change as a calendar date.",
+      "minLength": 1,
+      "maxLength": 10,
+      "format": "date",
+      "examples": ["2026-11-04"]
+    },
+    "activity": {
+      "description": "Null means no accepted activity totals; zero totals remain explicit.",
+      "anyOf": [
+        {
+          "$ref": "#/$defs/activity",
+          "description": "Accepted activity totals."
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "examples": [
+        null,
+        {
+          "commits": 0,
+          "additions": 0,
+          "deletions": 0
+        }
+      ]
+    },
+    "languages": {
+      "$ref": "#/$defs/languages",
+      "description": "Accepted anonymous language aggregate."
+    },
+    "latestRelease": {
+      "description": "Null means no accepted public release.",
+      "anyOf": [
+        {
+          "$ref": "#/$defs/release",
+          "description": "Latest public release."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "count": {
+      "type": "integer",
+      "description": "Nonnegative safe aggregate count.",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "activity": {
+      "type": "object",
+      "description": "Complete authored activity totals, or null when no accepted totals are available.",
+      "additionalProperties": false,
+      "required": ["commits", "additions", "deletions"],
+      "properties": {
+        "commits": {
+          "$ref": "#/$defs/count",
+          "description": "Unique authored commits."
+        },
+        "additions": {
+          "$ref": "#/$defs/count",
+          "description": "Added lines in eligible commits."
+        },
+        "deletions": {
+          "$ref": "#/$defs/count",
+          "description": "Deleted lines in eligible commits."
+        }
+      }
+    },
+    "languages": {
+      "type": "object",
+      "description": "Anonymous aggregate language percentages.",
+      "additionalProperties": false,
+      "required": ["rows", "alsoUsed", "scope"],
+      "properties": {
+        "rows": {
+          "type": "array",
+          "description": "Ranked language rows, including an optional Other row.",
+          "items": {
+            "type": "object",
+            "description": "One language percentage.",
+            "additionalProperties": false,
+            "required": ["name", "percentage"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Language display name.",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "percentage": {
+                "type": "number",
+                "description": "Percentage of eligible language bytes.",
+                "minimum": 0,
+                "maximum": 100,
+                "examples": [38.8]
+              }
+            }
+          },
+          "maxItems": 10
+        },
+        "alsoUsed": {
+          "type": "array",
+          "description": "Languages represented by Other.",
+          "items": {
+            "type": "string",
+            "description": "Additional language name.",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "maxItems": 2048
+        },
+        "scope": {
+          "type": "string",
+          "description": "Existing aggregate authorization scope identifier.",
+          "enum": ["public", "authorized"],
+          "examples": ["public"]
+        }
+      }
+    },
+    "release": {
+      "type": "object",
+      "description": "Latest eligible public release.",
+      "additionalProperties": false,
+      "required": ["repository", "tag", "publishedAt", "url"],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "description": "Public repository name.",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "^(?!\\.\\.?$)[a-zA-Z0-9_.-]+$"
+        },
+        "tag": {
+          "type": "string",
+          "description": "Release tag.",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "publishedAt": {
+          "type": "string",
+          "description": "Release publication timestamp in UTC.",
+          "minLength": 1,
+          "maxLength": 40,
+          "format": "date-time",
+          "pattern": "Z$"
+        },
+        "url": {
+          "type": "string",
+          "description": "Public GitHub release URL.",
+          "minLength": 1,
+          "maxLength": 2048,
+          "format": "uri",
+          "pattern": "^https://github\\.com/[^\\s]+$"
+        }
+      }
+    }
+  }
+}
