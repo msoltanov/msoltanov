@@ -1,0 +1,49 @@
+{
+  "updatedAt": "2026-10-06",
+  "activity": {
+    "commits": 36871,
+    "additions": 612004,
+    "deletions": 127733
+  },
+  "languages": {
+    "rows": [
+      {
+        "name": "TypeScript",
+        "percentage": 39.4
+      },
+      {
+        "name": "Python",
+        "percentage": 24.9
+      },
+      {
+        "name": "JavaScript",
+        "percentage": 20.8
+      },
+      {
+        "name": "Dart",
+        "percentage": 4.2
+      },
+      {
+        "name": "C++",
+        "percentage": 3.6
+      },
+      {
+        "name": "Astro",
+        "percentage": 2.9
+      },
+      {
+        "name": "Other",
+        "percentage": 4.2
+      }
+    ],
+    "alsoUsed": [
+      "Go",
+      "Rust",
+      "PHP",
+      "Shell",
+      "Dockerfile"
+    ],
+    "scope": "authorized"
+  },
+  "latestRelease": null
+}

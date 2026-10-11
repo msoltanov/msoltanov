@@ -2,12 +2,60 @@
   "name": "Mekan Soltanov",
   "username": "msoltanov",
   "editorName": "ALABAY CODE",
-  "focus": ["Software Engineer", "Platform Engineer", "Growth Engineer"],
+  "focus": [
+    "Software Engineer",
+    "Platform Engineer",
+    "Growth Engineer"
+  ],
   "featuredRepositories": [
     "pdf-shrinker",
     "ikea-like-name-generator",
     "hackernews-agent-skills"
   ],
   "languageLimit": 6,
-  "animated": false
+  "animated": false,
+  "employment": {
+    "role": "Software Engineer",
+    "company": "Yupekchi",
+    "location": "Turkmenistan"
+  },
+  "contact": {
+    "emails": [
+      "mknsltnw@gmail.com"
+    ]
+  },
+  "system": {
+    "os": [
+      "Windows 11",
+      "Linux"
+    ],
+    "ides": [
+      "VS Code",
+      "JetBrains IDEs",
+      "Pulsar"
+    ],
+    "terminals": [
+      "Tabby",
+      "Termius"
+    ],
+    "programming": [
+      "Python",
+      "TypeScript",
+      "JavaScript",
+      "Go"
+    ],
+    "human": [
+      "Turkmen",
+      "Turkish",
+      "English"
+    ]
+  },
+  "uptime": {
+    "source": "github"
+  },
+  "activity": {
+    "enabled": true,
+    "maxCommitLines": 10000
+  },
+  "latestRelease": true
 }

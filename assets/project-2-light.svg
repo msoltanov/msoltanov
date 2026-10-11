@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="112" viewBox="0 0 128 112" role="img" aria-labelledby="title desc" data-frame="complete">
+<title id="title">ikea-like-name-generator</title>
+<desc id="desc">ikea-like-name-generator. Name generator like ikea namings for fun purpose</desc>
+<style>
+@keyframes cursor-blink { 0%, 49%, 100% { opacity: 1; } 50%, 99% { opacity: 0; } }
+@keyframes bar-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.editor-cursor { animation: cursor-blink 1s steps(1, end) infinite; }
+.language-bar { animation: bar-grow 800ms ease-out 1 both; transform-box: fill-box; transform-origin: left center; }
+@media (max-width: 600px) {
+  .intro-title { font-size: var(--name-mobile-size, 54px); }
+  .intro-summary { font-size: var(--summary-mobile-size, 15px); }
+  .intro-uptime { display: none; }
+  .panel-index { display: none; }
+  .hero-stat { font-size: var(--metric-size, 28px); }
+  .stat-label { font-size: 23px; }
+  .language-heading { font-size: 20px; }
+  .language-name, .language-value { font-size: 26px; }
+  .language-caption { font-size: 18px; }
+}
+@media (prefers-reduced-motion: reduce) { .editor-cursor, .language-bar { animation: none; } }
+</style>
+<g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace" letter-spacing="0">
+<rect x="0.5" y="0.5" width="127" height="111" rx="10" fill="#fbfcfa" stroke="#c3d0c7"/>
+<rect x="10" y="104" width="20" height="2" rx="1" fill="#815735" class="project-accent"/>
+<g class="project-thumbnail" transform="translate(8 8) scale(0.8)">
+<g transform="translate(0 0)" stroke="#1f332a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 16H101V99H24Z" fill="#eee6d8"/><path d="M35 16V99" fill="none"/><path data-animation="notebook-write" d="M45 34h5.00M45 45h4.00M45 56h4.50" fill="none"/><rect x="65" y="64" width="68" height="35" rx="4" fill="#815735"/><path d="M87 74L80 81L87 88M111 74L118 81L111 88M102 72L97 90" fill="none" stroke="#f3faf6"/></g>
+</g>
+</g>
+</svg>
