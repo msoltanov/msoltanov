@@ -4,12 +4,12 @@
 <picture>
   <source media="(max-width: 600px)" srcset="assets/workshop-mobile-dark.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/workshop-dark.svg">
-  <img alt="Mekan Soltanov’s autumn engineering workspace. A sleeping Alabay rests beside a seasonal tree near the desk, computer, server and architecture notebook. ALABAY CODE. Hello, my name is Mekan Soltanov. Roles: Software Engineer · Platform Engineer · Growth Engineer. Working as Software Engineer at Yupekchi in Turkmenistan. GitHub uptime: 11y 11m. OS: Windows 11, Linux. IDE: VS Code, JetBrains IDEs, Pulsar. Terminals: Tabby, Termius. Programming: Python, TypeScript, JavaScript, Go. Human languages: Turkmen, Turkish, English. Commits: 36,871. Lines of code: 484,271. Stars: 0. Followers: 23. Scope: commits: public + private, all branches; lines of code: added - deleted, skips commits &gt; 10,000 lines. Projects: pdf-shrinker, ikea-like-name-generator, hackernews-agent-skills. Language byte share across eligible owned public + authorized private: TypeScript 39.4%, Python 24.9%, JavaScript 20.8%, Dart 4.2%, C++ 3.6%, Astro 2.9%, Other 4.2%. Other includes: Go, Rust, PHP, Shell, Dockerfile." src="assets/workshop-light.svg" width="860" align="top">
+  <img alt="Mekan Soltanov’s autumn engineering workspace. A sleeping Alabay rests beside a seasonal tree near the desk, computer, server and architecture notebook. Mekan&apos;s Desk. Hello, my name is Mekan Soltanov. Roles: Software Engineer · Platform Engineer · Growth Engineer. Working as Software Engineer at Yupekchi in Turkmenistan. GitHub uptime: 11y 11m. OS: Windows 11, Linux. IDE: VS Code, JetBrains IDEs, Pulsar. Terminals: Tabby, Termius. Programming: Python, TypeScript, JavaScript, Go. Human languages: Turkmen, Turkish, English. Commits: 36,940. Lines of code: 487,578. Stars: 0. Followers: 23. Scope: commits: public + private, all branches; lines of code: added - deleted, skips commits &gt; 10,000 lines. Projects: pdf-shrinker, ikea-like-name-generator, hackernews-agent-skills. Language byte share across eligible owned public + authorized private: TypeScript 39.4%, Python 24.9%, JavaScript 20.8%, Dart 4.2%, C++ 3.6%, Astro 2.9%, Other 4.2%. Other includes: Go, Rust, PHP, Shell, Dockerfile." src="assets/workshop-light.svg" width="860" align="top">
 </picture>
 <!-- workshop:end -->
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/stats-dark.svg">
-  <img alt="Commits: 36,871. Lines of code: 484,271. Stars: 0. Followers: 23. Scope: commits: public + private, all branches; lines of code: added - deleted, skips commits &gt; 10,000 lines." src="assets/stats-light.svg" width="860" align="top">
+  <img alt="Commits: 36,940. Lines of code: 487,578. Stars: 0. Followers: 23. Scope: commits: public + private, all branches; lines of code: added - deleted, skips commits &gt; 10,000 lines." src="assets/stats-light.svg" width="860" align="top">
 </picture>
 </div>
 <!-- opening:end -->
