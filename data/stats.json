@@ -1,23 +1,23 @@
 {
-  "updatedAt": "2026-10-21",
+  "updatedAt": "2026-10-22",
   "activity": {
-    "commits": 37012,
-    "additions": 628158,
-    "deletions": 130590
+    "commits": 37025,
+    "additions": 628357,
+    "deletions": 130591
   },
   "languages": {
     "rows": [
       {
         "name": "TypeScript",
-        "percentage": 44
+        "percentage": 43.7
       },
       {
         "name": "Python",
-        "percentage": 21.1
+        "percentage": 21.2
       },
       {
         "name": "JavaScript",
-        "percentage": 18.5
+        "percentage": 18.6
       },
       {
         "name": "Astro",
@@ -41,7 +41,7 @@
       },
       {
         "name": "MDX",
-        "percentage": 0.9
+        "percentage": 1
       },
       {
         "name": "Other",
