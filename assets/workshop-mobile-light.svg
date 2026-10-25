@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="480" height="776" viewBox="0 0 480 776" role="img" aria-labelledby="title desc" data-frame="top">
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="860" viewBox="0 0 480 860" role="img" aria-labelledby="title desc" data-frame="top">
 <title id="title">Mekan&apos;s Desk / seasonal workspace</title>
-<desc id="desc">Mekan Soltanov’s autumn engineering workspace. A sleeping Alabay rests beside a seasonal tree near the desk, computer, server and architecture notebook. Mekan&apos;s Desk. Hello, my name is Mekan Soltanov. Roles: Software Engineer · Platform Engineer · Growth Engineer. Working as Software Engineer at Yupekchi in Turkmenistan. GitHub uptime: 11y 11m. OS: Windows 11, Linux. IDE: VS Code, JetBrains IDEs, Pulsar. Terminals: Tabby, Termius. Programming: Python, TypeScript, JavaScript, Go. Human languages: Turkmen, Turkish, English. Commits: 36,940. Lines of code: 487,578. Stars: 0. Followers: 23. Scope: commits: public + private, all branches; lines of code: added - deleted, skips commits &gt; 10,000 lines. Projects: pdf-shrinker, ikea-like-name-generator, hackernews-agent-skills. Language byte share across eligible owned public + authorized private: TypeScript 39.4%, Python 24.9%, JavaScript 20.8%, Dart 4.2%, C++ 3.6%, Astro 2.9%, Other 4.2%. Other includes: Go, Rust, PHP, Shell, Dockerfile.</desc>
+<desc id="desc">Mekan Soltanov’s autumn engineering workspace. A sleeping Alabay rests beside a seasonal tree near the desk, computer, server and architecture notebook. Mekan&apos;s Desk. Hello, my name is Mekan Soltanov. Roles: Software Engineer · Platform Engineer · Growth Engineer · Security Researcher. Working with TypeScript, JavaScript and Python. Currently learning about Rust and building desktop apps. GitHub uptime: 11y 11m. OS: Windows 11, Android 13-14, Linux. IDE: VS Code, JetBrains IDEs, Pulsar. Terminals: Tabby, Termius. Programming: Python, TypeScript, JavaScript, Go, Rust. Mobile stack: Kotlin, Flutter, Dart. Daily languages: JSON, YAML, TOML, Lisp, Lua, Perl. Previous languages: PHP, C, Java. Human languages: Turkmen, Turkish, English. Commits: 36,982. Lines of code: 492,485. Stars: 0. Followers: 23. Scope: commits: public + private, all branches; lines of code: added - deleted, skips commits &gt; 10,000 lines. Projects: pdf-shrinker, ikea-like-name-generator, hackernews-agent-skills, Proxmox-Technical-Writing-Style-Skill. Language byte share across eligible owned public + authorized private: TypeScript 39.1%, Python 24.6%, JavaScript 20.4%, Dart 4.1%, C++ 3.7%, Astro 2.8%, QML 2.0%, Svelte 1.4%, SCSS 1.1%, Other 0.8%. Other includes: Rust, Go, PHP, Shell, Dockerfile.</desc>
 <style>
 @keyframes cursor-blink { 0%, 49%, 100% { opacity: 1; } 50%, 99% { opacity: 0; } }
 @keyframes bar-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
@@ -20,7 +20,7 @@
 @media (prefers-reduced-motion: reduce) { .editor-cursor, .language-bar { animation: none; } }
 </style>
 <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace" letter-spacing="0">
-<rect width="480" height="776" fill="#fbfcfa"/><path d="M0.5 776V10.5Q0.5 0.5 10.5 0.5H469.5Q479.5 0.5 479.5 10.5V776" fill="none" stroke="#c3d0c7"/>
+<rect width="480" height="860" fill="#fbfcfa"/><path d="M0.5 860V10.5Q0.5 0.5 10.5 0.5H469.5Q479.5 0.5 479.5 10.5V860" fill="none" stroke="#c3d0c7"/>
 <text x="24" y="34" fill="#815735" font-size="18" font-weight="700" letter-spacing="2">Mekan&apos;s Desk</text>
 <path d="M24 52L456 52" fill="none" stroke="#c3d0c7"/>
 <text x="240" y="91" fill="#1f332a" font-size="20" text-anchor="middle" class="intro-greeting">Hello, my name is</text>
@@ -31,13 +31,15 @@
 <rect x="315.2" y="158" width="15.6" height="27" rx="1" fill="#815735" class="editor-cursor" opacity="1"/>
 </g>
 <text x="456" y="217" fill="#815735" font-size="20" text-anchor="end" class="intro-principles">Systems. Direction. Delivery.</text>
-<text x="24" y="270" fill="#1f332a" font-size="24" class="intro-employment" style="--summary-mobile-size: 24px">Working as Software Engineer</text>
-<text x="24" y="300" fill="#1f332a" font-size="24" class="intro-employment" style="--summary-mobile-size: 24px">at Yupekchi in Turkmenistan.</text>
-<text x="24" y="354" fill="#1f332a" font-size="24" class="intro-summary" style="--summary-mobile-size: 24px">Building software and</text>
-<text x="24" y="384" fill="#1f332a" font-size="24" class="intro-summary" style="--summary-mobile-size: 24px">platforms.</text>
-<text x="24" y="426" fill="#1f332a" font-size="24" class="intro-summary" style="--summary-mobile-size: 24px">Connecting engineering with</text>
-<text x="24" y="456" fill="#1f332a" font-size="24" class="intro-summary" style="--summary-mobile-size: 24px">growth.</text>
-<g data-composition="integrated-workspace" data-layout="mobile" data-lamp-x="92.5917" data-lamp-y="80.9536" transform="translate(-3 456) scale(0.56)">
+<text x="24" y="270" fill="#1f332a" font-size="24" class="intro-working-with" style="--summary-mobile-size: 24px">Working with TypeScript,</text>
+<text x="24" y="300" fill="#1f332a" font-size="24" class="intro-working-with" style="--summary-mobile-size: 24px">JavaScript and Python.</text>
+<text x="24" y="354" fill="#1f332a" font-size="24" class="intro-learning" style="--summary-mobile-size: 24px">Currently learning about Rust</text>
+<text x="24" y="384" fill="#1f332a" font-size="24" class="intro-learning" style="--summary-mobile-size: 24px">and building desktop apps.</text>
+<text x="24" y="438" fill="#1f332a" font-size="24" class="intro-summary" style="--summary-mobile-size: 24px">Building software and</text>
+<text x="24" y="468" fill="#1f332a" font-size="24" class="intro-summary" style="--summary-mobile-size: 24px">platforms.</text>
+<text x="24" y="510" fill="#1f332a" font-size="24" class="intro-summary" style="--summary-mobile-size: 24px">Connecting engineering with</text>
+<text x="24" y="540" fill="#1f332a" font-size="24" class="intro-summary" style="--summary-mobile-size: 24px">growth.</text>
+<g data-composition="integrated-workspace" data-layout="mobile" data-lamp-x="92.5917" data-lamp-y="82.8140" transform="translate(-3 540) scale(0.56)">
 <path d="M48 479L814 479" fill="none" stroke="#c3d0c7"/>
 <path d="M48 485H814" fill="none" stroke="#c3d0c7" opacity="0.3"/>
 <g data-motion="sunlight" transform="translate(5.579 0)" opacity="0.045" fill="#e5d7b5"><path d="M214 331H331L620 477H340Z"/><path d="M353 347H384L676 477H608Z"/></g>
@@ -140,7 +142,7 @@
 <g data-scene="alabay" data-pose="sleeping" stroke="#1f332a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="313" cy="473" rx="103" ry="8" fill="#e6ede8"/><g data-motion="breathing" transform="translate(0 -6.743) scale(1 1.0156)"><path d="M266 451C275 424 345 421 371 440C385 453 380 470 349 473H274Z" fill="#eee6d8"/><path d="M326 428C350 425 373 438 377 452L351 459L329 445Z" fill="#b68459" opacity="0.77" stroke="none"/></g>
 <path transform="rotate(1.427 366 460)" d="M367 464C396 474 404 454 395 448C390 445 383 448 386 453" fill="#b68459"/><g data-motion="sleepy-stretch-paws"><path data-motion="paw-twitch" transform="rotate(0.000 258 461) translate(0 0.000)" d="M258 461C243 456 225.000 461 222.000 472H286C292 468 285 463 275 462Z" fill="#eee6d8"/></g><g data-motion="sleepy-stretch-head" transform="translate(0.000 0.000)"><g transform="rotate(-1.124 273 458)"><path d="M242 439C252 425 276 425 288 438L291 455C283 468 260 470 244 462L231 459L228 449Z" fill="#eee6d8"/><path data-motion="ear-twitch" transform="rotate(0.000 278 434)" d="M275 430L288 437L292 450L282 459L275 446Z" fill="#b68459"/><path d="M231 447L243 449L240 454L229 453Z" fill="#1f332a"/><path data-motion="closed-eye" data-state="closed" d="M252 444Q257 447 262 444" fill="none"/><path d="M242 459L249 460" fill="none" opacity="0.6"/></g></g></g>
 </g>
-<text x="24" y="748" fill="#62786c" font-size="12" letter-spacing="1.2">ARCHITECTURE / DECISIONS / DELIVERY</text>
-<text x="456" y="748" fill="#815735" font-size="14" text-anchor="end" class="intro-uptime">11y 11m on GitHub</text>
+<text x="24" y="832" fill="#62786c" font-size="12" letter-spacing="1.2">ARCHITECTURE / DECISIONS / DELIVERY</text>
+<text x="456" y="832" fill="#815735" font-size="14" text-anchor="end" class="intro-uptime">11y 11m on GitHub</text>
 </g>
 </svg>

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="860" height="540" viewBox="0 0 860 540" role="img" aria-labelledby="title desc" data-frame="top">
 <title id="title">Mekan&apos;s Desk / seasonal workspace</title>
-<desc id="desc">Mekan Soltanov’s autumn engineering workspace. A sleeping Alabay rests beside a seasonal tree near the desk, computer, server and architecture notebook. Mekan&apos;s Desk. Hello, my name is Mekan Soltanov. Roles: Software Engineer · Platform Engineer · Growth Engineer. Working as Software Engineer at Yupekchi in Turkmenistan. GitHub uptime: 11y 11m. OS: Windows 11, Linux. IDE: VS Code, JetBrains IDEs, Pulsar. Terminals: Tabby, Termius. Programming: Python, TypeScript, JavaScript, Go. Human languages: Turkmen, Turkish, English. Commits: 36,940. Lines of code: 487,578. Stars: 0. Followers: 23. Scope: commits: public + private, all branches; lines of code: added - deleted, skips commits &gt; 10,000 lines. Projects: pdf-shrinker, ikea-like-name-generator, hackernews-agent-skills. Language byte share across eligible owned public + authorized private: TypeScript 39.4%, Python 24.9%, JavaScript 20.8%, Dart 4.2%, C++ 3.6%, Astro 2.9%, Other 4.2%. Other includes: Go, Rust, PHP, Shell, Dockerfile.</desc>
+<desc id="desc">Mekan Soltanov’s autumn engineering workspace. A sleeping Alabay rests beside a seasonal tree near the desk, computer, server and architecture notebook. Mekan&apos;s Desk. Hello, my name is Mekan Soltanov. Roles: Software Engineer · Platform Engineer · Growth Engineer · Security Researcher. Working with TypeScript, JavaScript and Python. Currently learning about Rust and building desktop apps. GitHub uptime: 11y 11m. OS: Windows 11, Android 13-14, Linux. IDE: VS Code, JetBrains IDEs, Pulsar. Terminals: Tabby, Termius. Programming: Python, TypeScript, JavaScript, Go, Rust. Mobile stack: Kotlin, Flutter, Dart. Daily languages: JSON, YAML, TOML, Lisp, Lua, Perl. Previous languages: PHP, C, Java. Human languages: Turkmen, Turkish, English. Commits: 36,982. Lines of code: 492,485. Stars: 0. Followers: 23. Scope: commits: public + private, all branches; lines of code: added - deleted, skips commits &gt; 10,000 lines. Projects: pdf-shrinker, ikea-like-name-generator, hackernews-agent-skills, Proxmox-Technical-Writing-Style-Skill. Language byte share across eligible owned public + authorized private: TypeScript 39.1%, Python 24.6%, JavaScript 20.4%, Dart 4.1%, C++ 3.7%, Astro 2.8%, QML 2.0%, Svelte 1.4%, SCSS 1.1%, Other 0.8%. Other includes: Rust, Go, PHP, Shell, Dockerfile.</desc>
 <style>
 @keyframes cursor-blink { 0%, 49%, 100% { opacity: 1; } 50%, 99% { opacity: 0; } }
 @keyframes bar-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
@@ -32,8 +32,10 @@
 <rect x="235.6" y="166" width="10.799999999999999" height="19" rx="1" fill="#d4ad86" class="editor-cursor" opacity="1"/>
 </g>
 <text x="828" y="181" fill="#d4ad86" font-size="13" text-anchor="end" class="intro-principles">Systems. Direction. Delivery.</text>
-<text x="32" y="225" fill="#e3ebe8" font-size="13" class="intro-employment">Working as Software Engineer at</text>
-<text x="32" y="243" fill="#e3ebe8" font-size="13" class="intro-employment">Yupekchi in Turkmenistan.</text>
+<text x="32" y="292" fill="#e3ebe8" font-size="13" class="intro-working-with">Working with TypeScript,</text>
+<text x="32" y="312" fill="#e3ebe8" font-size="13" class="intro-working-with">JavaScript and Python.</text>
+<text x="32" y="351" fill="#e3ebe8" font-size="13" class="intro-learning">Currently learning about Rust</text>
+<text x="32" y="371" fill="#e3ebe8" font-size="13" class="intro-learning">and building desktop apps.</text>
 <text x="32" y="411" fill="#e3ebe8" font-size="13" class="intro-summary">Building software and platforms.</text>
 <text x="32" y="431" fill="#e3ebe8" font-size="13" class="intro-summary">Connecting engineering with growth.</text>
 <g data-composition="integrated-workspace" data-layout="desktop" data-lamp-x="94.5721" data-lamp-y="69.2778" transform="translate(270 165) scale(0.68)">

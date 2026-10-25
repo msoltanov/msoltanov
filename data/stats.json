@@ -1,44 +1,56 @@
 {
-  "updatedAt": "2026-10-17",
+  "updatedAt": "2026-10-24",
   "activity": {
-    "commits": 36940,
-    "additions": 615880,
-    "deletions": 128302
+    "commits": 36982,
+    "additions": 622015,
+    "deletions": 129530
   },
   "languages": {
     "rows": [
       {
         "name": "TypeScript",
-        "percentage": 39.4
+        "percentage": 39.1
       },
       {
         "name": "Python",
-        "percentage": 24.9
+        "percentage": 24.6
       },
       {
         "name": "JavaScript",
-        "percentage": 20.8
+        "percentage": 20.4
       },
       {
         "name": "Dart",
-        "percentage": 4.2
+        "percentage": 4.1
       },
       {
         "name": "C++",
-        "percentage": 3.6
+        "percentage": 3.7
       },
       {
         "name": "Astro",
-        "percentage": 2.9
+        "percentage": 2.8
+      },
+      {
+        "name": "QML",
+        "percentage": 2
+      },
+      {
+        "name": "Svelte",
+        "percentage": 1.4
+      },
+      {
+        "name": "SCSS",
+        "percentage": 1.1
       },
       {
         "name": "Other",
-        "percentage": 4.2
+        "percentage": 0.8
       }
     ],
     "alsoUsed": [
-      "Go",
       "Rust",
+      "Go",
       "PHP",
       "Shell",
       "Dockerfile"

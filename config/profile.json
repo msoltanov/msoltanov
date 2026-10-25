@@ -5,28 +5,35 @@
   "focus": [
     "Software Engineer",
     "Platform Engineer",
-    "Growth Engineer"
+    "Growth Engineer",
+    "Security Researcher"
   ],
-  "featuredRepositories": [
-    "pdf-shrinker",
-    "ikea-like-name-generator",
-    "hackernews-agent-skills"
-  ],
-  "languageLimit": 6,
+  "projectSource": "github-profile",
+  "languageLimit": 9,
   "animated": false,
-  "employment": {
-    "role": "Software Engineer",
-    "company": "Yupekchi",
-    "location": "Turkmenistan"
-  },
   "contact": {
     "emails": [
       "mknsltnw@gmail.com"
+    ],
+    "socials": [
+      {
+        "label": "X",
+        "icon": "x",
+        "handle": "@0xsolt",
+        "url": "https://x.com/0xsolt"
+      },
+      {
+        "label": "LinkedIn",
+        "icon": "linkedin",
+        "handle": "mekan-soltanov",
+        "url": "https://www.linkedin.com/in/mekan-soltanov-31986097"
+      }
     ]
   },
   "system": {
     "os": [
       "Windows 11",
+      "Android 13-14",
       "Linux"
     ],
     "ides": [
@@ -42,7 +49,26 @@
       "Python",
       "TypeScript",
       "JavaScript",
-      "Go"
+      "Go",
+      "Rust"
+    ],
+    "mobile": [
+      "Kotlin",
+      "Flutter",
+      "Dart"
+    ],
+    "daily": [
+      "JSON",
+      "YAML",
+      "TOML",
+      "Lisp",
+      "Lua",
+      "Perl"
+    ],
+    "previous": [
+      "PHP",
+      "C",
+      "Java"
     ],
     "human": [
       "Turkmen",
@@ -50,6 +76,78 @@
       "English"
     ]
   },
+  "techStack": [
+    {
+      "label": "Python",
+      "icon": "python",
+      "url": "https://www.python.org/"
+    },
+    {
+      "label": "TypeScript",
+      "icon": "typescript",
+      "url": "https://www.typescriptlang.org/"
+    },
+    {
+      "label": "JavaScript",
+      "icon": "javascript",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+    },
+    {
+      "label": "Go",
+      "icon": "go",
+      "url": "https://go.dev/"
+    },
+    {
+      "label": "Rust",
+      "icon": "rust",
+      "url": "https://www.rust-lang.org/"
+    },
+    {
+      "label": "Kotlin",
+      "icon": "kotlin",
+      "url": "https://kotlinlang.org/"
+    },
+    {
+      "label": "Flutter",
+      "icon": "flutter",
+      "url": "https://flutter.dev/"
+    },
+    {
+      "label": "Dart",
+      "icon": "dart",
+      "url": "https://dart.dev/"
+    },
+    {
+      "label": "Windows 11",
+      "icon": "windows",
+      "url": "https://www.microsoft.com/windows/windows-11"
+    },
+    {
+      "label": "Linux",
+      "icon": "linux",
+      "url": "https://www.kernel.org/"
+    },
+    {
+      "label": "VS Code",
+      "icon": "vscode",
+      "url": "https://code.visualstudio.com/"
+    }
+  ],
+  "filters": {
+    "includeForks": false,
+    "includeArchived": false,
+    "includeMirrors": false,
+    "excludeLanguages": [
+      "HTML",
+      "CSS"
+    ]
+  },
+  "workingWith": [
+    "TypeScript",
+    "JavaScript",
+    "Python"
+  ],
+  "currentlyLearning": "about Rust and building desktop apps",
   "uptime": {
     "source": "github"
   },
