@@ -1,0 +1,105 @@
+import assert from 'node:assert/strict';
+import { readFile, readdir } from 'node:fs/promises';
+import { join } from 'node:path';
+import { spawnSync } from 'node:child_process';
+import { DOMParser } from '@xmldom/xmldom';
+import { inspectGif } from './gif.mjs';
+import { FRAME_COUNT, LOOP_DURATION_MS } from './motion.mjs';
+
+const MAX_GIF_BYTES = 5 * 1024 * 1024;
+
+const directories = ['scripts', 'test'];
+for (const directory of directories) {
+  for (const name of await readdir(directory)) {
+    if (!name.endsWith('.mjs')) {
+      continue;
+    }
+    const path = join(directory, name);
+    const source = await readFile(path, 'utf8');
+    assert.doesNotMatch(
+      source,
+      /^\s*(?:\/\/|\/\*|\*)/m,
+      `${path}: source comments are not permitted`,
+    );
+    const result = spawnSync(process.execPath, ['--check', path], {
+      encoding: 'utf8',
+    });
+    assert.equal(result.status, 0, `${path}: JavaScript syntax check failed`);
+  }
+}
+
+const names = await readdir('assets');
+const assets = names.filter((name) => name.endsWith('.svg'));
+const config = JSON.parse(await readFile('config/profile.json', 'utf8'));
+const motionAsset =
+  /^(?:workshop(?:-mobile)?|project-\d+)-(?:dark|light)\.svg$/;
+if (config.animated === true) {
+  for (const name of assets.filter((name) => motionAsset.test(name))) {
+    assert.ok(
+      names.includes(name.replace('.svg', '.gif')),
+      `Generate the GIF for ${name} before this check.`,
+    );
+  }
+}
+const gifs = names.filter((name) =>
+  /^(?:workshop(?:-mobile)?|project-\d+)-(?:dark|light)\.gif$/.test(name),
+);
+for (const name of gifs) {
+  const bytes = await readFile(join('assets', name));
+  assert.ok(
+    bytes.length <= MAX_GIF_BYTES,
+    `${name}: GIF exceeds the size limit`,
+  );
+  const gif = inspectGif(bytes);
+  assert.equal(
+    gif.frames.length,
+    FRAME_COUNT,
+    `${name}: GIF must have ${FRAME_COUNT} frames`,
+  );
+  assert.equal(gif.loops, 0, `${name}: GIF must repeat forever`);
+  assert.equal(
+    gif.duration,
+    LOOP_DURATION_MS,
+    `${name}: GIF must use the shared loop duration`,
+  );
+}
+for (const name of [
+  'profile-dark.svg',
+  'profile-light.svg',
+  'stats-dark.svg',
+  'stats-light.svg',
+]) {
+  assert.ok(assets.includes(name), `Generate ${name} before this check.`);
+}
+for (const name of assets) {
+  const svg = await readFile(join('assets', name), 'utf8');
+  const document = new DOMParser({
+    onError: () => {
+      throw new Error(`Invalid SVG XML: ${name}`);
+    },
+  }).parseFromString(svg, 'image/svg+xml');
+  assert.equal(document.documentElement.nodeName, 'svg');
+  assert.ok(document.getElementsByTagName('title').length);
+  assert.ok(document.getElementsByTagName('desc').length);
+  assert.doesNotMatch(
+    svg,
+    /<script\b|<foreignObject\b|<image\b|<animate\b|\son[a-z]+\s*=|<!DOCTYPE|<!ENTITY|\bhref\s*=/i,
+  );
+  assert.doesNotMatch(svg, /(?:github_pat_|gh[pousr]_)[A-Za-z0-9_]{20,}/);
+  for (const style of Array.from(document.getElementsByTagName('style'))) {
+    assert.doesNotMatch(
+      style.textContent,
+      /@import|url\s*\(|expression\s*\(|javascript:/i,
+    );
+    if (/animation\s*:/.test(style.textContent)) {
+      assert.match(
+        style.textContent,
+        /@media \(prefers-reduced-motion: reduce\)/,
+        `${name}: animation must stop for reduced motion`,
+      );
+    }
+  }
+}
+process.stdout.write(
+  `JavaScript syntax and source policy passed. ${assets.length} SVG files passed XML, content, and motion checks. ${gifs.length} GIF files passed structure, loop, and size checks.\n`,
+);
