@@ -1,27 +1,27 @@
 {
-  "updatedAt": "2026-11-02",
+  "updatedAt": "2026-11-04",
   "activity": {
-    "commits": 37030,
-    "additions": 627540,
-    "deletions": 130340
+    "commits": 37050,
+    "additions": 628886,
+    "deletions": 130609
   },
   "languages": {
     "rows": [
       {
         "name": "TypeScript",
-        "percentage": 39.1
+        "percentage": 38.8
       },
       {
         "name": "Python",
-        "percentage": 24.6
+        "percentage": 24.2
       },
       {
         "name": "JavaScript",
-        "percentage": 20.4
+        "percentage": 20.2
       },
       {
         "name": "Dart",
-        "percentage": 4.1
+        "percentage": 4
       },
       {
         "name": "C++",
@@ -29,7 +29,7 @@
       },
       {
         "name": "Astro",
-        "percentage": 2.8
+        "percentage": 2.7
       },
       {
         "name": "QML",
@@ -45,15 +45,33 @@
       },
       {
         "name": "Other",
-        "percentage": 0.8
+        "percentage": 1.9
       }
     ],
     "alsoUsed": [
-      "Rust",
-      "Go",
-      "PHP",
       "Shell",
-      "Dockerfile"
+      "MDX",
+      "Go",
+      "Rust",
+      "PowerShell",
+      "PHP",
+      "QMake",
+      "Lua",
+      "Dockerfile",
+      "Ruby",
+      "CMake",
+      "Perl",
+      "Inno Setup",
+      "Just",
+      "Common Lisp",
+      "C",
+      "Racket",
+      "Swift",
+      "Tcl",
+      "NSIS",
+      "Kotlin",
+      "Batchfile",
+      "Objective-C"
     ],
     "scope": "authorized"
   },

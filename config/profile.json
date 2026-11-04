@@ -1,20 +1,19 @@
 {
+  "$schema": "../schemas/profile.schema.json",
   "name": "Mekan Soltanov",
   "username": "msoltanov",
+  "animated": true,
+  "currentlyLearning": "about Rust and building desktop apps",
   "editorName": "Mekan's Desk",
-  "focus": [
-    "Software Engineer",
-    "Platform Engineer",
-    "Growth Engineer",
-    "Security Researcher"
-  ],
-  "projectSource": "github-profile",
   "languageLimit": 9,
-  "animated": false,
+  "latestRelease": true,
+  "projectSource": "github-profile",
+  "activity": {
+    "enabled": true,
+    "maxCommitLines": 10000
+  },
   "contact": {
-    "emails": [
-      "mknsltnw@gmail.com"
-    ],
+    "emails": ["mknsltnw@gmail.com"],
     "socials": [
       {
         "label": "X",
@@ -30,51 +29,35 @@
       }
     ]
   },
-  "system": {
-    "os": [
-      "Windows 11",
-      "Android 13-14",
-      "Linux"
-    ],
-    "ides": [
-      "VS Code",
-      "JetBrains IDEs",
-      "Pulsar"
-    ],
-    "terminals": [
-      "Tabby",
-      "Termius"
-    ],
-    "programming": [
-      "Python",
-      "TypeScript",
-      "JavaScript",
-      "Go",
-      "Rust"
-    ],
-    "mobile": [
-      "Kotlin",
-      "Flutter",
-      "Dart"
-    ],
-    "daily": [
-      "JSON",
-      "YAML",
-      "TOML",
-      "Lisp",
-      "Lua",
-      "Perl"
-    ],
-    "previous": [
-      "PHP",
-      "C",
-      "Java"
-    ],
-    "human": [
-      "Turkmen",
-      "Turkish",
-      "English"
+  "filters": {
+    "includeForks": false,
+    "includeArchived": false,
+    "includeMirrors": false,
+    "excludeLanguages": ["HTML", "CSS"],
+    "excludeRepositories": [
+      "msoltanov/msoltanov",
+      "msoltanov/edgelessdb",
+      "msoltanov/portarius",
+      "msoltanov/ulakbus",
+      "msoltanov/Best-websites-a-programmer-should-visit",
+      "msoltanov/free-python-books"
     ]
+  },
+  "focus": [
+    "Software Engineer",
+    "Platform Engineer",
+    "Growth Engineer",
+    "AI & Experimentation"
+  ],
+  "system": {
+    "os": ["Windows 11", "Android 13-14", "Linux"],
+    "ides": ["VS Code", "JetBrains IDEs", "Pulsar"],
+    "terminals": ["Tabby", "Termius"],
+    "programming": ["Python", "TypeScript", "JavaScript", "Go", "Rust"],
+    "mobile": ["Kotlin", "Flutter", "Dart"],
+    "daily": ["JSON", "YAML", "TOML", "Lisp", "Lua", "Perl"],
+    "previous": ["PHP", "C", "Java"],
+    "human": ["Turkmen", "Turkish", "English"]
   },
   "techStack": [
     {
@@ -133,27 +116,8 @@
       "url": "https://code.visualstudio.com/"
     }
   ],
-  "filters": {
-    "includeForks": false,
-    "includeArchived": false,
-    "includeMirrors": false,
-    "excludeLanguages": [
-      "HTML",
-      "CSS"
-    ]
-  },
-  "workingWith": [
-    "TypeScript",
-    "JavaScript",
-    "Python"
-  ],
-  "currentlyLearning": "about Rust and building desktop apps",
   "uptime": {
     "source": "github"
   },
-  "activity": {
-    "enabled": true,
-    "maxCommitLines": 10000
-  },
-  "latestRelease": true
+  "workingWith": ["TypeScript", "JavaScript", "Python", "Go"]
 }

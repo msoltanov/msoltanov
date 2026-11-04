@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="112" viewBox="0 0 128 112" role="img" aria-labelledby="title desc" data-frame="complete">
-<title id="title">Proxmox-Technical-Writing-Style-Skill</title>
-<desc id="desc">Proxmox-Technical-Writing-Style-Skill. Unofficial Proxmox Technical Writing Style Skill</desc>
+<title id="title">pdf-shrinker</title>
+<desc id="desc">pdf-shrinker. Compress PDF files with Ghostscript via cli</desc>
 <style>
 @keyframes cursor-blink { 0%, 49%, 100% { opacity: 1; } 50%, 99% { opacity: 0; } }
 @keyframes bar-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
@@ -23,7 +23,7 @@
 <rect x="0.5" y="0.5" width="127" height="111" rx="10" fill="#101315" stroke="#34403b"/>
 <rect x="10" y="104" width="20" height="2" rx="1" fill="#a4d6cf" class="project-accent"/>
 <g class="project-thumbnail" transform="translate(8 8) scale(0.8)">
-<g transform="translate(0 0)" stroke="#0d1f18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 16H101V99H24Z" fill="#e9e4d8"/><path d="M35 16V99" fill="none"/><path data-animation="notebook-write" d="M45 34h5.00M45 45h4.00M45 56h4.50" fill="none"/><rect x="65" y="64" width="68" height="35" rx="4" fill="#a4d6cf"/><path d="M87 74L80 81L87 88M111 74L118 81L111 88M102 72L97 90" fill="none" stroke="#0d1f18"/></g>
+<g transform="translate(0 0)" stroke="#0d1f18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g data-animation="pdf-compress" transform="translate(0.00 0.00) scale(1.0000)"><path d="M13 9H58L73 24V87H13Z" fill="#e9e4d8"/><path d="M58 9V24H73M26 40H58M26 51H52M26 62H46" fill="none"/></g><path d="M94 44H121L132 55V97H94Z" fill="#a4d6cf"/><path d="M121 44V55H132M102 69H122M102 78H117" fill="none" stroke="#0d1f18"/><path d="M76 60H88M83 55L88 60L83 65" fill="none" stroke="#d7a278"/></g>
 </g>
 </g>
 </svg>
