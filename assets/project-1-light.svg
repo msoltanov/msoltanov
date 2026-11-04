@@ -21,9 +21,9 @@
 </style>
 <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace" letter-spacing="0">
 <rect x="0.5" y="0.5" width="127" height="111" rx="10" fill="#fbfcfa" stroke="#c3d0c7"/>
-<rect x="10" y="104" width="20" height="2" rx="1" fill="#815735" class="project-accent"/>
+<rect x="10" y="104" width="20" height="2" rx="1" fill="#24635f" class="project-accent"/>
 <g class="project-thumbnail" transform="translate(8 8) scale(0.8)">
-<g transform="translate(0 0)" stroke="#1f332a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g data-animation="pdf-compress" transform="translate(0.00 0.00) scale(1.0000)"><path d="M13 9H58L73 24V87H13Z" fill="#eee6d8"/><path d="M58 9V24H73M26 40H58M26 51H52M26 62H46" fill="none"/></g><path d="M94 44H121L132 55V97H94Z" fill="#815735"/><path d="M121 44V55H132M102 69H122M102 78H117" fill="none" stroke="#f3faf6"/><path d="M76 60H88M83 55L88 60L83 65" fill="none" stroke="#b68459"/></g>
+<g transform="translate(0 0)" stroke="#1f332a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g data-animation="pdf-compress" transform="translate(0.00 0.00) scale(1.0000)"><path d="M13 9H58L73 24V87H13Z" fill="#eee6d8"/><path d="M58 9V24H73M26 40H58M26 51H52M26 62H46" fill="none"/></g><path d="M94 44H121L132 55V97H94Z" fill="#24635f"/><path d="M121 44V55H132M102 69H122M102 78H117" fill="none" stroke="#f3faf6"/><path d="M76 60H88M83 55L88 60L83 65" fill="none" stroke="#b68459"/></g>
 </g>
 </g>
 </svg>

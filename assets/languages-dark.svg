@@ -21,7 +21,7 @@
 </style>
 <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace" letter-spacing="0">
 <rect x="0.5" y="0.5" width="859" height="331" rx="10" fill="#101315" stroke="#34403b"/>
-<text x="32" y="34" fill="#d4ad86" font-size="13" font-weight="700" letter-spacing="2" class="language-heading">THE LANGUAGE MIX</text>
+<text x="32" y="34" fill="#a4d6cf" font-size="13" font-weight="700" letter-spacing="2" class="language-heading">THE LANGUAGE MIX</text>
 <text x="828" y="34" fill="#7d8f87" font-size="12" text-anchor="end" class="panel-index">9 languages + Other</text>
 <rect x="32" y="61" width="796" height="10" rx="2" fill="#1e2528"/>
 <g class="language-bar">
