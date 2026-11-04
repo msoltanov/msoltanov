@@ -8,7 +8,18 @@
   },
   "scripts": {
     "generate": "node scripts/generate-profile.mjs",
-    "test": "node --test"
+    "test": "node --test",
+    "check": "npm run lint && npm run format:check && npm run validate:data && npm run check:assets",
+    "check:assets": "node scripts/check.mjs",
+    "check:preview": "node scripts/check-preview.mjs",
+    "lint": "npm run lint:js && npm run lint:yaml && npm run lint:markdown && npm run lint:css",
+    "lint:js": "eslint . --max-warnings=0",
+    "lint:yaml": "python -B -m yamllint --strict -c .yamllint.yml .github .yamllint.yml",
+    "lint:markdown": "node scripts/check-markdown.mjs",
+    "lint:css": "stylelint \".preview/*.css\" --allow-empty-input --max-warnings 0",
+    "format": "prettier --ignore-path .prettierignore --write .",
+    "format:check": "prettier --ignore-path .prettierignore --check .",
+    "validate:data": "node scripts/validate-data.mjs"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

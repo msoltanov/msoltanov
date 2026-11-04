@@ -1,0 +1,9 @@
+node_modules/
+assets/
+output/
+tasks/
+lessons.md
+README.md
+package-lock.json
+data/stats.json
+.preview/*.json
