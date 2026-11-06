@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-04",
+  "updatedAt": "2026-11-06",
   "activity": {
     "commits": 37050,
     "additions": 628886,
@@ -8,72 +8,41 @@
   "languages": {
     "rows": [
       {
-        "name": "TypeScript",
-        "percentage": 38.8
-      },
-      {
         "name": "Python",
-        "percentage": 24.2
-      },
-      {
-        "name": "JavaScript",
-        "percentage": 20.2
-      },
-      {
-        "name": "Dart",
-        "percentage": 4
-      },
-      {
-        "name": "C++",
-        "percentage": 3.7
+        "percentage": 30
       },
       {
         "name": "Astro",
-        "percentage": 2.7
+        "percentage": 29.1
       },
       {
-        "name": "QML",
-        "percentage": 2
+        "name": "TypeScript",
+        "percentage": 16.3
       },
       {
-        "name": "Svelte",
-        "percentage": 1.4
+        "name": "MDX",
+        "percentage": 15.4
       },
       {
-        "name": "SCSS",
-        "percentage": 1.1
+        "name": "JavaScript",
+        "percentage": 8.8
       },
       {
-        "name": "Other",
-        "percentage": 1.9
+        "name": "Shell",
+        "percentage": 0.2
+      },
+      {
+        "name": "Dockerfile",
+        "percentage": 0.2
       }
     ],
-    "alsoUsed": [
-      "Shell",
-      "MDX",
-      "Go",
-      "Rust",
-      "PowerShell",
-      "PHP",
-      "QMake",
-      "Lua",
-      "Dockerfile",
-      "Ruby",
-      "CMake",
-      "Perl",
-      "Inno Setup",
-      "Just",
-      "Common Lisp",
-      "C",
-      "Racket",
-      "Swift",
-      "Tcl",
-      "NSIS",
-      "Kotlin",
-      "Batchfile",
-      "Objective-C"
-    ],
-    "scope": "authorized"
+    "alsoUsed": [],
+    "scope": "public"
   },
-  "latestRelease": null
+  "latestRelease": {
+    "repository": "hackernews-agent-skills",
+    "tag": "v1.0.6",
+    "publishedAt": "2026-11-02T08:37:31.000Z",
+    "url": "https://github.com/msoltanov/hackernews-agent-skills/releases/tag/v1.0.6"
+  }
 }
