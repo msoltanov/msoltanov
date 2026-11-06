@@ -30,7 +30,7 @@
 <text x="430" y="65" fill="#62786c" font-size="12" class="stat-label">stars</text>
 <text x="629" y="39" fill="#1f332a" font-size="23" font-weight="700" class="hero-stat" style="--metric-size: 28px">23</text>
 <text x="629" y="65" fill="#62786c" font-size="12" class="stat-label">followers</text>
-<text x="32" y="102" fill="#62786c" font-size="11" >Engineering with intent.</text>
-<text x="828" y="102" fill="#62786c" font-size="10" text-anchor="end">updated 2026-11-04</text>
+<text x="32" y="102" fill="#62786c" font-size="11" >hackernews-agent-skills v1.0.6</text>
+<text x="828" y="102" fill="#62786c" font-size="10" text-anchor="end">updated 2026-11-06</text>
 </g>
 </svg>
