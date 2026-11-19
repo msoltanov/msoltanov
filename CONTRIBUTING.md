@@ -50,6 +50,9 @@ corrected dependency.
 
 ## Source conventions
 
+Keep Stylelint 17 with `stylelint-config-standard` 40. Upgrade them together.
+Dependabot leaves their major upgrades for manual review.
+
 - Use native ESM and named exports in application modules.
 - Keep explicit `.mjs` import extensions because Node.js resolves these modules
   without a bundler.
