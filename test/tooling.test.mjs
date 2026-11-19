@@ -1,11 +1,54 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readdir } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { relative } from 'node:path';
 import { ESLint } from 'eslint';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
+
+test('dependency files contain one development entry per package', async () => {
+  for (const name of ['package.json', 'package-lock.json']) {
+    const source = await readFile(
+      new URL(`../${name}`, import.meta.url),
+      'utf8',
+    );
+    const block = source.match(/"devDependencies"\s*:\s*\{([^}]+)\}/)?.[1];
+    assert.ok(block, `${name} must declare development dependencies.`);
+    const names = [...block.matchAll(/"([^"\\]+)"\s*:/g)].map(
+      ([, dependency]) => dependency,
+    );
+    assert.equal(
+      new Set(names).size,
+      names.length,
+      `${name} has duplicate dependencies.`,
+    );
+  }
+});
+
+test('every development dependency matches the root lock entry and installed version', async () => {
+  const manifest = JSON.parse(
+    await readFile(new URL('../package.json', import.meta.url), 'utf8'),
+  );
+  const lock = JSON.parse(
+    await readFile(new URL('../package-lock.json', import.meta.url), 'utf8'),
+  );
+  assert.deepEqual(lock.packages[''].devDependencies, manifest.devDependencies);
+  for (const [name, version] of Object.entries(manifest.devDependencies)) {
+    assert.equal(lock.packages[`node_modules/${name}`]?.version, version, name);
+    const installed = JSON.parse(
+      await readFile(
+        new URL(`../node_modules/${name}/package.json`, import.meta.url),
+        'utf8',
+      ),
+    );
+    assert.equal(
+      installed.version,
+      version,
+      `${name} must match the lockfile.`,
+    );
+  }
+});
 
 test('lint discovery includes every application and test module', async () => {
   const linter = new ESLint({ cwd: root });
