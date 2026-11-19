@@ -24,6 +24,9 @@ other source files from the checks.
 CI uses Node.js 24 and Python 3.13. The npm lockfile pins JavaScript
 dependencies. `requirements-style.txt` pins the Python style tools.
 
+Bash runs the workflow regression tests. On Windows, the tests use Bash from Git
+for Windows.
+
 1. Install the JavaScript tools with `npm ci --ignore-scripts`.
 2. Install the Python tools with
    `python -m pip install -r requirements-style.txt`.
