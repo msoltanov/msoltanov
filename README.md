@@ -6,12 +6,12 @@
   <source media="(prefers-reduced-motion: reduce)" srcset="assets/workshop-dark.svg">
   <source media="(max-width: 600px)" srcset="assets/workshop-mobile-dark.gif">
   <source media="(prefers-color-scheme: dark)" srcset="assets/workshop-dark.gif">
-  <img alt="Mekan Soltanov’s winter engineering workspace. A sleeping Alabay rests beside a seasonal tree near the desk, computer, server and architecture notebook. Mekan&apos;s Desk. Hello, my name is Mekan Soltanov. Roles: Software Engineer · Platform Engineer · Growth Engineer · AI &amp; Experimentation. Working with TypeScript, JavaScript, Python and Go. Currently learning about Rust and building desktop apps. GitHub uptime: 12y 1m. OS: Windows 11, Android 13-14, Linux. IDE: VS Code, JetBrains IDEs, Pulsar. Terminals: Tabby, Termius. Programming: Python, TypeScript, JavaScript, Go, Rust. Mobile stack: Kotlin, Flutter, Dart. Daily languages: JSON, YAML, TOML, Lisp, Lua, Perl. Previous languages: PHP, C, Java. Human languages: Turkmen, Turkish, English. Commits: 37,050. Lines of code: 498,277. Stars: 0. Followers: 23. Scope: commits: public + private, all branches; lines of code: added - deleted, skips commits &gt; 10,000 lines. Latest release: hackernews-agent-skills v1.0.6, 2026-11-02. Projects: Proxmox-Technical-Writing-Style-Skill, hackernews-agent-skills, ikea-like-name-generator, pdf-shrinker. Language byte share across eligible owned public repositories: Python 30.0%, Astro 29.1%, TypeScript 16.3%, MDX 15.4%, JavaScript 8.8%, Shell 0.2%, Dockerfile 0.2%." src="assets/workshop-light.gif" width="860" align="top">
+  <img alt="Mekan Soltanov’s winter engineering workspace. A sleeping Alabay rests beside a seasonal tree near the desk, computer, server and architecture notebook. Mekan&apos;s Desk. Hello, my name is Mekan Soltanov. Roles: Software Engineer · Platform Engineer · Growth Engineer · AI &amp; Experimentation. Working with TypeScript, JavaScript, Python and Go. Currently learning about Rust and building desktop apps. GitHub uptime: 12y 1m. OS: Windows 11, Android 13-14, Linux. IDE: VS Code, JetBrains IDEs, Pulsar. Terminals: Tabby, Termius. Programming: Python, TypeScript, JavaScript, Go, Rust. Mobile stack: Kotlin, Flutter, Dart. Daily languages: JSON, YAML, TOML, Lisp, Lua, Perl. Previous languages: PHP, C, Java. Human languages: Turkmen, Turkish, English. Commits: 37,289. Lines of code: 519,444. Stars: 0. Followers: 23. Scope: commits: public + private, all branches; lines of code: added - deleted, skips commits &gt; 10,000 lines. Latest release: hackernews-agent-skills v1.0.6, 2026-11-02. Projects: Proxmox-Technical-Writing-Style-Skill, hackernews-agent-skills, ikea-like-name-generator, pdf-shrinker. Language byte share across eligible owned public + authorized private: TypeScript 41.9%, Python 27.2%, JavaScript 12.5%, Dart 4.4%, C++ 4.1%, Astro 3.0%, QML 2.1%, Svelte 1.5%, SCSS 1.2%, Other 2.1%. Other includes: Shell, MDX, Go, Rust, PowerShell, PHP, QMake, Lua, Dockerfile, Ruby, CMake, Perl, Just, Common Lisp, C, NSIS, Racket, Swift, Tcl, Kotlin, Batchfile, Objective-C." src="assets/workshop-light.gif" width="860" align="top">
 </picture>
 <!-- workshop:end -->
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/stats-dark.svg">
-  <img alt="Commits: 37,050. Lines of code: 498,277. Stars: 0. Followers: 23. Scope: commits: public + private, all branches; lines of code: added - deleted, skips commits &gt; 10,000 lines." src="assets/stats-light.svg" width="860" align="top">
+  <img alt="Commits: 37,289. Lines of code: 519,444. Stars: 0. Followers: 23. Scope: commits: public + private, all branches; lines of code: added - deleted, skips commits &gt; 10,000 lines." src="assets/stats-light.svg" width="860" align="top">
 </picture>
 </div>
 <!-- opening:end -->
@@ -78,7 +78,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/languages-dark.svg">
-  <img alt="Language byte share across eligible owned public repositories: Python 30.0%, Astro 29.1%, TypeScript 16.3%, MDX 15.4%, JavaScript 8.8%, Shell 0.2%, Dockerfile 0.2%." src="assets/languages-light.svg" width="860">
+  <img alt="Language byte share across eligible owned public + authorized private: TypeScript 41.9%, Python 27.2%, JavaScript 12.5%, Dart 4.4%, C++ 4.1%, Astro 3.0%, QML 2.1%, Svelte 1.5%, SCSS 1.2%, Other 2.1%. Other includes: Shell, MDX, Go, Rust, PowerShell, PHP, QMake, Lua, Dockerfile, Ruby, CMake, Perl, Just, Common Lisp, C, NSIS, Racket, Swift, Tcl, Kotlin, Batchfile, Objective-C." src="assets/languages-light.svg" width="860">
 </picture>
 
 <!-- environment:start -->

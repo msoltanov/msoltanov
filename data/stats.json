@@ -1,43 +1,78 @@
 {
-  "updatedAt": "2026-11-08",
+  "updatedAt": "2026-11-19",
   "activity": {
-    "commits": 37050,
-    "additions": 628886,
-    "deletions": 130609
+    "commits": 37289,
+    "additions": 651627,
+    "deletions": 132183
   },
   "languages": {
     "rows": [
       {
-        "name": "Python",
-        "percentage": 30
-      },
-      {
-        "name": "Astro",
-        "percentage": 29.1
-      },
-      {
         "name": "TypeScript",
-        "percentage": 16.3
+        "percentage": 41.9
       },
       {
-        "name": "MDX",
-        "percentage": 15.4
+        "name": "Python",
+        "percentage": 27.2
       },
       {
         "name": "JavaScript",
-        "percentage": 8.8
+        "percentage": 12.5
       },
       {
-        "name": "Shell",
-        "percentage": 0.2
+        "name": "Dart",
+        "percentage": 4.4
       },
       {
-        "name": "Dockerfile",
-        "percentage": 0.2
+        "name": "C++",
+        "percentage": 4.1
+      },
+      {
+        "name": "Astro",
+        "percentage": 3
+      },
+      {
+        "name": "QML",
+        "percentage": 2.1
+      },
+      {
+        "name": "Svelte",
+        "percentage": 1.5
+      },
+      {
+        "name": "SCSS",
+        "percentage": 1.2
+      },
+      {
+        "name": "Other",
+        "percentage": 2.1
       }
     ],
-    "alsoUsed": [],
-    "scope": "public"
+    "alsoUsed": [
+      "Shell",
+      "MDX",
+      "Go",
+      "Rust",
+      "PowerShell",
+      "PHP",
+      "QMake",
+      "Lua",
+      "Dockerfile",
+      "Ruby",
+      "CMake",
+      "Perl",
+      "Just",
+      "Common Lisp",
+      "C",
+      "NSIS",
+      "Racket",
+      "Swift",
+      "Tcl",
+      "Kotlin",
+      "Batchfile",
+      "Objective-C"
+    ],
+    "scope": "authorized"
   },
   "latestRelease": {
     "repository": "hackernews-agent-skills",
